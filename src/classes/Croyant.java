@@ -1,12 +1,22 @@
 package classes;
 
+import java.util.List;
+
 /**
  * Created by zhangmeng on 11/11/2016.
  */
-public class Croyant extends Carte {
-    @Override
-    public void uticap() {
+public class Croyant extends Carte implements Sacrifier{
+
+    public Croyant(String nom, String capacite, int nbcroyant, List<Constants> dogmes, Constants origine,Sacrifier method){
+        this.;
+
 
     }
-    private int
+
+    @Override
+    public void sacrifier() {
+
+    }
+
+
 }
