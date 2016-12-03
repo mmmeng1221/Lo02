@@ -8,7 +8,7 @@ import java.util.List;
 public class Croyant extends Carte implements Sacrifier{
 
     public Croyant(String nom, String capacite, int nbcroyant, List<Constants> dogmes, Constants origine,Sacrifier method){
-        this.;
+
 
 
     }
