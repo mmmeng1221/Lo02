@@ -1,14 +1,13 @@
 package classes;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
 /**
  * Created by zhangmeng on 10/11/2016.
  */
-public abstract class Carte {
+public abstract class Carte{
 
 
     private Constants origine;
@@ -16,11 +15,11 @@ public abstract class Carte {
     private String nomCarte;
     private String capacite;
 
-    public String getOrigine() {
+    public Constants getOrigine() {
         return origine;
     }
 
-    public void setOrigine(String origine) {
+    public void setOrigine(Constants origine) {
         this.origine = origine;
     }
 
@@ -47,10 +46,16 @@ public abstract class Carte {
     public void setCapacite(String capacite) {
         this.capacite = capacite;
     }
+
+    public abstract void sacrifier(Parmas parmas);
+
+
+
+}
+
+
 /*    public void test(){
         dogmes.add(Constants.DOGMES_NATURE);
         dogmes.contains(Constants.DOGMES_HUMAIN);
 
     } */
-
-}

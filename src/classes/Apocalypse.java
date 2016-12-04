@@ -5,8 +5,9 @@ package classes;
  */
 public class Apocalypse extends Carte {
 
+
     @Override
-    public void uticap() {
+    public void sacrifier(Parmas parmas) {
 
     }
 }

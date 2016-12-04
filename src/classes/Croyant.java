@@ -14,8 +14,9 @@ public class Croyant extends Carte implements Sacrifier{
     }
 
     @Override
-    public void sacrifier() {
+    public Sacrifier sacrifier() {
 
+        return null;
     }
 
 

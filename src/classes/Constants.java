@@ -12,11 +12,11 @@ public class Constants {
     public  static final int DOGMES_MYSTIQUES = 14;
     public  static final int DOGMES_CHAOS = 15;
 
-    public static final int  ORIGINE_JOUR = 22;
-    public static final int  ORIGINE_AUBE = 23;
-    public static final int  ORIGINE_NEANT = 24;
-    public static final int  ORIGINE_CREPUSCULE = 25;
-    public static final int  ORIGINE_NUIT = 26;
+    public static final int  ORIGINE_JOUR = 21;
+    public static final int  ORIGINE_AUBE = 22;
+    public static final int  ORIGINE_NEANT = 23;
+    public static final int  ORIGINE_CREPUSCULE = 24;
+    public static final int  ORIGINE_NUIT = 25;
 
 
 
