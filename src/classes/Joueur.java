@@ -11,6 +11,7 @@ public class Joueur {
     private String Divinite;
     private List<Carte> carteMain;
     private List<Guide> carteGuide;
+    private PointAction pointActTot;
     private int nbrCro;
 
     public String getNom() {
