@@ -14,11 +14,11 @@ public class Croyant extends Carte{
 
     }
 
-    @Override
-    public Sacrifier sacrifier() {
+    /*@Override*/
+   /* public Sacrifier sacrifier() {
 
         return null;
-    }
+    }*/
 
 
 }
