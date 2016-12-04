@@ -14,7 +14,7 @@ public class Guide extends Carte{
     private int nbCryAttahce;
     private List<Croyant> croyantAttache = new ArrayList();
 
-    public Guide(String nom, String capacite, Set<Integer> dogs, int origine, Sacrifier sac,int nbCroyant) {
+    public Guide(String nom, String capacite, Set<Integer> dogs, int origine, int nbCroyant,Sacrifier sac) {
         this.setNomCarte(nom);
         this.setCapacite(capacite);
         this.setDogmes(dogs);
@@ -25,6 +25,7 @@ public class Guide extends Carte{
         this.croyantAttache = null;
 
     }
+
 
 
 
