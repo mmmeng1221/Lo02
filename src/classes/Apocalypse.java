@@ -5,7 +5,7 @@ package classes;
  */
 public class Apocalypse extends Carte {
 
-    public Apocalypse(String nom,int origine){
+    public Apocalypse(String nom,int origine,Sacrifier sac){
 
     }
 

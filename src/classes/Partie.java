@@ -7,17 +7,56 @@ import java.util.List;
  */
 public class Partie {
     private List<Joueur> listeJou;
+    private List<Joueur> listeJouCourant;
     private List<Carte> cartePioche;
     private List<Carte> carteDeffause;
     public List<Carte> croyantCommun;
-    private static Partie instance = null;
 
-    private Partie instance(){
-        if(instance == null){
-            instance = new Partie();
-        }
+    private static Partie instance = new Partie();
+
+    private Partie(){}
+    public static Partie getInstance(){
         return instance;
+    }
 
+    public List<Joueur> getListeJou() {
+        return listeJou;
+    }
+
+    public void setListeJou(List<Joueur> listeJou) {
+        this.listeJou = listeJou;
+    }
+
+    public List<Carte> getCartePioche() {
+        return cartePioche;
+    }
+
+    public void setCartePioche(List<Carte> cartePioche) {
+        this.cartePioche = cartePioche;
+    }
+
+    public List<Carte> getCarteDeffause() {
+        return carteDeffause;
+    }
+
+    public void setCarteDeffause(List<Carte> carteDeffause) {
+        this.carteDeffause = carteDeffause;
+    }
+
+    public List<Carte> getCroyantCommun() {
+        return croyantCommun;
+    }
+
+    public void setCroyantCommun(List<Carte> croyantCommun) {
+        this.croyantCommun = croyantCommun;
+    }
+
+    public List<Joueur> getListeJouCourant() {
+        return listeJouCourant;
+    }
+
+    public void setListeJouCourant(List<Joueur> listeJouCourant) {
+        this.listeJouCourant = listeJouCourant;
     }
 
 
