@@ -8,7 +8,7 @@ import java.util.Set;
  */
 public class Croyant extends Carte{
 
-    public Croyant(String nom, String capacite, int nbcroyant, Set<Integer> dogmes, Constants origine, Sacrifier method){
+    public Croyant(String nom, String capacite, int nbcroyant, Set<Integer> dogmes, int origine, Sacrifier method){
 
 
 
