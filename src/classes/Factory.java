@@ -1,5 +1,7 @@
 package classes;
 
+import com.sun.tools.javac.tree.JCTree;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,8 +9,11 @@ import java.util.Set;
  * Created by zhangmeng on 02/12/2016.
  */
 public class Factory {
-
-
+    private static Factory factory = new Factory();
+    private Factory(){}
+    public static Factory getFactory() {
+        return factory;
+    }
 
     public Guide createMartyr(){
         Set<Integer> dogMartyr = new HashSet();
@@ -21,6 +26,9 @@ public class Factory {
 
             }
         })}
+
+
+
     public Croyant createMoins1(){
         Set<Integer> dogmes = new HashSet<Integer>();
         dogmes.add(Constants.DOGMES_HUMAIN);
@@ -124,7 +132,7 @@ public class Factory {
         dogmes.add(Constants.DOGMES_MYSTIQUES);
         dogmes.add(Constants.DOGMES_NATURE);
         dogmes.add(Constants.DOGMES_CHAOS);
-        return new Croyant("Ermite", "mpose le sacrifice d'un Croyant d'un autre joueur, qui choisit la carte. La capacité spéciale du sacrifice est jouée.",1,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
+        return new Croyant("Ermite", "mpose le sacrifice d'un Croyant d'un autre joueur, qui choisit la carte. La capacité spéciale du sacrifice est jouée.",1,dogmes,Constants.ORIGINE_JOUR,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
 
@@ -133,6 +141,13 @@ public class Factory {
     }
 
     public Apocalypse creatApo(){
-        return new Apocalypse()
+        return new Apocalypse("Apocalypse",0,new Sacrifier(){
+            Parameters para = new Parameters();
+
+            @Override
+            public void sacrifier(Parameters parameters) {
+
+            }
+        });
     }
 }
