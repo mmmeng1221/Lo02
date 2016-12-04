@@ -10,7 +10,7 @@ public class Parameters {
     private Set<Joueur> listjoueur = new HashSet<Joueur>();
     private Joueur myself;
 
-    public Parameters(Set<Joueur> listjoueur, Joueur myself){
+    public Parameters(){
 
     }
     public Set<Joueur> getListotherjoueur() {

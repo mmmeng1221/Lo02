@@ -30,7 +30,7 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
         @Override
                 public void sacrifier(Parameters parameters) {
-            parameters.
+            parameters.getMyself()
         }
         }
     }
