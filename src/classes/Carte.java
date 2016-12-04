@@ -10,16 +10,16 @@ import java.util.Set;
 public abstract class Carte{
 
 
-    private Constants origine;
+    private int origine;
     private Set<Integer> dogmes = new HashSet<Integer>();
     private String nomCarte;
     private String capacite;
 
-    public Constants getOrigine() {
+    public int getOrigine() {
         return origine;
     }
 
-    public void setOrigine(Constants origine) {
+    public void setOrigine(int origine) {
         this.origine = origine;
     }
 
@@ -47,7 +47,7 @@ public abstract class Carte{
         this.capacite = capacite;
     }
 
-    public abstract void sacrifier(Parmas parmas);
+    public abstract Sacrifier sacrifier(Parameters parameters);
 
 
 

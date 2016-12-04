@@ -11,11 +11,14 @@ public class Factory {
 
 
 
-    public Guide createGuide(){
-        return new Guide("xxx",null,null,null,new Sacrifier(){
+    public Guide createMartyr(){
+        HashSet<Integer> dogMartyr = new HashSet();
+        dogMartyr.add(Constants.DOGMES_HUMAIN);
+        dogMartyr.add(Constants.DOGMES_NATURE);
+        return new Guide("Martyr","Equivalent à la pose d'une carte Apocalypse.",dogMartyr,Constants.ORIGINE_JOUR,new Sacrifier(){
 
             @Override
-            public void sacrifier(Parmas parmas) {
+            public void sacrifier(Parameters parameters) {
 
             }
         });
@@ -32,5 +35,7 @@ public class Factory {
         }
         }
     }
+    public Apocalypse creatApo(){
+        return new Apocalypse()
     }
 }

@@ -6,8 +6,8 @@ package classes;
 public class DeusEx extends Carte{
 
     @Override
-    public Sacrifier sacrifier() {
+    public Sacrifier sacrifier(Parameters parameters) {
 
-        return null;
+
     }
 }
