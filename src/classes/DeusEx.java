@@ -3,11 +3,11 @@ package classes;
 /**
  * Created by zhangmeng on 11/11/2016.
  */
-public class DeusEx extends Carte implements Sacrifier {
+public class DeusEx extends Carte{
 
     @Override
-    public Sacrifier sacrifier() {
+    public Sacrifier sacrifier(Parameters parameters) {
 
-        return null;
+
     }
 }

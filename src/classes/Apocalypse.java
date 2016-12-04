@@ -7,7 +7,8 @@ public class Apocalypse extends Carte {
 
 
     @Override
-    public void sacrifier(Parmas parmas) {
+    public Sacrifier sacrifier(Parameters parameters) {
 
+        return null;
     }
 }

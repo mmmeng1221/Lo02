@@ -1,8 +1,7 @@
 package classes;
 
-import com.sun.tools.javac.tree.JCTree;
-
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,18 +14,27 @@ public class Guide extends Carte{
     private int nbCryAttahce;
     private List<Croyant> croyantAttache = new ArrayList();
 
-    public Guide(String nom, String capacite, Set<Integer> dogs, Constants origine, Sacrifier sac) {
+    public Guide(String nom, String capacite, Set<Integer> dogs, int origine, Sacrifier sac,int nbCroyant) {
         this.setNomCarte(nom);
+        this.setCapacite(capacite);
+        this.setDogmes(dogs);
+        this.setOrigine(origine);
         this.sac = sac;
+        this.nbCroyant = nbCroyant;
+        this.nbCryAttahce = 0;
+        this.croyantAttache = null;
+
     }
 
-    @Override
-    public void sacrifier(Parmas parmas) {
 
+
+    @Override
+    public Sacrifier sacrifier(Parameters parameters) {
 
         if (sac != null) {
-            sac.sacrifier(parmas);
+            sac.sacrifier(parameters);
         }
+        return null;
 
 
     }
