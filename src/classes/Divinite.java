@@ -14,4 +14,9 @@ public class Divinite extends Carte {
     public void uticap(){
 
     }
+
+    @Override
+    public Sacrifier sacrifier(Parameters parameters) {
+        return null;
+    }
 }

@@ -8,6 +8,6 @@ public class DeusEx extends Carte{
     @Override
     public Sacrifier sacrifier(Parameters parameters) {
 
-
+    return null;
     }
 }
