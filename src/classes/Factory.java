@@ -124,7 +124,7 @@ public class Factory {
      * @param sac le fonction de sacrifier de ce carte
      * @return
      */
-    public Croyant Ermite(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine, Sacrifier sac){
+    public Croyant ErmiteorIntegristes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine, Sacrifier sac){
 
         return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier() {
             @Override
@@ -143,10 +143,11 @@ public class Factory {
             }
         });
     }
-    public Croyant Integristes(String nom, String capacite, int nbcroyant, List<Integer>dogmes, int origine, Sacrifier sac){
+    public Croyant GuerriersSaints(String nom, String capacite, int nbcroyant, List<Integer>dogmes, int origine, Sacrifier sac){
         return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
+                parameters.getMyself().getCarteGuide().
 
             }
         }
