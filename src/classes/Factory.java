@@ -34,12 +34,16 @@ public class Factory {
         dogmes.add(Constants.DOGMES_HUMAIN);
         dogmes.add(Constants.DOGMES_NATURE);
         dogmes.add(Constants.DOGMES_MYSTIQUES);
-        Parameters parameters = new Parameters();
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
         @Override
                 public void sacrifier(Parameters parameters) {
-            parameters.getMyself()
+            parameters.setMyself(parameters.getMyself());
+            parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());
+            parameters.getMyself().getPointActTot().jour++;
+
         }
+
+
         }
     }
     public Croyant createMoins2(){
@@ -50,6 +54,10 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
+                parameters.setMyself(parameters.getMyself());
+                parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());
+                parameters.getMyself().getPointActTot().jour++;
+
 
             }
         }
@@ -62,6 +70,9 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
+                parameters.setMyself(parameters.getMyself());
+                parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());
+                parameters.getMyself().getPointActTot().jour++;
 
             }
         }
@@ -74,6 +85,10 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
+                /*parameters.setMyself(parameters.getMyself());
+                parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());
+                parameters.getMyself().getPointActTot().jour++;*/
+                parameters.getMyself().setPointActTot();
 
             }
         }

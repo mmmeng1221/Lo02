@@ -11,6 +11,9 @@ public class Joueur {
     private String Divinite;
     private List<Carte> carteMain;
     private List<Guide> carteGuide;
+
+
+
     private PointAction pointActTot;
     private int nbrCro;
 
@@ -54,5 +57,12 @@ public class Joueur {
         this.nbrCro = nbrCro;
     }
 
+    public PointAction getPointActTot() {
+        return pointActTot;
+    }
+
+    public void setPointActTot(PointAction pointActTot) {
+        this.pointActTot = pointActTot;
+    }
 
 }
