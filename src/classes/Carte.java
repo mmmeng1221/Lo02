@@ -1,7 +1,7 @@
 package classes;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -11,7 +11,7 @@ public abstract class Carte{
 
 
     private int origine;
-    private Set<Integer> dogmes = new HashSet<Integer>();
+    private List<Integer> dogmes = new ArrayList<Integer>();
     private String nomCarte;
     private String capacite;
 
@@ -23,11 +23,11 @@ public abstract class Carte{
         this.origine = origine;
     }
 
-    public Set<Integer> getDogmes() {
+    public List<Integer> getDogmes() {
         return dogmes;
     }
 
-    public void setDogmes(Set<Integer> dogmes) {
+    public void setDogmes(List<Integer> dogmes) {
         this.dogmes = dogmes;
     }
 

@@ -7,7 +7,7 @@ public class JoueurVirtuel extends Joueur {
 
 
     private static int nbrjoueur;
-    public void JourVirtuel(){
+    public void JoueurVirtuel(){
 
     }
     public static int getNbrjoueur() {
