@@ -173,7 +173,7 @@ public class Factory {
                 System.out.println("quel joueur voulez-vous choisir? Donnez le numero.");
                 Scanner sc = new Scanner(System.in);
                 int i = sc.nextInt();
-                parameters.setCertain(parameters.getListotherjoueur().get(i));
+               parameters.getListotherjoueur().get(i).joueur()
 
 
             }
