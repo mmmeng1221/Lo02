@@ -12,6 +12,20 @@ public class JoueurPhysique extends Joueur{
     public void JoueurPhysique(){
 
     }
+
+    /**
+     * joueur physique choisit une carte pour jouer
+     */
+    public void jouer(){
+        System.out.println("Choisissez les cartes pas encore jouées ou les cartes récupérée." + "\n");
+
+        for(Carte carte: getCarteMain()){
+            System.out.println(carte);
+        }
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+
+
     @Override
     public int jouer(Parameters parameters){
         for(Iterator it = parameters.getListotherjoueur().iterator(); it.hasNext()){

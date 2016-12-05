@@ -12,7 +12,6 @@ public abstract class Carte{
 
     private int origine;
     private List<Integer> dogmes = new ArrayList();
-    ArrayList<Integer>();
     private String nomCarte;
     private String capacite;
 
@@ -49,6 +48,10 @@ public abstract class Carte{
     }
 
     public abstract Sacrifier sacrifier(Parameters parameters);
+
+    public void poser(){
+
+    }
 
 
 

@@ -8,18 +8,23 @@ import java.util.Set;
 /**
  * Created by zhangmeng on 04/12/2016.
  */
-public class Partie {
+public class Part {
 
     private List<Joueur> listeJouCourant;
     private List<Carte> cartePioche;
     private List<Carte> carteDeffause;
     public List<Croyant> croyantCommun;
 
-    private static Partie partie = new Partie();
+    private static Part part = new Part();
 
-    private Partie(){}
-    public static Partie getPartie(){
-        return partie;
+    private Part(){
+        this.listeJouCourant = new ArrayList();
+        this.cartePioche = new ArrayList<>();
+        this.carteDeffause = new ArrayList<>();
+        this.croyantCommun = new ArrayList<>();
+    }
+    public static Part getPart(){
+        return part;
     }
 
     public List<Carte> getCartePioche() {
@@ -79,6 +84,24 @@ public class Partie {
         this.cartePioche.add(martyr3);
 
 
+
+
+    }
+
+    public List<Carte> shuffle(){
+        Carte temp1,temp2;
+
+        for(int i =0;i<10;i++)
+        {
+            temp1 = this.cartePioche.get(0);
+            this.cartePioche.remove(temp1);
+            this.cartePioche.add(temp1);
+
+            temp2 = this.cartePioche.get(2);
+            this.cartePioche.remove(temp2);
+            this.cartePioche.add(temp2);
+        }
+        return this.cartePioche;
     }
 
     public void initialiserJoueur(){
@@ -92,5 +115,21 @@ public class Partie {
             this.listeJouCourant.add(jv);
         }
     }
+
+    public void piocher(){
+        for(Joueur j : listeJouCourant)
+            for(int i = 0; i<7;i++){
+                j.piocher(cartePioche.get(i));
+                cartePioche.remove(i);
+            }
+    }
+
+    public void start(){
+        for(Joueur i : listeJouCourant)
+        {
+            i.jouer();
+        }
+    }
+
 }
 
