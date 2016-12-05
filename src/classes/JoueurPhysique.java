@@ -26,7 +26,7 @@ public class JoueurPhysique extends Joueur{
         int num = sc.nextInt();
 
 
-    @Override
+
     public int jouer(Parameters parameters){
         for(Iterator it = parameters.getListotherjoueur().iterator(); it.hasNext()){
             Joueur key = (Joueur)it.next();
