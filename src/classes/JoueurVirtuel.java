@@ -26,7 +26,7 @@ public class JoueurVirtuel extends Joueur implements Strategie{
     }
 
     @Override
-    public void jouer(PointAction PointAct, List<Carte> cartemain) {
+    public int jouer(List<Carte>cartemain){
 
     }
 }

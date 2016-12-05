@@ -24,11 +24,18 @@ public class JoueurPhysique extends Joueur{
         return i;
 
     }
-    public Carte jouer(Parameters parameters){
+    public int jouer( List<Carte> cartemain){
+        for(Iterator it = cartemain.iterator();it.hasNext();){
+            Carte key = (Carte)it.next();
+            System.out.println(key.getNomCarte());
+        }
+        System.out.println("quel Carte voulez-vous choisir? Donnez le numero.");
+        Scanner sc = new Scanner(System.in);
+        int i = sc.nextInt();
+        return i;
+
 
     }
 
-    public void jouer(PointAction PointAct, List<Carte> cartemain) {
 
-    }
 }
