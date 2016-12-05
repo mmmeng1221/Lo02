@@ -15,7 +15,7 @@ public class JoueurVirtuel extends Joueur implements Strategie{
     @Override
     public int jouer(Parameters parameters){
         //suijixuanze
-
+return 0;
     }
     public static int getNbrjoueur() {
         return nbrjoueur;
@@ -27,6 +27,11 @@ public class JoueurVirtuel extends Joueur implements Strategie{
 
     @Override
     public int jouer(List<Carte>cartemain){
+return 0;
+    }
+
+    @Override
+    public void jouer(PointAction PointAct, List<Carte> cartemain) {
 
     }
 }

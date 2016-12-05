@@ -79,11 +79,11 @@ public class Joueur {
 
 
     public void jouer(){};
-    }
+
     public int jouer(Parameters parmameters) {
         return 0;
     }
-    public int jouer(List<Carte>cartemain){
-
+    public int jouer(List<Carte>cartemain) {
+return 0;
     }
 }

@@ -118,7 +118,7 @@ public class Part {
 
     public void piocher(){
         for(Joueur j : listeJouCourant)
-            for(int i = 0; i<7;i++){
+            for(int i = 0; i<1;i++){
                 j.piocher(cartePioche.get(i));
                 cartePioche.remove(i);
             }
