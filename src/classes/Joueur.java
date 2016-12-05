@@ -70,4 +70,6 @@ public class Joueur {
         this.pointActTot = pointActTot;
     }
 
+    public void jouer(){};
+
 }

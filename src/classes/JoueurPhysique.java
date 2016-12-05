@@ -15,7 +15,4 @@ public class JoueurPhysique extends Joueur{
     }
 
 
-    public void jouer(PointAction PointAct, List<Carte> cartemain) {
-
-    }
 }
