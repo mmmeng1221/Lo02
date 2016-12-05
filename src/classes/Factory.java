@@ -30,7 +30,7 @@ public class Factory {
                     }
                 }
                 parameters.getListotherjoueur().remove(min);
-                Partie partie = Partie.getPartie();
+                Part partie = Part.getPart();
                 partie.setListeJouCourant(parameters.getListotherjoueur());
 
             }
@@ -134,7 +134,7 @@ public class Factory {
                     }
                 }
                 parameters.getListotherjoueur().remove(min);
-                Partie partie = Partie.getPartie();
+                Part partie = Part.getPart();
                 partie.setListeJouCourant(parameters.getListotherjoueur());
 
             }

@@ -1,6 +1,8 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by zhangmeng on 04/12/2016.
@@ -9,8 +11,8 @@ public class Joueur {
 
     private String nom;
     private Divinite divi;
-    private List<Carte> carteMain;
-    private List<Guide> carteGuide;
+    private List<Carte> carteMain = new ArrayList<>();
+    private List<Guide> carteGuide = new ArrayList<>();
     private PointAction pointActTot;
     private int nbrCro;
 
@@ -70,6 +72,11 @@ public class Joueur {
         this.pointActTot = pointActTot;
     }
 
-    public void jouer(){};
 
-}
+    public void piocher(Carte carteobtenue){
+        carteMain.add(carteobtenue);
+    }
+
+
+    public void jouer(){};
+    }
