@@ -28,7 +28,4 @@ public class Parameters {
     public void setMyself(Joueur myself) {
         this.myself = myself;
     }
-
-
-    }
-
+}

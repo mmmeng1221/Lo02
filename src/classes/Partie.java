@@ -10,13 +10,13 @@ public class Partie {
     private List<Joueur> listeJouCourant;
     private List<Carte> cartePioche;
     private List<Carte> carteDeffause;
-    public List<Carte> croyantCommun;
+    public List<Croyant> croyantCommun;
 
-    private static Partie instance = new Partie();
+    private static Partie partie = new Partie();
 
     private Partie(){}
-    public static Partie getInstance(){
-        return instance;
+    public static Partie getPartie(){
+        return partie;
     }
 
     public List<Joueur> getListeJou() {
@@ -43,11 +43,11 @@ public class Partie {
         this.carteDeffause = carteDeffause;
     }
 
-    public List<Carte> getCroyantCommun() {
+    public List<Croyant> getCroyantCommun() {
         return croyantCommun;
     }
 
-    public void setCroyantCommun(List<Carte> croyantCommun) {
+    public void setCroyantCommun(List<Croyant> croyantCommun) {
         this.croyantCommun = croyantCommun;
     }
 
@@ -61,3 +61,4 @@ public class Partie {
 
 
 }
+
