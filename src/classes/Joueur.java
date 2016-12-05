@@ -70,4 +70,7 @@ public class Joueur {
         this.pointActTot = pointActTot;
     }
 
+    public int jouer(Parameters parmameters) {
+        return 0;
+    }
 }

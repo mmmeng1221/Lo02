@@ -87,19 +87,13 @@ public class Factory {
             }
         });
     }
-    public Croyant Ermite1(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine, Sacrifier sac){
+    public Croyant Ermite(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine, Sacrifier sac){
 
         return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-            for(Iterator it =  parameters.getListotherjoueur().iterator();it.hasNext()){
-                Joueur key = (Joueur)it.next();
-                System.out.println(key.getNom());
-            }
-            System.out.println("quel joueur voulez-vous choisir? Donnez le numero.");
-                Scanner sc = new Scanner(System.in);
-                int i = sc.nextInt();
-                parameters.getListotherjoueur().get(i).jouer();
+                parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+
             }
         });
     }

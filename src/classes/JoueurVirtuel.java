@@ -10,6 +10,11 @@ public class JoueurVirtuel extends Joueur {
     public void JoueurVirtuel(){
 
     }
+    @Override
+    public int jouer(Parameters parameters){
+        //suijixuanze
+
+    }
     public static int getNbrjoueur() {
         return nbrjoueur;
     }
