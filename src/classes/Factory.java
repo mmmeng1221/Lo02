@@ -147,10 +147,10 @@ public class Factory {
         return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                parameters.getMyself().getCarteGuide()
+                parameters.getMyself().getCarteGuide();
 
             }
-        }
+        });
     }
 
 
