@@ -11,7 +11,8 @@ public abstract class Carte{
 
 
     private int origine;
-    private List<Integer> dogmes = new ArrayList<Integer>();
+    private List<Integer> dogmes = new ArrayList();
+    ArrayList<Integer>();
     private String nomCarte;
     private String capacite;
 
