@@ -62,11 +62,12 @@ public class Joueur {
         this.divi = divi;
     }
 
-    public List<Integer> getPointActTot() {
+    public PointAction getPointActTot() {
         return pointActTot;
     }
 
-    public void setPointActTot(List<Integer> pointActTot) {
+    public void setPointActTot(PointAction pointActTot) {
         this.pointActTot = pointActTot;
     }
+
 }
