@@ -62,8 +62,8 @@ public class Partie {
 
 
     public void initialiserCarte(){
-        Set<dogmes>
-        Factory.getFactory().createMartyr("martyr",null,,)
+   /*     Set<dogmes>
+        Factory.getFactory().createMartyr("martyr",null,,)*/
     }
 }
 

@@ -66,7 +66,7 @@ public class Factory {
         }
 
 
-        }
+        });
     }
     public Croyant createMoins2(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -81,7 +81,7 @@ public class Factory {
 
 
             }
-        }
+        });
     }
     public Croyant createMoins3(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -94,7 +94,7 @@ public class Factory {
                 parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
 
             }
-        }
+        });
     }
     public Croyant createMoins4(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -108,7 +108,7 @@ public class Factory {
                 parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
 
             }
-        }
+        });
     }
     public Croyant createMoins5(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -121,7 +121,7 @@ public class Factory {
                 parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
 
             }
-        }
+        });
     }
     public Croyant createTravailleurs1(){
         //Constants Moins = new Constants;
@@ -134,7 +134,7 @@ public class Factory {
             public void sacrifier(Parameters parameters) {
 
             }
-        }
+        });
     }
     public Croyant createTravailleurs2(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -146,7 +146,7 @@ public class Factory {
             public void sacrifier(Parameters parameters) {
 
             }
-        }
+        });
     }
     public Croyant createTravailleurs3(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -158,7 +158,7 @@ public class Factory {
             public void sacrifier(Parameters parameters) {
 
             }
-        }
+        });
     }
     public Croyant Ermite1(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -177,7 +177,7 @@ public class Factory {
                 int i = sc.nextInt();
 
             }
-        }
+        });
     }
     public Croyant Ermite2(){
         Set<Integer> dogmes = new HashSet<Integer>();
@@ -198,7 +198,7 @@ public class Factory {
 
 
             }
-        }
+        });
     }
 
 
