@@ -1,7 +1,11 @@
 package classes;
 
+import com.sun.tools.javac.tree.JCTree;
+
 import java.util.HashSet;
 import java.util.List;
+import java.util.Iterator;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -47,7 +51,7 @@ public class Factory {
         });}
 
 //Croyant
-   /* public Croyant createMoins1(){
+    public Croyant createMoins1(){
         Set<Integer> dogmes = new HashSet<Integer>();
         dogmes.add(Constants.DOGMES_HUMAIN);
         dogmes.add(Constants.DOGMES_NATURE);
@@ -56,8 +60,12 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
         @Override
                 public void sacrifier(Parameters parameters) {
-            parameters.
+            parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
+
+
         }
+
+
         }
     }
     public Croyant createMoins2(){
@@ -68,6 +76,9 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
+                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
+
+
 
             }
         }
@@ -80,6 +91,7 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
+                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
 
             }
         }
@@ -92,6 +104,8 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
+              /*  parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());*/
+                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
 
             }
         }
@@ -104,6 +118,7 @@ public class Factory {
         return new Croyant("Moins", "Donner un point d'action d'origine Jour.",2,dogmes,Constants.ORIGINE_JOUR,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
+                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
 
             }
         }
@@ -145,7 +160,7 @@ public class Factory {
             }
         }
     }
-    public Croyant Ermite(){
+    public Croyant Ermite1(){
         Set<Integer> dogmes = new HashSet<Integer>();
         dogmes.add(Constants.DOGMES_MYSTIQUES);
         dogmes.add(Constants.DOGMES_NATURE);
@@ -153,6 +168,34 @@ public class Factory {
         return new Croyant("Ermite", "mpose le sacrifice d'un Croyant d'un autre joueur, qui choisit la carte. La capacité spéciale du sacrifice est jouée.",1,dogmes,Constants.ORIGINE_JOUR,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
+            for(Iterator it =  parameters.getListotherjoueur().iterator();it.hasNext()){
+                Joueur key = (Joueur)it.next();
+                System.out.println(key.getNom());
+            }
+            System.out.println("quel joueur voulez-vous choisir? Donnez le numero.");
+                Scanner sc = new Scanner(System.in);
+                int i = sc.nextInt();
+
+            }
+        }
+    }
+    public Croyant Ermite2(){
+        Set<Integer> dogmes = new HashSet<Integer>();
+        dogmes.add(Constants.DOGMES_MYSTIQUES);
+        dogmes.add(Constants.DOGMES_NATURE);
+        dogmes.add(Constants.DOGMES_SYMBOLES);
+        return new Croyant("Ermite", "mpose le sacrifice d'un Croyant d'un autre joueur, qui choisit la carte. La capacité spéciale du sacrifice est jouée.",1,dogmes,Constants.ORIGINE_JOUR,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                for(Iterator it =  parameters.getListotherjoueur().iterator();it.hasNext()){
+                    Joueur key = (Joueur)it.next();
+                    System.out.println(key.getNom());
+                }
+                System.out.println("quel joueur voulez-vous choisir? Donnez le numero.");
+                Scanner sc = new Scanner(System.in);
+                int i = sc.nextInt();
+               parameters.getListotherjoueur().get(i).joueur()
+
 
             }
         }
@@ -162,7 +205,7 @@ public class Factory {
 //Apocalype
     public Apocalypse creatApo(){
         return new Apocalypse("Apocalypse",0,new Sacrifier(){
-
+            Parameters para = new Parameters();
 
             @Override
             public void sacrifier(Parameters parameters) {
@@ -184,5 +227,5 @@ public class Factory {
 
 
 
-//Deus-ex*/
+//Deus-ex
 }

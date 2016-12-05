@@ -3,17 +3,17 @@ package classes;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 /**
  * Created by zhangmeng on 04/12/2016.
  */
 public class Parameters {
-    private List<Joueur> listjoueur = new ArrayList();
+    private List<Joueur> listjoueur = new ArrayList<Joueur>();
     private Joueur myself;
+    private Joueur certain;
 
-    public Parameters(){}
+    public Parameters(){
 
+    }
     public List<Joueur> getListotherjoueur() {
         return listjoueur;
     }
@@ -29,4 +29,12 @@ public class Parameters {
     public void setMyself(Joueur myself) {
         this.myself = myself;
     }
+    public Joueur getCertain() {
+        return certain;
+    }
+
+    public void setCertain(Joueur certain) {
+        this.certain = certain;
+    }
+
 }

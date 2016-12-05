@@ -69,4 +69,5 @@ public class Joueur {
     public void setPointActTot(PointAction pointActTot) {
         this.pointActTot = pointActTot;
     }
+
 }
