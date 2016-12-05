@@ -14,7 +14,7 @@ public class Factory {
     public static Factory getFactory() {
         return factory;
     }
-
+//Guide
     public Guide createMartyr(){
         Set<Integer> dogMartyr = new HashSet();
         dogMartyr.add(Constants.DOGMES_HUMAIN);
@@ -25,10 +25,10 @@ public class Factory {
             public void sacrifier(Parameters parameters) {
 
             }
-        })}
+        });}
 
 
-
+//Croyant
     public Croyant createMoins1(){
         Set<Integer> dogmes = new HashSet<Integer>();
         dogmes.add(Constants.DOGMES_HUMAIN);
@@ -140,6 +140,8 @@ public class Factory {
         }
     }
 
+
+//Apocalype
     public Apocalypse creatApo(){
         return new Apocalypse("Apocalypse",0,new Sacrifier(){
             Parameters para = new Parameters();
@@ -150,4 +152,9 @@ public class Factory {
             }
         });
     }
+
+
+
+
+//Deus-ex
 }

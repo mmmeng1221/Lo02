@@ -8,10 +8,10 @@ import java.util.List;
 public class Joueur {
 
     private String nom;
-    private String Divinite;
+    private Divinite divi;
     private List<Carte> carteMain;
     private List<Guide> carteGuide;
-    private PointAction pointActTot;
+    private List<PointAction> pointActTot;
     private int nbrCro;
 
     public String getNom() {
@@ -22,12 +22,12 @@ public class Joueur {
         this.nom = nom;
     }
 
-    public String getDivinite() {
-        return Divinite;
+    public Divinite getDivinite() {
+        return divi;
     }
 
-    public void setDivinite(String divinite) {
-        Divinite = divinite;
+    public void setDivinite(Divinite divinite) {
+        this.divi = divinite;
     }
 
     public List<Carte> getCarteMain() {
@@ -54,5 +54,19 @@ public class Joueur {
         this.nbrCro = nbrCro;
     }
 
+    public Divinite getDivi() {
+        return divi;
+    }
 
+    public void setDivi(Divinite divi) {
+        this.divi = divi;
+    }
+
+    public List<Integer> getPointActTot() {
+        return pointActTot;
+    }
+
+    public void setPointActTot(List<Integer> pointActTot) {
+        this.pointActTot = pointActTot;
+    }
 }
