@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by zhangmeng on 04/12/2016.
@@ -60,5 +61,9 @@ public class Partie {
     }
 
 
+    public void initialiserCarte(){
+        Set<dogmes>
+        Factory.getFactory().createMartyr("martyr",null,,)
+    }
 }
 

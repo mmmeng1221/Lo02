@@ -11,7 +11,7 @@ public class Joueur {
     private Divinite divi;
     private List<Carte> carteMain;
     private List<Guide> carteGuide;
-    private List<PointAction> pointActTot;
+    private PointAction pointActTot;
     private int nbrCro;
 
     public String getNom() {
@@ -62,11 +62,11 @@ public class Joueur {
         this.divi = divi;
     }
 
-    public List<Integer> getPointActTot() {
+    public PointAction getPointActTot() {
         return pointActTot;
     }
 
-    public void setPointActTot(List<Integer> pointActTot) {
+    public void setPointActTot(PointAction pointActTot) {
         this.pointActTot = pointActTot;
     }
 }

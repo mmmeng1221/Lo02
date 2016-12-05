@@ -1,22 +1,24 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by zhangmeng on 04/12/2016.
  */
 public class Parameters {
-    private Set<Joueur> listjoueur = new HashSet<Joueur>();
+    private List<Joueur> listjoueur = new ArrayList();
     private Joueur myself;
 
     public Parameters(){}
 
-    public Set<Joueur> getListotherjoueur() {
+    public List<Joueur> getListotherjoueur() {
         return listjoueur;
     }
 
-    public void setListotherjoueur(Set<Joueur> listotherjoueur) {
+    public void setListotherjoueur(List<Joueur> listotherjoueur) {
         this.listjoueur = listotherjoueur;
     }
 

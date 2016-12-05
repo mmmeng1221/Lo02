@@ -1,8 +1,7 @@
 package classes;
 
-import com.sun.tools.javac.tree.JCTree;
-
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,21 +14,40 @@ public class Factory {
         return factory;
     }
 //Guide
-    public Guide createMartyr(){
-        Set<Integer> dogMartyr = new HashSet();
-        dogMartyr.add(Constants.DOGMES_HUMAIN);
-        dogMartyr.add(Constants.DOGMES_NATURE);
-
-        return new Guide("Martyr","Equivalent à la pose d'une carte Apocalypse.", dogMartyr,21,2,new Sacrifier() {
+    public Guide createMartyr(String nom, String capacite, Set<Integer> dogs, int origine, int nbCroyant,Sacrifier sac){
+        return new Guide(nom,capacite,dogs,origine,nbCroyant,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
+                List<Joueur> joueurCourant =  parameters.getListotherjoueur();
+                Joueur min = joueurCourant.get(0);
+                for(Joueur j : joueurCourant){
+                    if(min.getNbrCro()>j.getNbrCro()){
+                        min = j;
+                    }
+                }
+                parameters.getListotherjoueur().remove(min);
+                Partie partie = Partie.getPartie();
+                partie.setListeJouCourant(parameters.getListotherjoueur());
 
             }
         });}
 
 
+
+
+    public Guide createClerc1(String nom, String capacite, Set<Integer> dogs, int origine, int nbCroyant,Sacrifier sac){
+
+
+        return new Guide(nom,capacite,dogs,origine,nbCroyant,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+
+
+            }
+        });}
+
 //Croyant
-    public Croyant createMoins1(){
+   /* public Croyant createMoins1(){
         Set<Integer> dogmes = new HashSet<Integer>();
         dogmes.add(Constants.DOGMES_HUMAIN);
         dogmes.add(Constants.DOGMES_NATURE);
@@ -144,10 +162,20 @@ public class Factory {
 //Apocalype
     public Apocalypse creatApo(){
         return new Apocalypse("Apocalypse",0,new Sacrifier(){
-            Parameters para = new Parameters();
+
 
             @Override
             public void sacrifier(Parameters parameters) {
+               List<Joueur> joueurCourant =  parameters.getListotherjoueur();
+                Joueur min = joueurCourant.get(0);
+                for(Joueur j : joueurCourant){
+                    if(min.getNbrCro()>j.getNbrCro()){
+                        min = j;
+                    }
+                }
+                parameters.getListotherjoueur().remove(min);
+                Partie partie = Partie.getPartie();
+                partie.setListeJouCourant(parameters.getListotherjoueur());
 
             }
         });
@@ -156,5 +184,5 @@ public class Factory {
 
 
 
-//Deus-ex
+//Deus-ex*/
 }
