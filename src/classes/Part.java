@@ -85,6 +85,95 @@ public class Part {
                 dogs,Constants.ORIGINE_NEANT,2);
         this.cartePioche.add(martyr3);
 
+        dogs.clear();
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant moins= Factory.getFactory().createMoins("Moins", "Donne un point d'Action d'Origine Jour",
+                2, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(moins);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant travailleurs3= Factory.getFactory().createTravailleurs3("Travailleurs", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
+                2, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(travailleurs3);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant ermite1= Factory.getFactory().creatermiteorIntegristes("Ermite", "Impose le sacrifice d'un Croyant d'un autre joueur, qui choisit la carte. La capacité spéciale du sacrifice est jouée.",
+                1, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(ermite1);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant GuerriersSaints= Factory.getFactory().createGuerriersSaints("GuerriersSaints", "Un Guide Spirituel revient dans la main de sa Divinité. Ses Croyants reviennent au centre de la table.",
+                4, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(GuerriersSaints);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant xiaozhizhang= Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
+                2, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(xiaozhizhang);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant xiaozhizhang2= Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
+                2, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(xiaozhizhang2);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_CHAOS);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant xiaozhizhang3= Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
+                2, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(xiaozhizhang3);
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant xiaozhizhang4= Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
+                2, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(xiaozhizhang4);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_HUMAIN);
+        Croyant xiaozhizhang5= Factory.getFactory().zhizhang("zhangmeng", "wo zhe ge pai mei yong de, zhen de",
+                1, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(xiaozhizhang5);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant xiaozhizhang6= Factory.getFactory().zhizhang("xiaozhangmeng", "wo zhe ge pai mei yong de, zhen de",
+                2, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(xiaozhizhang6);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant xiaozhizhang7= Factory.getFactory().zhizhang("dazhangmeng", "wo zhe ge pai mei yong de, zhen de",
+                1, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(xiaozhizhang7);
+
+
+
 
 
 

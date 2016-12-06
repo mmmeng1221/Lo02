@@ -12,7 +12,7 @@ public class Joueur {
     private String nom;
     private Divinite divi;
     private List<Carte> carteMain = new ArrayList<>();
-    private List<Carte> carteGuide = new ArrayList<>();
+    private List<Guide> carteGuide = new ArrayList<>();
     private PointAction pointActTot;
     private int nbrCro;
 
@@ -40,11 +40,11 @@ public class Joueur {
         this.carteMain = carteMain;
     }
 
-    public List<Carte> getCarteGuide() {
+    public List<Guide> getCarteGuide() {
         return carteGuide;
     }
 
-    public void setCarteGuide(List<Carte> carteGuide) {
+    public void setCarteGuide(List<Guide> carteGuide) {
         this.carteGuide = carteGuide;
     }
 

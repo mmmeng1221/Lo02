@@ -63,7 +63,7 @@ public class JoueurPhysique extends Joueur {
                     //Joueur choisit de sacrifier ses croyants rattachés
                     else if (num2 == 1) {
                         System.out.println("Quel croyant voulez-vous sacrifier?");
-                        for (Croyant cr : getCarteGuide().get(num1).getCroyantAttache()) {
+                        for (Croyant cr : getCarteGuide().get(num1).) {
                             System.out.println(cr);
                         }
                         //Joueur choisit de sacrifier un croyant par son numéro dans la liste
@@ -106,7 +106,7 @@ public class JoueurPhysique extends Joueur {
         Carte card = getCarteMain().get(number);
     }
 
-   /* public int jouer(Parameters parameters){
+    public int jouer(Parameters parameters){
         for(Iterator it = parameters.getListotherjoueur().iterator(); it.hasNext();){
             Joueur key = (Joueur)it.next();
             System.out.println(key.getNom());
@@ -128,5 +128,5 @@ public class JoueurPhysique extends Joueur {
         return i;
 
 
-    }*/
+    }
 }
