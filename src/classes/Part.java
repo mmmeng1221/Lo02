@@ -172,6 +172,14 @@ public class Part {
                 1, dogs, Constants.ORIGINE_NEANT);
         this.cartePioche.add(xiaozhizhang7);
 
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant alchimistes2= Factory.getFactory().createAlchimistes2("dazhangmeng", "wo zhe ge pai mei yong de, zhen de",
+                1, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(alchimistes2);
+
 
 
 

@@ -149,6 +149,27 @@ public class Factory {
             }
         });
     }
+
+    public Croyant Integristes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                List<Carte> guidetemp = new ArrayList<Carte>();
+                List<Carte> cartemain = joueurtemp.getCarteMain();
+                for(Iterator i = cartemain.iterator();i.hasNext();){
+                    Carte key = (Carte) i.next();
+                    if(key instanceof Guide)
+                        guidetemp.add(key);
+                }
+
+                guidetemp.get(joueurtemp.jouer(guidetemp)).sacrifier(parameters);
+
+            }
+        });
+    }
+
     public Croyant createGuerriersSaints(String nom, String capacite, int nbcroyant, List<Integer>dogmes, int origine){
         return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier() {
             @Override
@@ -157,16 +178,78 @@ public class Factory {
                 for (Iterator i = parameters.getMyself().getCarteGuide().iterator(); i.hasNext(); ) {
                     Carte a = (Guide) i.next();
                 }
-                Carte cartetemp = listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
+                Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
 
                 parameters.getMyself().getCarteMain().add(cartetemp);
-                parameters.getMyself().getCarteGuide().remove(cartetemp);
+                for(Iterator i = cartetemp.getCroyantAttache().iterator();i.hasNext();){
+                    Croyant croyant = (Croyant)i.next();
+                     parameters.getPart().croyantCommun.add(croyant);
+                }
+            parameters.getMyself().getCarteGuide().remove(cartetemp);
+
 
 
             }
         });
 
         }
+
+
+    public Croyant createDiplomates(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                List<Carte> guidetemp = new ArrayList<Carte>();
+                List<Carte> cartemain = joueurtemp.getCarteMain();
+                for(Iterator i = cartemain.iterator();i.hasNext();){
+                    Carte key = (Carte) i.next();
+                    if(key instanceof Guide)
+                        guidetemp.add(key);
+                }
+
+                guidetemp.get(joueurtemp.jouer(guidetemp)).sacrifier(parameters);
+
+            }
+        });
+}
+
+    public Croyant createDemons(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getNuit() + 1);
+
+
+            }
+
+
+        });
+    }
+
+    public Croyant createAlchimistes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                int num = (int)Math.random()*joueurtemp.getCarteMain().size();
+                Carte a = joueurtemp.getCarteMain().get(num);
+                parameters.getMyself().getCarteMain().add(a);
+                joueurtemp.getCarteMain().remove(a);
+                int num2 = (int)Math.random()*joueurtemp.getCarteMain().size();
+                Carte b = joueurtemp.getCarteMain().get(num2);
+                parameters.getMyself().getCarteMain().add(a);
+                joueurtemp.getCarteMain().remove(b);
+
+            }
+
+
+        });
+    }
+
 
     public Croyant zhizhang(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
 
@@ -178,6 +261,7 @@ public class Factory {
         }
         });
         }
+
 
 
 

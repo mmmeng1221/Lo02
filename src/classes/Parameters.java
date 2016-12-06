@@ -10,6 +10,26 @@ public class Parameters {
     private Joueur myself;
     private Joueur certain;
 
+    private Part part;
+
+    public De getDe() {
+        return de;
+    }
+
+    public void setDe(De de) {
+        this.de = de;
+    }
+
+    private De de;
+    public Part getPart() {
+        return part;
+    }
+
+    public void setPart(Part part) {
+        this.part = part;
+    }
+
+
     public Parameters(){
 
     }
