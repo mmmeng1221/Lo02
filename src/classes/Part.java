@@ -59,7 +59,9 @@ public class Part {
         this.listeJouCourant = listeJouCourant;
     }
 
-
+    /**
+     * Créer des cartes d'action et les ajouter dans la liste des cartes à piocher
+     */
     public void initialiserCarte(){
        List<Integer> dogs = new ArrayList();
         dogs.add(Constants.DOGMES_NATURE);

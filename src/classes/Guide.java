@@ -14,6 +14,14 @@ public class Guide extends Carte{
     private int nbCryAttahce;
     private List<Croyant> croyantAttache = new ArrayList();
 
+    public List<Croyant> getCroyantAttache() {
+        return croyantAttache;
+    }
+
+    public void setCroyantAttache(List<Croyant> croyantAttache) {
+        this.croyantAttache = croyantAttache;
+    }
+
     public Guide(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant, Sacrifier sac) {
         this.setNomCarte(nom);
         this.setCapacite(capacite);
