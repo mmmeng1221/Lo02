@@ -85,7 +85,7 @@ public class Factory {
         return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
-                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
+
 
 
 
@@ -97,7 +97,7 @@ public class Factory {
         return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
-                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
+
 
             }
         });
@@ -108,7 +108,11 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
               /*  parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());*/
-                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + 1);
+              Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                int num = (int)Math.random()*joueurtemp.getCarteMain().size();
+                Carte a = joueurtemp.getCarteMain().get(num);
+                parameters.getMyself().getCarteMain().add(a);
+
 
             }
         });
