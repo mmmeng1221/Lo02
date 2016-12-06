@@ -1,7 +1,6 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 /**
  * Created by zhangmeng on 04/12/2016.
@@ -29,6 +28,7 @@ public class Parameters {
     public void setMyself(Joueur myself) {
         this.myself = myself;
     }
+
     public Joueur getCertain() {
         return certain;
     }
