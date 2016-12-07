@@ -296,8 +296,9 @@ public class Factory {
 
 
 
-        });
-    }
+
+        }
+        } );
     }
 
     public Croyant createIllusionnistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
@@ -384,6 +385,44 @@ public class Factory {
                     parameters.getListotherjoueur().remove(joueurtemp);
                     joueurtemp.getCarteMain().get(cartenbr).sacrifier(parameters);//zhe li de parameters xu yao xiu gai ma?
                 }
+            }
+        });
+    }
+
+    public Croyant cretaeNihillistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                int nbr = parameters.getMyself().jouer(parameters.getListotherjoueur().size());
+                List<Joueur>listjoueurtemp = parameters.getMyself().jouer(nbr,parameters.getListotherjoueur());
+                for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
+                    Joueur joueurtemp = (Joueur)i.next();
+                    int cartenbr = joueurtemp.jouer(joueurtemp.getCarteMain());
+                    parameters.getListotherjoueur().add(parameters.getMyself());
+                    parameters.setMyself(joueurtemp);
+                    parameters.getListotherjoueur().remove(joueurtemp);
+                    joueurtemp.getCarteMain().get(cartenbr).sacrifier(parameters);//zhe li de parameters xu yao xiu gai ma?
+                }
+            }
+        });
+    }
+
+    public DeusEx cretaeColereDivine(String nom, String capacite, int origine){
+
+        return new DeusEx(nom,capacite,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                if(parameters.getMyself().getCarteGuide() != null ){
+                    List<Carte>listguidetemp = new ArrayList<Carte>();
+                    for(Iterator i = parameters.getMyself().getCarteGuide().iterator();i.hasNext();){
+                        Carte cartetemp = (Carte)i.next();
+                    }
+
+                    parameters.getMyself().jouer(listguidetemp);
+                }
+
+
             }
         });
     }
