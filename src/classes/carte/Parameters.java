@@ -1,4 +1,8 @@
-package classes;
+package classes.carte;
+
+import classes.De;
+import classes.Part;
+import classes.joueur.Joueur;
 
 import java.util.ArrayList;
 import java.util.List;

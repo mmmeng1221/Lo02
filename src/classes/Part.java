@@ -1,9 +1,16 @@
 package classes;
 
+import classes.carte.Carte;
+import classes.carte.Croyant;
+import classes.carte.Factory;
+import classes.carte.Guide;
+import classes.joueur.Joueur;
+import classes.joueur.JoueurPhysique;
+import classes.joueur.JoueurVirtuel;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * Created by zhangmeng on 04/12/2016.

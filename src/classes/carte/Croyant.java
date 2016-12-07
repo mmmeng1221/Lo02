@@ -1,4 +1,4 @@
-package classes;
+package classes.carte;
 
 import java.util.List;
 

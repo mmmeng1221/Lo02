@@ -1,4 +1,4 @@
-package classes;
+package classes.carte;
 
 /**
  * Created by zhangmeng on 11/11/2016.

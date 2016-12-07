@@ -1,11 +1,14 @@
-package classes;
+package classes.joueur;
+
+import classes.carte.Carte;
+import classes.carte.Parameters;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/5.
  */
-public class JoueurVirtuel extends Joueur implements Strategie{
+public class JoueurVirtuel extends Joueur implements Strategie {
 
 
     private static int nbrjoueur;

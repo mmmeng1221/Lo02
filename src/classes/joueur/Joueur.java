@@ -1,8 +1,12 @@
-package classes;
+package classes.joueur;
+
+import classes.carte.Carte;
+import classes.carte.Divinite;
+import classes.carte.Guide;
+import classes.carte.Parameters;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by zhangmeng on 04/12/2016.

@@ -1,9 +1,7 @@
-package classes;
+package classes.carte;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by zhangmeng on 03/12/2016.

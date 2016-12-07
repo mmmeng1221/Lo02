@@ -1,4 +1,10 @@
-package classes;
+package classes.joueur;
+
+import classes.*;
+import classes.carte.Carte;
+import classes.carte.Croyant;
+import classes.carte.Guide;
+import classes.carte.Parameters;
 
 import java.util.ArrayList;
 import java.util.Iterator;

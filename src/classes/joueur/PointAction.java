@@ -1,4 +1,6 @@
-package classes;
+package classes.joueur;
+
+import classes.Constants;
 
 /**
  * Created by Administrator on 2016/12/4.
