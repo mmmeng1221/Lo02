@@ -627,6 +627,28 @@ public class Factory {
         });
     }
 
+    public Divinite createLlewella(String nom,String description, String nomCapacite){
+        return new Divinite(nom, description, nomCapacite, new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                for(Iterator it = joueurtemp.getCarteMain().iterator();it.hasNext();){
+                    Carte cartetemp = (Carte)it.next();
+                    if(cartetemp instanceof Apocalypse){
+                        cartetemp.sacrifier(parameters);
+                        break;
+                    }
+
+
+
+                }
+
+
+            }
+        });
+    }
+
 
 
 
