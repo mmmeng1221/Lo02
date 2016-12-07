@@ -261,6 +261,12 @@ public class Part {
             }
     }
 
+    public Carte piocher1Carte(){
+        Carte carte = cartePioche.get(0);
+        cartePioche.remove(carte);
+        return carte;
+    }
+
     public void start(){
         for(Joueur i : listeJouCourant)
         {

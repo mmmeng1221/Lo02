@@ -54,8 +54,9 @@ public class JoueurPhysique extends Joueur {
         //Joueur veut compléter sa main à 7 cartes
         else if (choix == 2) {
             while (this.getCarteMain().size() < 7) {
-                this.piocher(Part.getPart().getCartePioche().get(0));
-                Part.getPart().getCartePioche().remove(0);
+//                this.piocher(Part.getPart().getCartePioche().get(0));
+//                Part.getPart().getCartePioche().remove(0);
+                piocher(Part.getPart().piocher1Carte());
             }
             this.afficherCarteAMain();
         }
@@ -68,10 +69,10 @@ public class JoueurPhysique extends Joueur {
             System.out.println("vos cartes à main : " + "\n");
             this.afficherCarteAMain();
             System.out.println("vos cartes récupérées: " + "\n");
-
             for (Guide card : this.getCarteGuide()) {
                 System.out.println(card);
             }
+
             int num = scanner.nextInt();
             //Joueur choisit de jouer des cartes récupérées, c'est-à-dire qu'il veut sacrifier une ou plusieurs
             // cartes récupérées
@@ -472,4 +473,5 @@ public class JoueurPhysique extends Joueur {
         int i = sc.nextInt();
         return i;
     }
+
 }

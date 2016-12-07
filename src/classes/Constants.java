@@ -18,6 +18,9 @@ public class Constants {
     public static final int  ORIGINE_CREPUSCULE = 24;
     public static final int  ORIGINE_NUIT = 25;
 
+    public static final String BEGIN_JOUER_STRING = "Vous pouvez:" + "\n" + "1.Déffausser une ou plusieurs cartes" + "\n" +
+                    "2.Compléter votre main à 7 cartes" + "\n" + "3.Sacrifier une carte(croyant ou guide)" + "\n" + "4." +
+                    "Utilisez les cartes d'acction que vous avez en main" + "\n" + "Saisir le numéro d'instruction";
 
 
 
