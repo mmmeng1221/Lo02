@@ -286,6 +286,7 @@ public class Part {
 //            joueur.jouer();
             System.out.println(startIndex + "joueur");
             startotherJour();
+            startIndex++;
         }
 
     }
