@@ -271,8 +271,6 @@ public class Factory {
 //Apocalype
     public Apocalypse creatApo(){
         return new Apocalypse("Apocalypse",0,new Sacrifier(){
-            Parameters para = new Parameters();
-
             @Override
             public void sacrifier(Parameters parameters) {
                List<Joueur> joueurCourant =  parameters.getListotherjoueur();

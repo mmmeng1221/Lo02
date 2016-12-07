@@ -77,17 +77,20 @@ public class Joueur {
     }
 
 
-    public void piocher(Carte carteobtenue){
+    public void piocher(Carte carteobtenue) {
         carteMain.add(carteobtenue);
     }
 
 
-    public void jouer(){};
+    public void jouer() {
+    }
 
     public int jouer(Parameters parmameters) {
         return 0;
     }
-    public int jouer(List<Carte>cartemain) {
-return 0;
+
+    public int jouer(List<Carte> cartemain) {
+        return 0;
     }
+
 }
