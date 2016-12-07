@@ -6,16 +6,16 @@ package classes;
 public class Main {
     public static void main(String[] args) {
 
-          Part part = Part.getPart();
+        Part part = Part.getPart();
         part.initialiserCarte();
-            part.initialiserJoueur();
-            part.shuffle();
-            part.piocher();
+        part.initialiserJoueur();
+        part.shuffle();
+        part.piocherDivi();
+        part.piocher();
+//        part.JoueurAjouterPoint(De.getDe().lancer());
+//        part.getListeJouCourant().get(0).jouer();
+        part.start();
 
-        for(int i=0;i<part.getListeJouCourant().size();i++){
-        part.getListeJouCourant().get(0).jouer();
-
-         }
 
     }
 }

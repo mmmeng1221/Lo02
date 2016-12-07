@@ -69,6 +69,15 @@ public abstract class Carte {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Carte{" +
+                "origine=" + origine +
+                ", dogmes=" + dogmes +
+                ", nomCarte='" + nomCarte + '\'' +
+                ", capacite='" + capacite + '\'' +
+                '}';
+    }
 }
 
 
