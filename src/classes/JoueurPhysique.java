@@ -416,6 +416,7 @@ public void afficherCarteAMain(){
         return listjoueursortie;
     }
 
+
     public void afficherfalse(){
         System.out.println("choisissez une autre joueur!");
     }

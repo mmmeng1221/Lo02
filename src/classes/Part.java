@@ -237,6 +237,14 @@ public class Part {
                 2, dogs, Constants.ORIGINE_NEANT);
         this.cartePioche.add(Alienes2);
 
+        dogs.clear();
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant Revolutionnaire= Factory.getFactory().createRevolutionnaires("Revolutionnaire", "Imposez le sacrifice d'une carte de Croyants à autant de Divinités que vous le voulez. Chaque Divinité choisit la carte à sacrifier. Les capacités spéciales sont jouées.",
+                2, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Revolutionnaire);
+
 
 
 

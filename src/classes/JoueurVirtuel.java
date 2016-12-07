@@ -35,7 +35,7 @@ return 0;
 
     }
     public int jouer(int size){ return 0};
-    public List<Joueur>
+    public List<Joueur> jouer(int size,List<Joueur>listjoueur){return listjoueur};
 
     public void afficherfalse(){
 

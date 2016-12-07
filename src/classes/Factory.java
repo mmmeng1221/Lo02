@@ -372,14 +372,16 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 int nbr = parameters.getMyself().jouer(parameters.getListotherjoueur().size());
-
-
+                List<Joueur>listjoueurtemp = parameters.getMyself().jouer(nbr,parameters.getListotherjoueur());
+                for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
+                    Joueur joueurtemp = (Joueur)i.next();
+                    int cartenbr = joueurtemp.jouer(joueurtemp.getCarteMain());
+                    parameters.getListotherjoueur().add(parameters.getMyself());
+                    parameters.setMyself(joueurtemp);
+                    parameters.getListotherjoueur().remove(joueurtemp);
+                    joueurtemp.getCarteMain().get(cartenbr).sacrifier(parameters);//zhe li de parameters xu yao xiu gai ma?
                 }
-
-                croyanttemp.get(joueurtemp.jouer(croyanttemp)).sacrifier(parameters);
             }
-
-
         });
     }
 
