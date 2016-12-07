@@ -29,6 +29,7 @@ public class JoueurPhysique extends Joueur {
 
         Parameters para = new Parameters();
         para.setMyself(this);
+
         int choix = 0;
         Scanner scanner = new Scanner(System.in);
         while (choix != 1 && choix != 2 && choix != 3 && choix != 4) {

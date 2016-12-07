@@ -20,7 +20,7 @@ public class JoueurVirtuel extends Joueur implements Strategie {
 
     @Override
     public void jouer() {
-        //suijixuanze
+        //TODO:suijixuanze
     }
 
     @Override
@@ -46,8 +46,8 @@ public class JoueurVirtuel extends Joueur implements Strategie {
     public void jouer(PointAction PointAct, List<Carte> cartemain) {
 
     }
-    public int jouer(int size){ return 0};
-    public List<Joueur> jouer(int size,List<Joueur>listjoueur){return listjoueur};
+    public int jouer(int size){ return 0;}
+    public List<Joueur> jouer(int size,List<Joueur>listjoueur){return listjoueur;}
 
     public void afficherfalse(){
 
