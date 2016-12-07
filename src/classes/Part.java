@@ -300,6 +300,30 @@ public class Part {
 
 
 
+        //Divinite
+        dogs.clear();
+        dogs.add(Constants.DOGMES_CHAOS);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        Divinite Killinstred= Factory.getFactory().createKillinstred("Killinstred","Divinité machiavélique et manipulatrice,Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_JOUR);
+        this.cartePioche.add(Killinstred);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Divinite Llewella= Factory.getFactory().createKillinstred("Llewella","Divinité machiavélique et manipulatrice, Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_NUIT);
+        this.cartePioche.add(Llewella);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Divinite PuiTara= Factory.getFactory().createPuiTara("Pui-Tara","Pui-Tara est la Divinité sur laquelle l'influence de la Nuit s'est faite la plus forte." , "Peut détruire toutes les cartes de Croyants au centre de la table d'Origine Jour.");
+        this.cartePioche.add(PuiTara);
+
+
+
     }
 
     public List<Carte> shuffle() {

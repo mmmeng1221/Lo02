@@ -619,48 +619,56 @@ public class Factory {
 
 
     //Divinite
-    public Divinite createKillinstred(String nom, String description, String nomCapacite) {
-        return new Divinite(nom, description, nomCapacite, new Sacrifier() {
+
+    public Divinite createYarstur(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-
-                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
-                for (Iterator it = joueurtemp.getCarteMain().iterator(); it.hasNext(); ) {
-                    Carte cartetemp = (Carte) it.next();
-                    if (cartetemp instanceof Apocalypse) {
-                        cartetemp.sacrifier(parameters);
-                        break;
+                for(Iterator i = parameters.getPart().getCartePioche().iterator();i.hasNext();){
+                    Carte cartetemp = (Carte)i.next();
+                    if(cartetemp instanceof Croyant && cartetemp.getOrigine() == Constants.ORIGINE_JOUR){
+                        parameters.getPart().getCarteDeffause().add(cartetemp);
+                        parameters.getPart().getCartePioche().remove(cartetemp);
                     }
-
-
+                }
+            }
+        });
+    }
+    public Divinite createKillinstred(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                //boolean avoirapocalypse = false;
+              //  while(avoirapocalypse = false) {
+                    Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                    for (Iterator it = joueurtemp.getCarteMain().iterator(); it.hasNext(); ) {
+                        Carte cartetemp = (Carte) it.next();
+                        if (cartetemp instanceof Apocalypse) {
+                            cartetemp.sacrifier(parameters);
+                            break;
+                        }
+                    }
                 }
 
+        });
+    }
 
+    public Divinite createPuiTara(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                for(Iterator i = parameters.getPart().getCartePioche().iterator();i.hasNext();){
+                    Carte cartetemp = (Carte)i.next();
+                    if(cartetemp instanceof Croyant && cartetemp.getOrigine() == Constants.ORIGINE_JOUR){
+                        parameters.getPart().getCarteDeffause().add(cartetemp);
+                        parameters.getPart().getCartePioche().remove(cartetemp);
+                    }
+                }
             }
         });
     }
 
-    public Divinite createLlewella(String nom,String description, String nomCapacite){
-        return new Divinite(nom, description, nomCapacite, new Sacrifier() {
-            @Override
-            public void sacrifier(Parameters parameters) {
 
-                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
-                for(Iterator it = joueurtemp.getCarteMain().iterator();it.hasNext();){
-                    Carte cartetemp = (Carte)it.next();
-                    if(cartetemp instanceof Apocalypse){
-                        cartetemp.sacrifier(parameters);
-                        break;
-                    }
-
-
-
-                }
-
-
-            }
-        });
-    }
 
 
     public Croyant zhizhang(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {

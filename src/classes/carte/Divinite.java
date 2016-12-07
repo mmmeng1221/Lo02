@@ -1,5 +1,7 @@
 package classes.carte;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/12/4.
  */
@@ -9,11 +11,15 @@ public class Divinite extends Carte {
     public String nom;
     public String description;
     public String nomcCpacite;
+    private Sacrifier sac;
 
-    public Divinite(String nom,String description, String nomCapacite, Sacrifier method){
-        this.nom =nom;
+    public Divinite(String nom, String description, String nomCapacite, List<Integer> dogs,int origine, Sacrifier sac){
+        this.setNomCarte(nom);
         this.description = description;
-        this.nomcCpacite = nomCapacite;
+        this.setCapacite(nomCapacite);
+        this.setDogmes(dogs);
+        this.setOrigine(origine);
+        this.sac= sac;
 
     }
     public void uticap(){
