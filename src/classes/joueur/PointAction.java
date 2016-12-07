@@ -6,38 +6,41 @@ import classes.Constants;
  * Created by Administrator on 2016/12/4.
  */
 public class PointAction {
-    private static int jour = 0;
-    private static int nuit = 0;
-    private static int neant = 0;
+    private int jour = 0;
+    private int nuit = 0;
+    private int neant = 0;
 
-    public static int getJour() {
+    public int getJour() {
         return jour;
     }
 
-    public static void setJour(int jour) {
-        PointAction.jour = jour;
+    public void setJour(int jour) {
+        this.jour = jour;
     }
 
-    public static int getNuit() {
+    public int getNuit() {
         return nuit;
     }
 
-    public static void setNuit(int nuit) {
-        PointAction.nuit = nuit;
+    public void setNuit(int nuit) {
+        this.nuit = nuit;
     }
 
-    public static int getNeant() {
+    public int getNeant() {
         return neant;
     }
 
-    public static void setNeant(int neant) {
-        PointAction.neant = neant;
+    public void setNeant(int neant) {
+        this.neant = neant;
     }
 
-    public PointAction(int jour, int nuit, int neant){
-
+    public PointAction() {
+        this.jour = 0;
+        this.nuit = 0;
+        this.neant = 0;
     }
-    public void compterPointA(int point, Constants origine){
+
+    public void compterPointA(int point, Constants origine) {
 
     }
 }

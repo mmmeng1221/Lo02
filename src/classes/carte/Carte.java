@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * Created by zhangmeng on 10/11/2016.
  */
-public abstract class Carte{
+public abstract class Carte {
 
 
     private int origine;
-    private List<Integer> dogmes = new ArrayList();
+    private List<Integer> dogmes = new ArrayList<>();
     private String nomCarte;
     private String capacite;
 
@@ -49,11 +49,25 @@ public abstract class Carte{
 
     public abstract Sacrifier sacrifier(Parameters parameters);
 
-    public void poser(){
+    public void poser() {
 
     }
 
-
+    /**
+     * 用来比较是否有相同的dogmes
+     * @param other 另一张牌的dogmes的list
+     * @return 相同或不同
+     */
+    public boolean compareDogmes(List<Integer> other) {
+        for (Integer dog : dogmes) {
+            for (Integer crDog : other) {
+                if (dog.equals(crDog)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }
 
