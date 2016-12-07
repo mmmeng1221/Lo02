@@ -210,6 +210,22 @@ public void utiliserCA (Scanner scanner){}
                         System.out.println(croyantValid);
                     }
 
+                    boolean continuer = true;
+                        while(((Guide) crPoser).getNbCryAttahce() < ((Guide) crPoser).getNbCroyant() && continuer == true)
+                    {
+                        System.out.println("Choisissez un croyant");
+                        int croyantNew = scanner.nextInt();
+                        Croyant cardCro = crTemp.get(croyantNew);
+                        ((Guide) crPoser).getCroyantAttache().add(cardCro);
+                        Part.getPart().getCroyantCommun().remove(cardCro);
+                        ((Guide) crPoser).setNbCryAttahce(((Guide) crPoser).getNbCryAttahce()+1);
+                        System.out.println("Voulez-vous continuer à attacher des croyants?" + "\n" + "0-indiquant continuer"
+                        + "\n" +"1-indiquant arrêter");
+                            int recuperer = scanner.nextInt();
+                        if(recuperer == 1){
+                            continuer = false;
+                        }
+                    }
                     this.getCarteMain().remove(crPoser);
                 }
 
