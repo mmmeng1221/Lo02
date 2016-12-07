@@ -414,12 +414,30 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 if(parameters.getMyself().getCarteGuide() != null ){
-                    List<Carte>listguidetemp = new ArrayList<Carte>();
+                    List<Carte> listguidetemp = new ArrayList<Carte>();
                     for(Iterator i = parameters.getMyself().getCarteGuide().iterator();i.hasNext();){
                         Carte cartetemp = (Carte)i.next();
                     }
+                    Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
+                    for(Iterator i = cartetemp.getCroyantAttache().iterator();i.hasNext();){
+                        Croyant croyant = (Croyant)i.next();
+                        parameters.getPart().croyantCommun.add(croyant);
+                        cartetemp.getCroyantAttache().remove(croyant);
+                    }
+                 /*   Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
 
-                    parameters.getMyself().jouer(listguidetemp);
+                    for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
+                        Carte a = (Guide) i.next();
+                    }
+
+                    for(Iterator i = cartetemp.getCroyantAttache().iterator();i.hasNext();){
+                        Croyant croyant = (Croyant)i.next();
+                        parameters.getPart().croyantCommun.add(croyant);
+                        cartetemp.getCroyantAttache().remove(croyant);
+                    }
+
+                    parameters.getPart().getCarteDeffause().add(cartetemp);
+                    joueurtemp.getCarteGuide().remove(cartetemp);*/
                 }
 
 
