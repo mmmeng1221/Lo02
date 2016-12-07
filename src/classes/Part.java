@@ -1,9 +1,6 @@
 package classes;
 
-import classes.carte.Carte;
-import classes.carte.Croyant;
-import classes.carte.Factory;
-import classes.carte.Guide;
+import classes.carte.*;
 import classes.joueur.Joueur;
 import classes.joueur.JoueurPhysique;
 import classes.joueur.JoueurVirtuel;
@@ -21,6 +18,7 @@ public class Part {
     private List<Carte> cartePioche;
     private List<Carte> carteDeffause;
     public List<Croyant> croyantCommun;
+    private List<Divinite> carteDivi;
 
     private static Part part = new Part();
 
@@ -29,6 +27,8 @@ public class Part {
         this.cartePioche = new ArrayList<>();
         this.carteDeffause = new ArrayList<>();
         this.croyantCommun = new ArrayList<>();
+        this.carteDivi = new ArrayList<>();
+
     }
     public static Part getPart(){
         return part;
@@ -253,6 +253,19 @@ public class Part {
         }
     }
 
+    /**
+     * Joueur obtient une carte divinité
+     */
+    public void piocherDivi(){
+        for(Joueur j : listeJouCourant){
+            j.setDivi(carteDivi.get(0));
+            carteDivi.remove(0);
+        }
+    }
+
+    /**
+     * Ini
+     */
     public void piocher(){
         for(Joueur j : listeJouCourant)
             for(int i = 0; i<1;i++){

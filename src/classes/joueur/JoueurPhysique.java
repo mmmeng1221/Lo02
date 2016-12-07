@@ -49,20 +49,12 @@ public class JoueurPhysique extends Joueur {
                 int cardDe = scanner.nextInt();
                 this.getCarteMain().remove(this.getCarteMain().get(cardDe));
             }
-        }
-
-        //Joueur veut compléter sa main à 7 cartes
-        else if (choix == 2) {
+        } else if (choix == 2) {//Joueur veut compléter sa main à 7 cartes
             while (this.getCarteMain().size() < 7) {
-//                this.piocher(Part.getPart().getCartePioche().get(0));
-//                Part.getPart().getCartePioche().remove(0);
                 piocher(Part.getPart().piocher1Carte());
             }
             this.afficherCarteAMain();
-        }
-
-        //Joueur veut sacrifier une carte croyant ou une carte guide
-        else if (choix == 3) {
+        } else if (choix == 3) {//Joueur veut sacrifier une carte croyant ou une carte guide
 
             System.out.println("Choisissez les cartes pas encore jouées ou les cartes récupérée." + "\n" + "0-indiquant les cartes pas " +
                     "encore jouées" + "\n" + "1-indiquant les cartes récupéreés");
@@ -344,15 +336,6 @@ public class JoueurPhysique extends Joueur {
                 poseByPointJour(jour, crPoser, scanner);
                 break;
             case Constants.ORIGINE_NUIT:
-//                if (nuit > 0) {
-//
-//                    this.getPointActTot().setNuit(nuit - 1);
-//                    Part.getPart().getCroyantCommun().add((Croyant) crPoser);
-//                    this.getCarteMain().remove(crPoser);
-//                } else {
-//                    System.out.println("Votre point d'action ne vous permet pas de poser ce croyant");
-//                    ////////////// EXCEPTION???
-//                }
                 poseByPointNuit(nuit, crPoser, scanner);
                 break;
 

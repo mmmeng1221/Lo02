@@ -11,6 +11,7 @@ public class Main {
             part.initialiserJoueur();
             part.shuffle();
             part.piocher();
+        part.JoueurAjouterPoint(De.getDe().lancer());
         part.getListeJouCourant().get(0).jouer();
 
 
