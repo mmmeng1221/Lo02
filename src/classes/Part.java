@@ -337,8 +337,8 @@ public class Part {
      */
     public void piocherDivi() {
         for (Joueur j : listeJouCourant) {
-            j.setDivi(carteDivi.get(0));
-            carteDivi.remove(0);
+            j.setDivi(Factory.getFactory().createKillinstred("ssss","ssssssss","szefs"));
+            //carteDivi.remove(0);
         }
     }
 
@@ -361,24 +361,25 @@ public class Part {
 
     public void start() {
         isEnd = false;
+        startIndex=0;
         while (!isEnd) {
             JoueurAjouterPoint();
             Joueur joueur = listeJouCourant.get(startIndex);
-//            joueur.jouer();
-            System.out.println(startIndex + "joueur");
+            joueur.jouer();
             startotherJour();
-            startIndex++;
+            startIndex = startIndex < listeJouCourant.size() -1 ? startIndex + 1 : 0;
         }
 
     }
 
     private void startotherJour() {
-        int currentIndex = startIndex + 1;
+        int currentIndex;
+        currentIndex = startIndex < listeJouCourant.size() -1 ? startIndex + 1 : 0;
         while (currentIndex != startIndex) {
             Joueur joueur = listeJouCourant.get(currentIndex);
-//            joueur.jouer();
+            joueur.jouer();
             System.out.println(currentIndex + "joueur");
-            currentIndex = currentIndex < listeJouCourant.size() ? currentIndex + 1 : 0;
+            currentIndex = currentIndex < listeJouCourant.size() -1 ? currentIndex + 1 : 0;
         }
     }
 
@@ -435,5 +436,9 @@ public class Part {
                 joueur.getPointActTot().setNeant(point + 1);
             }
         }
+    }
+
+    public void whowin(){
+        isEnd = true;
     }
 }
