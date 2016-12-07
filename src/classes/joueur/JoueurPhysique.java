@@ -465,7 +465,8 @@ public class JoueurPhysique extends Joueur {
     public int jouer(List<Carte> cartemain) {
         for (Iterator it = cartemain.iterator(); it.hasNext(); ) {
             Carte key = (Carte) it.next();
-            System.out.println(key.getNomCarte());
+            System.out.println(key.getNomCarte() + "\n");
+            System.out.println(key.getCapacite() + "\n");
         }
         System.out.println("quel Carte voulez-vous choisir? Donnez le numero.");
         Scanner sc = new Scanner(System.in);
@@ -477,7 +478,7 @@ public class JoueurPhysique extends Joueur {
         for(int i=1;i<=size;i++){
             System.out.println(i +" ");
         }
-        System.out.println("quel nombre de Divinites voulez-vous choisir?");
+        System.out.println("quel nombre voulez-vous choisir?");
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
         return i;

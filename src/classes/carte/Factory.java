@@ -2,10 +2,13 @@ package classes.carte;
 
 
 
+import classes.Constants;
 import classes.Part;
 import classes.joueur.Joueur;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import java.util.*;
+import java.util.zip.CRC32;
 
 
 /**
@@ -363,7 +366,7 @@ public class Factory {
                 joueurtemp.getCarteMain().remove(a);
                 int num2 = (int)Math.random()*joueurtemp.getCarteMain().size();
                 Carte b = joueurtemp.getCarteMain().get(num2);
-                parameters.getMyself().getCarteMain().add(a);
+                parameters.getMyself().getCarteMain().add(b);
                 joueurtemp.getCarteMain().remove(b);
 
             }
@@ -408,28 +411,23 @@ public class Factory {
         });
     }
 
-    public DeusEx cretaeColereDivine(String nom, String capacite, int origine){
+    public DeusEx cretaeColereDivine1(String nom, String capacite, int origine){
 
         return new DeusEx(nom,capacite,origine,new Sacrifier(){
             @Override
             public void sacrifier(Parameters parameters) {
-                if(parameters.getMyself().getCarteGuide() != null ){
-                    List<Carte> listguidetemp = new ArrayList<Carte>();
-                    for(Iterator i = parameters.getMyself().getCarteGuide().iterator();i.hasNext();){
-                        Carte cartetemp = (Carte)i.next();
-                    }
-                    Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
-                    for(Iterator i = cartetemp.getCroyantAttache().iterator();i.hasNext();){
-                        Croyant croyant = (Croyant)i.next();
-                        parameters.getPart().croyantCommun.add(croyant);
-                        cartetemp.getCroyantAttache().remove(croyant);
-                    }
-                 /*   Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
 
+                    Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                    if(joueurtemp.getCarteGuide() != null ){
+                        List<Carte> listguidetemp = new ArrayList<Carte>();
                     for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
                         Carte a = (Guide) i.next();
+                        if(a.getOrigine() == Constants.ORIGINE_NEANT ||a.getOrigine() == Constants.ORIGINE_NUIT){
+                            listguidetemp.add(a);
+                        }
                     }
-
+                    if(listguidetemp != null){
+                    Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
                     for(Iterator i = cartetemp.getCroyantAttache().iterator();i.hasNext();){
                         Croyant croyant = (Croyant)i.next();
                         parameters.getPart().croyantCommun.add(croyant);
@@ -437,15 +435,197 @@ public class Factory {
                     }
 
                     parameters.getPart().getCarteDeffause().add(cartetemp);
-                    joueurtemp.getCarteGuide().remove(cartetemp);*/
+                    joueurtemp.getCarteGuide().remove(cartetemp);
+                }
+            }
+        }
+    });
+    }
+
+    public DeusEx cretaeColereDivine2(String nom, String capacite, int origine){
+
+        return new DeusEx(nom,capacite,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                if(joueurtemp.getCarteGuide() != null ){
+                    List<Carte> listguidetemp = new ArrayList<Carte>();
+                    for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
+                        Carte a = (Guide) i.next();
+                        if(a.getOrigine() == Constants.ORIGINE_JOUR ||a.getOrigine() == Constants.ORIGINE_NEANT){
+                            listguidetemp.add(a);
+                        }
+                    }
+                    if(listguidetemp != null){
+                        Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
+                        for(Iterator i = cartetemp.getCroyantAttache().iterator();i.hasNext();){
+                            Croyant croyant = (Croyant)i.next();
+                            parameters.getPart().croyantCommun.add(croyant);
+                            cartetemp.getCroyantAttache().remove(croyant);
+                        }
+
+                        parameters.getPart().getCarteDeffause().add(cartetemp);
+                        joueurtemp.getCarteGuide().remove(cartetemp);
+                    }
+                }
+            }
+        });
+    }
+    public DeusEx createOrdreCeleste(String nom, String capacite, int origine){
+
+        return new DeusEx(nom,capacite,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+
+                while(joueurtemp.getCarteGuide() == null){
+                    joueurtemp.afficherfalse();
+                    joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                }
+                List<Carte> listguidetemp = new ArrayList<Carte>();
+                for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
+                    Carte a = (Guide) i.next();
+                }
+                Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
+                parameters.getMyself().getCarteGuide().add(cartetemp);
+                joueurtemp.getCarteGuide().remove(cartetemp);
+            }
+
+        });
+    }
+
+
+    public DeusEx cretaeFourberie(String nom, String capacite, int origine){
+
+        return new DeusEx(nom,capacite,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                boolean avoirdeuxcroyant = false;
+                List<Carte> listcroyanttemp = new ArrayList<Carte>();
+                Joueur joueurtemp = new Joueur();
+                while (avoirdeuxcroyant = false) {
+                    listcroyanttemp = null;
+                    joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                    for (Iterator i = joueurtemp.getCarteMain().iterator(); i.hasNext(); ) {
+                        Carte cartetemp = (Carte) i.next();
+                        if (cartetemp instanceof Croyant) {
+                            listcroyanttemp.add(cartetemp);
+                        }
+                    }
+                    if (listcroyanttemp.size() < 2) {
+                        parameters.getMyself().afficherfalse();
+                    } else {
+                        avoirdeuxcroyant = true;
+                    }
+                }
+                int num = (int)listcroyanttemp.size();
+                Carte a = listcroyanttemp.get(num);
+                parameters.getPart().getCarteDeffause().add(a);
+                joueurtemp.getCarteMain().remove(a);
+                    listcroyanttemp.remove(a);
+                int num2 = (int)listcroyanttemp.size();
+                Carte b = joueurtemp.getCarteMain().get(num2);
+                parameters.getPart().getCarteDeffause().add(b);
+                joueurtemp.getCarteMain().remove(b);
+                    listcroyanttemp.remove(b);
+            }
+        });
+    }
+
+    public DeusEx createDiversion(String nom, String capacite, int origine){
+
+        return new DeusEx(nom,capacite,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+
+                while(joueurtemp.getCarteMain() == null){
+                    joueurtemp.afficherfalse();
+                    joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                }
+                int num = joueurtemp.getCarteMain().size();
+
+                Carte cartetemp = joueurtemp.getCarteMain().get(parameters.getMyself().jouer(num));
+                parameters.getMyself().getCarteMain().add(cartetemp);
+                joueurtemp.getCarteMain().remove(cartetemp);
+                num = num - 1;
+                Carte cartetemp2 = joueurtemp.getCarteMain().get(parameters.getMyself().jouer(num));
+                parameters.getMyself().getCarteMain().add(cartetemp2);
+                joueurtemp.getCarteMain().remove(cartetemp2);
+                num = num - 1;
+                Carte cartetemp3 = joueurtemp.getCarteMain().get(parameters.getMyself().jouer(num));
+                parameters.getMyself().getCarteMain().add(cartetemp3);
+                joueurtemp.getCarteMain().remove(cartetemp3);
+
+            }
+
+        });
+    }
+
+    public DeusEx createPhoenix(String nom, String capacite, int origine){
+
+        return new DeusEx(nom,capacite,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                List<Carte>listcartetemp = new ArrayList<Carte>();
+                for(Iterator i = parameters.getMyself().getCarteMain().iterator();i.hasNext();){
+                    Carte carte = (Carte)i.next();
+                    if(carte instanceof Guide ||carte instanceof Croyant) {
+                        listcartetemp.add(carte);
+                    }
+                }
+                if(listcartetemp != null){
+                    Carte cartetemp = listcartetemp.get(parameters.getMyself().jouer(listcartetemp));
+                    cartetemp.sacrifier(parameters);
+                }
+                ///这张卡cartetemp， sacrifier之后还应该保留着，怎么处理？？
+            }
+
+        });
+    }
+    /*public DeusEx createInfluenceJour(String nom, String capacite, int origine){
+
+        return new DeusEx(nom,capacite,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+             List<Carte>listcartetemp = new ArrayList<Carte>();
+                for(Iterator i = parameters.getMyself().getCarteMain().iterator();i.hasNext();){
+                    Carte carte = (Carte)i.next();
+                    if((carte.getOrigine() = Constants.ORIGINE_NUIT)||(carte.getOrigine() = Constants.ORIGINE_NEANT)) {
+                        listcartetemp.add(carte);
+                    }
+                }
+
+            }
+
+        });
+    }*/
+
+
+
+    //Divinite
+    public Divinite createKillinstred(String nom,String description, String nomCapacite){
+        return new Divinite(nom, description, nomCapacite, new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                for(Iterator it = joueurtemp.getCarteMain().iterator();it.hasNext();){
+                    Carte cartetemp = (Carte)it.next();
+                    if(cartetemp instanceof Apocalypse){
+                        cartetemp.sacrifier(parameters);
+                        break;
+                    }
+
+
+
                 }
 
 
             }
         });
     }
-
-
 
 
 

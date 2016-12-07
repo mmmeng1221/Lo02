@@ -6,10 +6,14 @@ package classes.carte;
 public class Divinite extends Carte {
 
     public boolean capUti = true;
+    public String nom;
     public String description;
     public String nomcCpacite;
 
-    public Divinite(String description, String nomCapacite, Sacrifier method){
+    public Divinite(String nom,String description, String nomCapacite, Sacrifier method){
+        this.nom =nom;
+        this.description = description;
+        this.nomcCpacite = nomCapacite;
 
     }
     public void uticap(){

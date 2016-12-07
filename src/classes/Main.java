@@ -11,11 +11,11 @@ public class Main {
             part.initialiserJoueur();
             part.shuffle();
             part.piocher();
-        while
+
         for(int i=0;i<part.getListeJouCourant().size();i++){
         part.getListeJouCourant().get(0).jouer();
 
          }
-        part.getTour().getNbrDejaJouer() ++;
+
     }
 }

@@ -1,9 +1,6 @@
 package classes;
 
-import classes.carte.Carte;
-import classes.carte.Croyant;
-import classes.carte.Factory;
-import classes.carte.Guide;
+import classes.carte.*;
 import classes.joueur.Joueur;
 import classes.joueur.JoueurPhysique;
 import classes.joueur.JoueurVirtuel;
@@ -283,8 +280,27 @@ public class Part {
                 2, dogs, Constants.ORIGINE_NEANT);
         this.cartePioche.add(Revolutionnaire);
 
+        //DeusEx
+        DeusEx ColereDivine1= Factory.getFactory().cretaeColereDivine1("Colere Divine", "Détruit une carte Guide Spirituel d'Origine Nuit ou Néant, dont la capacité spéciale n'a pas effet. Les Croyants attachés reviennent au centre de la table.", Constants.ORIGINE_JOUR);
+        this.cartePioche.add(ColereDivine1);
 
+        DeusEx ColereDivine2= Factory.getFactory().cretaeColereDivine2("Colere Divine", "Détruit une carte Guide Spirituel d'Origine Nuit ou Néant, dont la capacité spéciale n'a pas effet. Les Croyants attachés reviennent au centre de la table.", Constants.ORIGINE_NUIT);
+        this.cartePioche.add(ColereDivine2);
 
+        DeusEx OrdreCelestes= Factory.getFactory().createOrdreCeleste("Ordre Celestes", "Vous récupérez un des Guides Spirituels posés devant une autre Divinité et le placez devant vous avec les Croyants qui y sont attachés.", Constants.ORIGINE_JOUR);
+        this.cartePioche.add(OrdreCelestes);
+
+        DeusEx Fourberie= Factory.getFactory().cretaeFourberie("Fourberie", "Sacrifiez 2 cartes Croyants d'une autre Divinité. Les capacités spéciales ne sont pas jouées.", Constants.ORIGINE_NUIT);
+        this.cartePioche.add(Fourberie);
+
+        DeusEx Diversion= Factory.getFactory().createDiversion("Diversion", "Prenez 3 cartes dans la main d'un autre joueur et incluez-les à votre main.", Constants.ORIGINE_NUIT);
+        this.cartePioche.add(Diversion);
+
+        DeusEx Concentration= Factory.getFactory().createOrdreCeleste("Concentration", "Vous récupérez un des Guides Spirituels posés devant une autre Divinité et le placez devant vous avec les Croyants qui y sont attachés.", Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Concentration);
+
+        DeusEx Phoenix= Factory.getFactory().createPhoenix("Phoenix", "Permet de bénéficier de la capacité spéciale de l'un de vos Croyants ou Guides Spirituels sans sacrifier la carte.", Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Phoenix);
 
 
 
