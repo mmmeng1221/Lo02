@@ -1,6 +1,9 @@
-package classes;
+package classes.carte;
 
 
+
+import classes.Part;
+import classes.joueur.Joueur;
 
 import java.util.*;
 
