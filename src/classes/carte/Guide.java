@@ -12,6 +12,22 @@ public class Guide extends Carte{
     private int nbCryAttahce;
     private List<Croyant> croyantAttache = new ArrayList();
 
+    public int getNbCroyant() {
+        return nbCroyant;
+    }
+
+    public void setNbCroyant(int nbCroyant) {
+        this.nbCroyant = nbCroyant;
+    }
+
+    public int getNbCryAttahce() {
+        return nbCryAttahce;
+    }
+
+    public void setNbCryAttahce(int nbCryAttahce) {
+        this.nbCryAttahce = nbCryAttahce;
+    }
+
     public List<Croyant> getCroyantAttache() {
         return croyantAttache;
     }
