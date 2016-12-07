@@ -86,4 +86,6 @@ public class Joueur {
     public int jouer(List<Carte>cartemain) {
 return 0;
     }
+    public void afficherfalse(){
+    }
 }

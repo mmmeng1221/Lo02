@@ -14,6 +14,7 @@ public class Part {
     private List<Carte> cartePioche;
     private List<Carte> carteDeffause;
     public List<Croyant> croyantCommun;
+    public static Tour tour;
 
     private static Part part = new Part();
 
@@ -22,6 +23,14 @@ public class Part {
         this.cartePioche = new ArrayList<>();
         this.carteDeffause = new ArrayList<>();
         this.croyantCommun = new ArrayList<>();
+    }
+
+    public static Tour getTour() {
+        return tour;
+    }
+
+    public static void setTour(Tour tour) {
+        Part.tour = tour;
     }
     public static Part getPart(){
         return part;
@@ -173,12 +182,60 @@ public class Part {
         this.cartePioche.add(xiaozhizhang7);
 
         dogs.clear();
-        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant alchimistes2= Factory.getFactory().createAlchimistes2("Alchimistes", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
+                2, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(alchimistes2);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_SYMBOLES);
-        Croyant alchimistes2= Factory.getFactory().createAlchimistes2("dazhangmeng", "wo zhe ge pai mei yong de, zhen de",
-                1, dogs, Constants.ORIGINE_NEANT);
-        this.cartePioche.add(alchimistes2);
+        Croyant vampire1= Factory.getFactory().createVampire("Vampire", "Impose le sacrifice d'un Croyant d'un autre joueur. Celui-ci choisit le sacrifié. La capacité spéciale du sacrifice est jouée.",
+                1, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(vampire1);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant vampire2= Factory.getFactory().createVampire("Vampire", "Impose le sacrifice d'un Croyant d'un autre joueur. Celui-ci choisit le sacrifié. La capacité spéciale du sacrifice est jouée.",
+                1, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(vampire2);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant lycanthropes= Factory.getFactory().createLycanthropes("Lycanthropes", "Retirez tous les Croyants attachés à l'un des Guides Spirituels d'une autre Divinité. Les Croyants reviennent au milieu de la table, le Guide Spirituel est défaussé.",
+                4, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(lycanthropes);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant Illusionnistes= Factory.getFactory().createIllusionnistes("Illusionnistes", "Vous bénéficiez de la capacité spéciale de sacrifice d'une carte de Croyants appartenant à une autre Divinité. La carte en question reste en jeu.",
+                4, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(Illusionnistes);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        Croyant Esprites= Factory.getFactory().createEsprites("Esprites", "Donne un point d'Action d'Origine Néant.",
+                2, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Esprites);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant Alienes2= Factory.getFactory().createAlienes2("Alienes", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
+                2, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Alienes2);
 
 
 

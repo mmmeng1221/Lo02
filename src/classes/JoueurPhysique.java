@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -128,5 +129,37 @@ public class JoueurPhysique extends Joueur {
         return i;
 
 
+    }
+
+    public int jouer (int size){
+        for(int i=1;i<=size;i++){
+            System.out.println(i +" ");
+        }
+        System.out.println("quel nombre de Divinites voulez-vous choisir?");
+        Scanner sc = new Scanner(System.in);
+        int i = sc.nextInt();
+        return i;
+    }
+
+    public List<Joueur> jouer(int size, List<Joueur>listjoueur){
+        List<Joueur> listjoueurtemp = new ArrayList<Joueur>();
+        List<Joueur>listjoueursortie = new ArrayList<Joueur>();
+        listjoueurtemp = listjoueur;
+        for(int j = 0;j<size;j++){
+            for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
+                 Joueur joueurtemp =(Joueur)i.next();
+                 System.out.println(joueurtemp.getNom() + "\n");
+            }
+            System.out.println("Quel joueur voulez-vous choisir? Donnez le numero");
+            Scanner sc = new Scanner(System.in);
+            int i = sc.nextInt();
+            listjoueursortie.add(listjoueurtemp.get(i));
+            listjoueurtemp.remove(i);
+        }
+        return listjoueursortie;
+    }
+
+    public void afficherfalse(){
+        System.out.println("choisissez une autre joueur!");
     }
 }

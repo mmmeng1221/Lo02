@@ -34,4 +34,10 @@ return 0;
     public void jouer(PointAction PointAct, List<Carte> cartemain) {
 
     }
+    public int jouer(int size){ return 0};
+    public List<Joueur>
+
+    public void afficherfalse(){
+
+    }
 }

@@ -250,6 +250,143 @@ public class Factory {
         });
     }
 
+    public Croyant createVampire(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                List<Carte> croyanttemp = new ArrayList<Carte>();
+                List<Carte> cartemain = joueurtemp.getCarteMain();
+                for(Iterator i = cartemain.iterator();i.hasNext();){
+                    Carte key = (Carte) i.next();
+                    if(key instanceof Croyant)
+                        croyanttemp.add(key);
+                }
+
+                croyanttemp.get(joueurtemp.jouer(croyanttemp)).sacrifier(parameters);
+            }
+
+
+        });
+    }
+
+    public Croyant createLycanthropes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                List<Carte> listguidetemp = new ArrayList<Carte>();
+                for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
+                    Carte a = (Guide) i.next();
+                }
+                Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));
+                for(Iterator i = cartetemp.getCroyantAttache().iterator();i.hasNext();){
+                    Croyant croyant = (Croyant)i.next();
+                    parameters.getPart().croyantCommun.add(croyant);
+                    cartetemp.getCroyantAttache().remove(croyant);
+                }
+
+                parameters.getPart().getCarteDeffause().add(cartetemp);
+                joueurtemp.getCarteGuide().remove(cartetemp);
+
+
+
+        });
+    }
+    }
+
+    public Croyant createIllusionnistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                boolean avoircroyant = true;
+                List<Carte> croyanttemp = new ArrayList<Carte>();
+                Joueur joueurtemp = new Joueur();
+                while(avoircroyant = true) {
+                   joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+
+                    List<Carte> cartemain = joueurtemp.getCarteMain();
+                    for (Iterator i = cartemain.iterator(); i.hasNext(); ) {
+                        Carte key = (Carte) i.next();
+                        if (key instanceof Croyant)
+                            croyanttemp.add(key);
+                    }
+                    if(croyanttemp == null){
+                        avoircroyant = false;
+                    }
+                }
+                croyanttemp.get(joueurtemp.jouer(croyanttemp)).sacrifier(parameters);
+            }
+
+
+        });
+    }
+
+    public Croyant createEsprites(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getNeant() + 1);
+
+
+            }
+
+
+        });
+    }
+
+    public Croyant createAlienes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = new Joueur();
+                boolean avoirdeuxcarte = true;
+                while (avoirdeuxcarte = true) {
+                    joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                    if (joueurtemp.getCarteMain().size() < 2) {
+                        avoirdeuxcarte = false;
+                        joueurtemp.afficherfalse();
+                    }
+                }
+                int num = (int)Math.random()*joueurtemp.getCarteMain().size();
+                Carte a = joueurtemp.getCarteMain().get(num);
+                parameters.getMyself().getCarteMain().add(a);
+                joueurtemp.getCarteMain().remove(a);
+                int num2 = (int)Math.random()*joueurtemp.getCarteMain().size();
+                Carte b = joueurtemp.getCarteMain().get(num2);
+                parameters.getMyself().getCarteMain().add(a);
+                joueurtemp.getCarteMain().remove(b);
+
+            }
+        });
+    }
+
+    public Croyant createRevolutionnaires(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
+
+        return new Croyant(nom,capacite,nbcroyant,dogmes,origine,new Sacrifier(){
+            @Override
+            public void sacrifier(Parameters parameters) {
+                int nbr = parameters.getMyself().jouer(parameters.getListotherjoueur().size());
+
+
+                }
+
+                croyanttemp.get(joueurtemp.jouer(croyanttemp)).sacrifier(parameters);
+            }
+
+
+        });
+    }
+
+
+
+
+
 
     public Croyant zhizhang(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine){
 
