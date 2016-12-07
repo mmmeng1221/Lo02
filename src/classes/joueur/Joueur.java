@@ -17,7 +17,7 @@ public class Joueur {
     private Divinite divi;
     private List<Carte> carteMain = new ArrayList<>();
     private List<Guide> carteGuide = new ArrayList<>();
-    private PointAction pointActTot;
+    private PointAction pointActTot = new PointAction();
     private int nbrCro;
 
     public String getNom() {
