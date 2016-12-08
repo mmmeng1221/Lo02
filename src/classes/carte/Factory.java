@@ -125,15 +125,24 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
               /*  parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());*/
-                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
-                int num = (int) Math.random() * joueurtemp.getCarteMain().size();
-                Carte a = joueurtemp.getCarteMain().get(num);
-                parameters.getMyself().getCarteMain().add(a);
-                joueurtemp.getCarteMain().remove(a);
-                int num2 = (int) Math.random() * joueurtemp.getCarteMain().size();
-                Carte b = joueurtemp.getCarteMain().get(num2);
-                parameters.getMyself().getCarteMain().add(a);
-                joueurtemp.getCarteMain().remove(b);
+              boolean avoirdeuxcarte = false;
+                while(avoirdeuxcarte = false){
+                 Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                    if(joueurtemp.getCarteMain().size() < 2){
+                        joueurtemp.afficherfalse();
+                    }
+                    else {
+                        avoirdeuxcarte = true;
+                        int num = (int) Math.random() * joueurtemp.getCarteMain().size();
+                        Carte a = joueurtemp.getCarteMain().get(num);
+                        parameters.getMyself().getCarteMain().add(a);
+                        joueurtemp.getCarteMain().remove(a);
+                        int num2 = (int) Math.random() * joueurtemp.getCarteMain().size();
+                        Carte b = joueurtemp.getCarteMain().get(num2);
+                        parameters.getMyself().getCarteMain().add(a);
+                        joueurtemp.getCarteMain().remove(b);
+                }
+                }
             }
         });
     }
@@ -667,6 +676,80 @@ public class Factory {
             }
         });
     }
+
+    public Divinite createGwenghelen(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                int nbrguide = 0;
+                for(Iterator i = parameters.getMyself().getCarteMain().iterator();i.hasNext();){
+                    Carte cartetemp = (Carte)i.next();
+                    if(cartetemp instanceof Guide){
+                        nbrguide++;
+                    }
+                }
+                for(Iterator i = parameters.getMyself().getCarteGuide().iterator();i.hasNext();){
+                    Carte cartetemp = (Carte)i.next();
+                    if(cartetemp instanceof Guide){
+                        nbrguide++;
+                    }
+                }
+                parameters.getMyself().getPointActTot().setNeant(parameters.getMyself().getPointActTot().getNeant() + nbrguide);
+            }
+        });
+    }
+
+    public Divinite createShingva(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                boolean avoirdogmes = false;
+
+                lableA:
+                for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext(); ){
+                    Joueur joueurtemp = (Joueur) i.next();
+                   // lableB:
+                    for(Iterator j = joueurtemp.getCarteMain().iterator();j.hasNext();){
+                       Carte cartetemp = (Carte)j.next();
+                       // lableC:
+                        for(Iterator f = cartetemp.getDogmes().iterator();f.hasNext(); ){
+                            int dogmes = (int)f.next();
+                            if(dogmes == Constants.DOGMES_NATURE || dogmes == Constants.DOGMES_SYMBOLES){
+                                avoirdogmes = true;
+                                parameters.getListotherjoueur().add(parameters.getMyself());
+                                parameters.getListotherjoueur().remove(joueurtemp);
+                                parameters.setMyself(joueurtemp);
+                                cartetemp.sacrifier(parameters);
+                                break lableA;
+
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+    }
+
+    public Divinite createGorpa(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                int nbrPointActionjour = joueurtemp.getPointActTot().getJour();
+                int nbrPointActionnuit = joueurtemp.getPointActTot().getNuit();
+                int nbrPointActionneant = joueurtemp.getPointActTot().getNeant();
+                parameters.getMyself().getPointActTot().setJour(parameters.getMyself().getPointActTot().getJour() + nbrPointActionjour);
+                parameters.getMyself().getPointActTot().setNuit(parameters.getMyself().getPointActTot().getNuit() + nbrPointActionnuit);
+                parameters.getMyself().getPointActTot().setNeant(parameters.getMyself().getPointActTot().getNeant() + nbrPointActionneant);
+                joueurtemp.getPointActTot().setJour(0);
+                joueurtemp.getPointActTot().setNuit(0);
+                joueurtemp.getPointActTot().setNeant(0);
+            }
+        });
+    }
+
+
 
 
 
