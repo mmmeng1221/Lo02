@@ -4,6 +4,7 @@ package classes.carte;
 import classes.Constants;
 import classes.Part;
 import classes.joueur.Joueur;
+import classes.joueur.JoueurPhysique;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import java.util.*;
@@ -24,23 +25,24 @@ public class Factory {
     }
 
     //Guide
+
+    /**
+     * Création des cartes Martyr
+     * @param nom
+     * @param capacite
+     * @param dogs
+     * @param origine
+     * @param nbCroyant
+     * @return
+     */
     public Guide createMartyr(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogs);
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                List<Joueur> joueurCourant = parameters.getListotherjoueur();
-                Joueur min = joueurCourant.get(0);
-                for (Joueur j : joueurCourant) {
-                    if (min.getNbrCro() > j.getNbrCro()) {
-                        min = j;
-                    }
-                }
-                parameters.getListotherjoueur().remove(min);
-                Part partie = Part.getPart();
-                partie.setListeJouCourant(parameters.getListotherjoueur());
-
+                Apocalypse apocalypse = creatApo(null,0);
+                apocalypse.sacrifier(parameters);
             }
         });
     }
@@ -51,19 +53,42 @@ public class Factory {
      * @param dogs      tous les dogmes de ce carte
      * @param origine   l'origine de ce carte
      * @param nbCroyant le nombre de croyants qu'il peut attacher
-     * @param sac       le fonction a sacrifier de ce carte
      * @return
      */
 
 
-    public Guide createClerc1(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant, Sacrifier sac) {
+    public Guide createClerc(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogs);
 
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
+                int numPoint = ((Guide)parameters.getThisC()).getNbCroyant();
+                if(parameters.getMyself() instanceof JoueurPhysique){
+                    System.out.println("Choisissez l'origine des points d'action que vous voulez gagner");
+                }
 
+            }
+        });
+    }
+
+    public Guide createMessie(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant) {
+        List<Integer> temp = new ArrayList<>();
+        temp.addAll(dogs);
+        return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                if(parameters.getMyself() instanceof JoueurPhysique){
+                    System.out.println("Choisissez une face de dé de cosgomonie que vous voulez"
+                    + "\n" + "1-JOUR" + "\n" + "2-NUIT" + "\n" + "NEANT");
+                    Scanner sc = new Scanner(System.in);
+                    int cosmo = sc.nextInt();
+                    switch (cosmo){
+                        case 1 :
+
+                    }
+                }
 
             }
         });
@@ -654,21 +679,51 @@ public class Factory {
 
 
     //Apocalype
-    public Apocalypse creatApo() {
-        return new Apocalypse("Apocalypse", 0, new Sacrifier() {
+    public Apocalypse creatApo(String nom, int origine) {
+        return new Apocalypse(nom,origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                List<Joueur> joueurCourant = parameters.getListotherjoueur();
-                Joueur min = joueurCourant.get(0);
-                for (Joueur j : joueurCourant) {
-                    if (min.getNbrCro() > j.getNbrCro()) {
-                        min = j;
+                if(Part.getPart().getListeJouCourant().size() >3) {
+                    List<Joueur> joueurCourant = parameters.getListotherjoueur();
+                    Joueur min = joueurCourant.get(0);
+                    boolean valider = true;
+                    for (Joueur j : joueurCourant) {
+                        if (min.getNbrCro() > j.getNbrCro()) {
+                            min = j;
+                        }
                     }
-                }
-                parameters.getListotherjoueur().remove(min);
-                Part partie = Part.getPart();
-                partie.setListeJouCourant(parameters.getListotherjoueur());
+                    for(Joueur j : joueurCourant){
+                        if (min.getNbrCro() == j.getNbrCro()){
+                            valider = false;
+                        }
+                    }
+                    if(valider) {
+                        Part.getPart().getListeJouCourant().remove(min);
+                    }else{
+                        Part.getPart().start();
+                    }
+                }else{
+                    List<Joueur> joueurCourant = parameters.getListotherjoueur();
+                    Joueur max = joueurCourant.get(0);
+                    boolean valider = true;
+                    for (Joueur j : joueurCourant) {
+                        if (max.getNbrCro() > j.getNbrCro()) {
+                            max = j;
+                        }
 
+                    }
+                    for(Joueur j : joueurCourant){
+                        if (max.getNbrCro() == j.getNbrCro()){
+                            valider = false;
+                        }
+                    }
+                   if(valider){
+                       System.out.println("Joueur " + max + "gagne");
+                       Part.getPart().whowin();
+                   } else{
+                       Part.getPart().start();
+                   }
+                }
             }
         });
     }

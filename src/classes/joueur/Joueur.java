@@ -18,7 +18,7 @@ public class Joueur {
     private List<Carte> carteMain = new ArrayList<>();
     private List<Guide> carteGuide = new ArrayList<>();
     private PointAction pointActTot = new PointAction();
-    private int nbrCro;
+    private int nbrCro = 0;
 
     public String getNom() {
         return nom;

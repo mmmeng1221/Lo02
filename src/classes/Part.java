@@ -319,17 +319,20 @@ public class Part {
         return this.cartePioche;
     }
 
+    /**
+     * Demander au utilisateur nbr de joueurs virtuels
+     */
     public void initialiserJoueur() {
-        System.out.println("Entrez le nombre de joueurs(2-10)");
+        System.out.println("Entrez le nombre de joueurs VIRTUELS(1-6)");
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
         JoueurPhysique jp = new JoueurPhysique();
         this.listeJouCourant.add(jp);
-        for (int i = 1; i < num; i++) {
+        for (int i = 0; i < num; i++) {
             JoueurVirtuel jv = new JoueurVirtuel();
             this.listeJouCourant.add(jv);
         }
-        sc.close();
+
     }
 
     /**
@@ -347,7 +350,7 @@ public class Part {
      */
     public void piocher() {
         for (Joueur j : listeJouCourant)
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 7; i++) {
                 j.piocher(cartePioche.get(i));
                 cartePioche.remove(i);
             }

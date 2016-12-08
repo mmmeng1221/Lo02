@@ -13,8 +13,17 @@ public class Parameters {
     private List<Joueur> listjoueur = new ArrayList<Joueur>();
     private Joueur myself;
     private Joueur certain;
+    private Carte thisC;
 
     private Part part;
+
+    public Carte getThisC() {
+        return thisC;
+    }
+
+    public void setThisC(Carte thisC) {
+        this.thisC = thisC;
+    }
 
     public De getDe() {
         return de;

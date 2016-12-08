@@ -57,7 +57,7 @@ public class Guide extends Carte{
 
     @Override
     public Sacrifier sacrifier(Parameters parameters) {
-
+        parameters.setThisC(this);
         if (sac != null) {
             sac.sacrifier(parameters);
         }
@@ -66,4 +66,13 @@ public class Guide extends Carte{
 
     }
 
+    @Override
+    public String toString() {
+        return "Guide{" +
+                "sac=" + sac +
+                ", nbCroyant=" + nbCroyant +
+                ", nbCryAttahce=" + nbCryAttahce +
+                ", croyantAttache=" + croyantAttache +
+                '}';
+    }
 }
