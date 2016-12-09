@@ -82,8 +82,7 @@ public class Joueur {
     }
 
 
-    public void jouer() {
-    }
+    public void jouer() {}
 
     public int jouer(Parameters parmameters) {
         return 0;

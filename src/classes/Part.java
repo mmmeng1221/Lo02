@@ -307,42 +307,42 @@ public class Part {
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         Divinite Killinstred= Factory.getFactory().createKillinstred("Killinstred","Divinité machiavélique et manipulatrice,Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_JOUR);
-        this.cartePioche.add(Killinstred);
+        this.carteDivi.add(Killinstred);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
         Divinite Llewella= Factory.getFactory().createKillinstred("Llewella","Divinité machiavélique et manipulatrice, Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_NUIT);
-        this.cartePioche.add(Llewella);
+        this.carteDivi.add(Llewella);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_SYMBOLES);
         Divinite PuiTara= Factory.getFactory().createPuiTara("Pui-Tara","Pui-Tara est la Divinité sur laquelle l'influence de la Nuit s'est faite la plus forte." , "Peut détruire toutes les cartes de Croyants au centre de la table d'Origine Jour.",dogs,Constants.ORIGINE_NUIT);
-        this.cartePioche.add(PuiTara);
+        this.carteDivi.add(PuiTara);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_SYMBOLES);
         Divinite Gwenghelen= Factory.getFactory().createGwenghelen("Gwenghelen","Première Divinité à recevoir l'influence du Néant, Gwenghelen est celle qui en a reçu le plus de puissance." , "Récupère autant de points d'Action supplémentaires d'Origine Néant que le nombre de Guides Spirituels que la Divinité possède.",dogs,Constants.ORIGINE_AUBE);
-        this.cartePioche.add(Gwenghelen);
+        this.carteDivi.add(Gwenghelen);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
         Divinite Shingva= Factory.getFactory().createShingva("Shingva","Perverse et retorse, Shingva est une Divinité que toutes les autres détestent." , "Peut imposer le sacrifice d'un Guide Spirituel ayant le Dogme Symboles ou Nature.",dogs,Constants.ORIGINE_AUBE);
-        this.cartePioche.add(Shingva);
+        this.carteDivi.add(Shingva);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_CHAOS);
         Divinite Gorpa= Factory.getFactory().createGorpa("Gorpa","Divinité joueuse et espiègle, Gorpa aime gêner ses consoeurs dans leur recherche de puissance." , "Peut imposer le sacrifice d'un Guide Spirituel ayant le Dogme Symboles ou Nature.",dogs,Constants.ORIGINE_CREPUSCULE);
-        this.cartePioche.add(Gorpa);
+        this.carteDivi.add(Gorpa);
 
 
 
@@ -367,6 +367,23 @@ public class Part {
         return this.cartePioche;
     }
 
+    public List<Divinite> shuffleDivi() {
+        Divinite temp1, temp2;
+        Date date = new Date(System.currentTimeMillis());
+        Random random = new Random();
+        random.setSeed(date.getTime());
+        for (int i = 0; i < 10; i++) {
+            temp1 = this.carteDivi.get(random.nextInt(9));
+            this.carteDivi.remove(temp1);
+            this.carteDivi.add(temp1);
+
+            temp2 = this.carteDivi.get(random.nextInt(5));
+            this.carteDivi.remove(temp2);
+            this.carteDivi.add(temp2);
+        }
+        return this.carteDivi;
+    }
+
     /**
      * Demander au utilisateur nbr de joueurs virtuels
      */
@@ -388,8 +405,9 @@ public class Part {
      */
     public void piocherDivi() {
         for (Joueur j : listeJouCourant) {
-            j.setDivi(Factory.getFactory().createKillinstred("ssss","ssssssss","szefs"));
-            //carteDivi.remove(0);
+            j.setDivi(this.carteDivi.get(0));
+            this.carteDivi.remove(0);
+            carteDivi.remove(0);
         }
     }
 

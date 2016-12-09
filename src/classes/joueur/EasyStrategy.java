@@ -1,6 +1,8 @@
 package classes.joueur;
 
+import classes.Part;
 import classes.carte.Carte;
+import classes.carte.Parameters;
 
 import java.util.List;
 
@@ -9,7 +11,15 @@ import java.util.List;
  */
 public class EasyStrategy implements Strategie{
     @Override
-    public void jouer(PointAction PointAct, List<Carte> cartemain) {
-
+    public void jouer(Parameters parameters) {
+        if(parameters.getMyself().getCarteMain().size() >= 7){
+            parameters.getMyself().getCarteMain().remove(0);
+            parameters.getMyself().getCarteMain().remove(1);
+            parameters.getMyself().getCarteMain().remove(0);
+        }else{
+            while(parameters.getMyself().getCarteMain().size()<7){
+                parameters.getMyself().piocher(Part.getPart().piocher1Carte());
+            }
+        }
     }
 }

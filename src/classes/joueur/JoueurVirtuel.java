@@ -1,6 +1,5 @@
 package classes.joueur;
 
-import classes.Part;
 import classes.carte.Carte;
 import classes.carte.Parameters;
 
@@ -9,41 +8,25 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/12/5.
  */
-public class JoueurVirtuel extends Joueur implements Strategie {
+public class JoueurVirtuel extends Joueur {
 
     private Strategie strategie;
 
     private int nbrjoueur;
 
-    public void JoueurVirtuel() {
-
+    public void JoueurVirtuel(Strategie strategie) {
+        this.strategie = strategie;
     }
 
 
     @Override
     public void jouer() {
-
-        strategie.jouer();
-
+//todo:
         Parameters para = new Parameters();
         para.setMyself(this);
-
-        if(this.getCarteMain().size() >= 7){
-            this.getCarteMain().remove(0);
-            this.getCarteMain().remove(1);
-            this.getCarteMain().remove(0);
-        }else{
-            while(this.getCarteMain().size()<7){
-                this.piocher(Part.getPart().piocher1Carte());
-            }
-        }
+        strategie.jouer(para);
     }
 
-    @Override
-    public int jouer(Parameters parameters) {
-        //suijixuanze
-        return 0;
-    }
 
     //////carte croyants yong
     @Override
@@ -51,7 +34,7 @@ public class JoueurVirtuel extends Joueur implements Strategie {
         return 0;
     }
 
-    @Override
+
     public void jouer(PointAction PointAct, List<Carte> cartemain) {
 
     }
@@ -60,4 +43,6 @@ public class JoueurVirtuel extends Joueur implements Strategie {
 
     public void afficherfalse(){
     }
+    public int jouer(Parameters parameters) {return 0;}
 }
+
