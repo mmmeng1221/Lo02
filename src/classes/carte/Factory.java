@@ -2,6 +2,7 @@ package classes.carte;
 
 
 import classes.Constants;
+import classes.De;
 import classes.Part;
 import classes.joueur.Joueur;
 import classes.joueur.JoueurPhysique;
@@ -416,6 +417,19 @@ public class Factory {
                 Carte b = joueurtemp.getCarteMain().get(num2);
                 parameters.getMyself().getCarteMain().add(b);
                 joueurtemp.getCarteMain().remove(b);
+
+            }
+        });
+    }
+
+    public Croyant createRevenant(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+
+        return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+
+                De.getDe().lancer();
+                Part.getPart().JoueurAjouterPoint();
 
             }
         });

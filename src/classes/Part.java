@@ -269,6 +269,15 @@ public class Part {
         this.cartePioche.add(Alienes2);
 
         dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        Croyant Revenant= Factory.getFactory().createRevenant("Alienes", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
+                1, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Revenant);
+
+
+        dogs.clear();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
@@ -431,12 +440,15 @@ public class Part {
     public void start() {
         isEnd = false;
         startIndex=0;
+        boolean open;
         while (!isEnd) {
+            open = true;
             JoueurAjouterPoint();
             Joueur joueur = listeJouCourant.get(startIndex);
             joueur.jouer();
             startotherJour();
             startIndex = startIndex < listeJouCourant.size() -1 ? startIndex + 1 : 0;
+            open = false;
         }
 
     }
@@ -449,10 +461,11 @@ public class Part {
             joueur.jouer();
             System.out.println(currentIndex + "joueur");
             currentIndex = currentIndex < listeJouCourant.size() -1 ? currentIndex + 1 : 0;
+
         }
     }
 
-    private void JoueurAjouterPoint() {
+    public void JoueurAjouterPoint() {
         switch (De.getDe().lancer()) {
             case 1:
             case 2:
