@@ -76,7 +76,7 @@ public abstract class Carte {
                 ", dogmes=" + dogmes +
                 ", nomCarte='" + nomCarte + '\'' +
                 ", capacite='" + capacite + '\'' +
-                '}';
+                '}' + "\n";
     }
 }
 

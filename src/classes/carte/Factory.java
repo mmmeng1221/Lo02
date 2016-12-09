@@ -69,7 +69,7 @@ public class Factory {
                 if(parameters.getMyself() instanceof JoueurPhysique){
                     System.out.println("Choisissez l'origine des points d'action que vous voulez gagner");
                 }
-
+//todo:
             }
         });
     }
@@ -85,13 +85,22 @@ public class Factory {
                     + "\n" + "1-JOUR" + "\n" + "2-NUIT" + "\n" + "NEANT");
                     Scanner sc = new Scanner(System.in);
                     int cosmo = sc.nextInt();
-                    switch (cosmo){
-                        case 1 :
-
+                    Part.getPart().JoueurAjouterPoint(cosmo);
+                    }else{
+                        int cosmo = 0;
+                        if(cosmo == 0){
+                        cosmo = (int) Math.random()*6;
+                        }
+                    Part.getPart().JoueurAjouterPoint(cosmo);
+                }
+                int position = 0;
+                for(int i =0; i< Part.getPart().getListeJouCourant().size();i ++ ){
+                    if(Part.getPart().getListeJouCourant().get(i) == parameters.getMyself()){
+                        position = i;
                     }
                 }
-
-            }
+                Part.getPart().setStartIndex(position);
+                }
         });
     }
 
