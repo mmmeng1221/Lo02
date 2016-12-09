@@ -31,6 +31,14 @@ public class Part {
 
     }
 
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
     public static Part getPart() {
         return part;
     }
@@ -432,7 +440,7 @@ public class Part {
         isEnd = false;
         startIndex=0;
         while (!isEnd) {
-            JoueurAjouterPoint();
+            JoueurAjouterPoint(De.getDe().lancer());
             Joueur joueur = listeJouCourant.get(startIndex);
             joueur.jouer();
             startotherJour();
@@ -452,8 +460,8 @@ public class Part {
         }
     }
 
-    private void JoueurAjouterPoint() {
-        switch (De.getDe().lancer()) {
+    public void JoueurAjouterPoint(int num) {
+        switch (num) {
             case 1:
             case 2:
                 faceJour();

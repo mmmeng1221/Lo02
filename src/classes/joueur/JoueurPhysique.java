@@ -259,7 +259,7 @@ public class JoueurPhysique extends Joueur {
 
         List<Carte> cardCrCommun = new ArrayList<>();
         cardCrCommun.addAll(Part.getPart().getCroyantCommun());
-        List<Carte>crValid = this.getCarteValid(cardCrCommun,Croyant.class);
+        List<Carte> crValid = this.getCarteValid(cardCrCommun,Croyant.class);
         utiliserPoint(scanner,crPoser,jour,nuit,neant);
        /* switch (crPoser.getOrigine()) {
             case Constants.ORIGINE_JOUR:
@@ -350,7 +350,7 @@ public class JoueurPhysique extends Joueur {
                 }
                 break;
         }*/
-        //recupereCarteJN(crPoser, scanner,crValid);
+        recupereCarteJN(crPoser, scanner,crValid);
     }
 
     public void utiliserPoint(Scanner scanner,Carte card,int jour,int nuit,int neant){
@@ -439,7 +439,7 @@ public class JoueurPhysique extends Joueur {
             List<Carte> crTot = new ArrayList<>();
             crTot.addAll(croyantValid);
             for (Carte croyant : croyantValid) {
-                if (crPoser.compareDogmes(croyant.getDogmes())) {///à vérifier compareDgmes
+                if (crPoser.compareDogmes(croyant.getDogmes())) {
                     crTemp.add(croyant);
                     crTot.remove(croyant);
                 }

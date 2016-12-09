@@ -5,7 +5,7 @@ package classes.carte;
  */
 public class Apocalypse extends Carte {
     private Sacrifier sac;
-    public Apocalypse(String nom,int origine,Sacrifier sac){}
+    public Apocalypse(String nom, int origine,Sacrifier sac){}
 
     @Override
     public Sacrifier sacrifier(Parameters parameters) {

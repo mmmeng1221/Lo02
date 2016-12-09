@@ -1,7 +1,9 @@
 package classes.joueur;
 
 import classes.Constants;
+import classes.Part;
 import classes.carte.Carte;
+import classes.carte.Croyant;
 import classes.carte.Guide;
 import classes.carte.Parameters;
 
@@ -14,19 +16,67 @@ import java.util.List;
 public class HardStrategy implements Strategie {
     @Override
     public void jouer(Parameters parameters) {
-       List<Carte> mesGuide = new ArrayList<>();
+        List<Carte> mesGuide;
         mesGuide = getCarteValid(parameters.getMyself().getCarteMain(),Guide.class,parameters);
+        List<Guide> mesGuideValid = new ArrayList<>();
+        List<Carte> crValid = new ArrayList<>();
+        crValid.addAll(Part.getPart().getCroyantCommun());
+
+        if(crValid.size() > 0){
+            if(parameters.getMyself().getPointActTot().getJour() > 0||parameters.getMyself().getPointActTot().getNuit() > 0 || parameters.getMyself().getPointActTot().getNeant() > 0)
+            {
+            for(Carte card : mesGuide) {
+                for (Carte cr : crValid) {
+                    if (card.compareDogmes(cr.getDogmes())) {
+                        ((Guide) card).getCroyantAttache().add((Croyant) cr);
+                        parameters.getMyself().getCarteGuide().add((Guide) card);
+                        crValid.remove(cr);
+                        mesGuideValid.add((Guide) card);
+                        mesGuide.remove(card);
+                        Part.getPart().getCroyantCommun().remove(cr);
+                        parameters.getMyself().getCarteMain().remove(card);
+                        System.out.println(parameters.getMyself().getNom() + " récupère un croyant");
+                        break;
+                    }
+                    if (((Guide) card).getCroyantAttache().size() >= ((Guide) card).getNbCroyant()) {
+                        break;
+                    }
+                }
+            }
+
+        }else{
+            int num = (int)Math.random()*(parameters.getMyself().getCarteMain().size()-1);
+                parameters.getMyself().getCarteMain().remove(num);
+            }
+        }else{
+            if(parameters.getMyself().getCarteMain().size()>3){
+            List<Carte> croyant = new ArrayList<>();
+            for(Carte cdMain : parameters.getMyself().getCarteMain()){
+                if(cdMain instanceof Guide || cdMain instanceof Croyant){
+                    croyant.add(cdMain);
+                }
+            }
+            int num = (int)(Math.random()*croyant.size()-1);
+                croyant.get(num).sacrifier(parameters);
+        }else{
+            while(parameters.getMyself().getCarteMain().size() < 7){
+                parameters.getMyself().getCarteMain().add(Part.getPart().piocher1Carte());
+            }
+            }
+
+
+        }
 
     }
     public <T extends Carte> List<Carte> getCarteValid(List<Carte> cardTot, Class<T> clazz,Parameters parameters){
         List<Carte> cardTemp = new ArrayList<>();
         List<Carte> cardMain = new ArrayList<>();
+
         cardMain.addAll(cardTot);
 
         System.out.println(cardMain.size());
 
 
-        System.out.println(clazz.getName());
         if (clazz.equals(cardMain.get(0).getClass())){
             System.out.println("true");
         }
