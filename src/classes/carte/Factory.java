@@ -6,6 +6,7 @@ import classes.De;
 import classes.Part;
 import classes.joueur.Joueur;
 import classes.joueur.JoueurPhysique;
+import classes.joueur.JoueurVirtuel;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import java.util.*;
@@ -404,6 +405,37 @@ public class Factory {
         });
     }
 
+    public Croyant createAlienes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+
+        return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+             if(parameters.getMyself() instanceof JoueurVirtuel){
+                 System.out.println("Pour empecher un Divinite: \n");
+                 List<Joueur>listtemp = new ArrayList<Joueur>();
+                 for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+                     Joueur joueurtemp = (Joueur)i.next();
+                     for(Iterator j = joueurtemp.getDivinite().getDogmes().iterator();j.hasNext();){
+                         int dogmestemp = (int)j.next();
+                         if(dogmestemp == Constants.DOGMES_MYSTIQUES ||dogmestemp == Constants.DOGMES_CHAOS){
+                             listtemp.add(joueurtemp);
+                             break;
+                         }
+                     }
+                 }
+                 for(Iterator i = listtemp.iterator();i.hasNext();){
+                     Joueur joueurtemp = (Joueur)i.next();
+                     System.out.println(joueurtemp.getNom() + "\n");
+                 }
+                 System.out.println("Choisir un joueur! Donnez le numero.");
+                 Scanner sc = new Scanner(System.in);
+                 int nbr = sc.nextInt();
+             }
+
+            }
+        });
+    }
+
     public Croyant createAlienes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
@@ -437,8 +469,7 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
 
-                De.getDe().lancer();
-                Part.getPart().JoueurAjouterPoint();
+                Part.getPart().JoueurAjouterPoint( De.getDe().lancer());
 
             }
         });
