@@ -1,9 +1,7 @@
 package classes;
 
 import classes.carte.*;
-import classes.joueur.Joueur;
-import classes.joueur.JoueurPhysique;
-import classes.joueur.JoueurVirtuel;
+import classes.joueur.*;
 
 import java.util.*;
 
@@ -111,13 +109,17 @@ public class Part {
      * Créer des cartes d'action et les ajouter dans la liste des cartes à piocher
      */
     public void initialiserCarte() {
+
         List<Integer> dogs = new ArrayList();
+        /**
+         * Guide
+         */
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_HUMAIN);
-
         Guide martyr1 = Factory.getFactory().createMartyr("Martyr", "Equivalent à la pose d'une carte Apocalypse.",
                 dogs, Constants.ORIGINE_JOUR, 2);
         this.cartePioche.add(martyr1);
+
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_HUMAIN);
@@ -134,6 +136,62 @@ public class Part {
         this.cartePioche.add(martyr3);
 
         dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Guide clerc1 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+        ,dogs,Constants.ORIGINE_JOUR,2);
+        this.cartePioche.add(clerc1);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_NATURE);
+        Guide clerc2 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+                ,dogs,Constants.ORIGINE_NUIT,2);
+        this.cartePioche.add(clerc2);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        Guide clerc3 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+                ,dogs,Constants.ORIGINE_NEANT,2);
+        this.cartePioche.add(clerc3);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_CHAOS);
+        dogs.add(Constants.DOGMES_NATURE);
+        Guide clerc4 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+                ,dogs,Constants.ORIGINE_JOUR,2);
+        this.cartePioche.add(clerc4);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        Guide clerc5 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+                ,dogs,Constants.ORIGINE_NUIT,2);
+        this.cartePioche.add(clerc5);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Guide clerc6 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+                ,dogs,Constants.ORIGINE_NEANT,2);
+        this.cartePioche.add(clerc6);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Guide clerc7 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+                ,dogs,Constants.ORIGINE_JOUR,2);
+        this.cartePioche.add(clerc7);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_NATURE);
+        Guide clerc8 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
+                ,dogs,Constants.ORIGINE_NUIT,2);
+        this.cartePioche.add(clerc8);
+
+        dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
@@ -141,6 +199,9 @@ public class Part {
                 2, dogs, Constants.ORIGINE_JOUR);
         this.cartePioche.add(moins);
 
+        /**
+         * Croyant
+         */
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
@@ -314,7 +375,9 @@ public class Part {
 
         DeusEx Phoenix= Factory.getFactory().createPhoenix("Phoenix", "Permet de bénéficier de la capacité spéciale de l'un de vos Croyants ou Guides Spirituels sans sacrifier la carte.", Constants.ORIGINE_NEANT);
         this.cartePioche.add(Phoenix);
-
+        /**
+         * Divinite
+         */
 
 
         //Divinite
@@ -405,14 +468,34 @@ public class Part {
      * Demander au utilisateur nbr de joueurs virtuels
      */
     public void initialiserJoueur() {
-        System.out.println("Entrez le nombre de joueurs VIRTUELS(1-6)");
+        System.out.println("Chioisissez le mode" + "\n" + "0-indiquant FACILE" + "\n"
+        + "1-indiquant DUR");
         Scanner sc = new Scanner(System.in);
+        int mode = sc.nextInt();
+        while(mode != 0 && mode !=1){
+            System.out.println("Entrez 0 ou 1 s'il vous plaît.");
+            mode = sc.nextInt();
+        }
+
+        System.out.println("Entrez le nombre de joueurs VIRTUELS(1-6)");
+
         int num = sc.nextInt();
+
+        sc.close();
+
         JoueurPhysique jp = new JoueurPhysique();
         this.listeJouCourant.add(jp);
+
+        if(mode == 0){
         for (int i = 0; i < num; i++) {
-            JoueurVirtuel jv = new JoueurVirtuel();
-            this.listeJouCourant.add(jv);
+
+                JoueurVirtuel jv = new JoueurVirtuel(new EasyStrategy());
+            this.listeJouCourant.add(jv);}
+        }else{for (int i = 0; i < num; i++) {
+
+            JoueurVirtuel jv = new JoueurVirtuel(new HardStrategy());
+            this.listeJouCourant.add(jv);}
+
         }
 
     }

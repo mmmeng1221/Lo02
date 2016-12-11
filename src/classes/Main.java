@@ -13,9 +13,5 @@ public class Main {
         part.piocherDivi();
         part.piocher();
         part.start();
-        part.getListeJouCourant().get(0).jouer();
-        part.start();
-
-
     }
 }
