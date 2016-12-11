@@ -15,5 +15,11 @@ public class Apocalypse extends Carte {
         return null;
     }
 
-
+    @Override
+    public String toString() {
+        return "Apocalypse{" +
+                "nom : " + getNomCarte() +
+                ", origine : " + getOrigine() +  '}' +"\n"
+               ;
+    }
 }

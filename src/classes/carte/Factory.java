@@ -65,10 +65,32 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 int numPoint = ((Guide)parameters.getThisC()).getNbCroyant();
+                int choix;
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                    System.out.println("Choisissez l'origine des points d'action que vous voulez gagner");
+                    System.out.println("Choisissez l'origine des points d'action que vous voulez gagner"
+                     + "\n" + "0-indiquant JOUR" + "\n" + "1-indiquant NUIT" + "\n" + "2-indiqunat NEANT");
+                    Scanner scanner = new Scanner(System.in);
+                    choix = scanner.nextInt();
+                    while(choix != 0 && choix != 1 && choix != 2){
+                        choix = scanner.nextInt();
+                    }
+                    scanner.close();
+                }else{
+                    choix = (int) Math.random()*2;
                 }
-//todo:
+                    switch (choix){
+                        case 0 :
+                            parameters.getMyself().getPointActTot().setJour(numPoint);
+                            break;
+                        case 1:
+                            parameters.getMyself().getPointActTot().setNuit(numPoint);
+                            break;
+                        default:
+                            parameters.getMyself().getPointActTot().setNeant(numPoint);
+                            break;
+                    }
+
+
             }
         });
     }

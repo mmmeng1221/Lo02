@@ -69,11 +69,13 @@ public class Guide extends Carte{
     @Override
     public String toString() {
         return "Guide{" +
-                "nom=" + getNomCarte() +
-                ", capacite=" + getCapacite() +
-                ", nbCroyant=" + nbCroyant +
-                ", nbCryAttahce=" + nbCryAttahce +
-                ", croyantAttache=" + croyantAttache +
-                '}';
+                "nom : " + getNomCarte() +
+                ", dogmes : " + getDogmes() +
+                ", origine : " + getOrigine() +
+                ", capacite : " + getCapacite() +
+                ", nbCroyant : " + nbCroyant +
+                ", nbCryAttahce : " + nbCryAttahce +
+                ", croyantAttache : " + croyantAttache +  '}' +"\n"
+               ;
     }
 }

@@ -14,7 +14,8 @@ public class JoueurVirtuel extends Joueur {
 
     private int nbrjoueur;
 
-    public void JoueurVirtuel(Strategie strategie) {
+
+    public JoueurVirtuel(Strategie strategie) {
         this.strategie = strategie;
     }
 

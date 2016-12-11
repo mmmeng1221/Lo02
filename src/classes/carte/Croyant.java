@@ -28,11 +28,16 @@ public class Croyant extends Carte{
             sac.sacrifier(parameters);
         }
         return null;
-
-
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Croyant{" +
+                "nom : " + getNomCarte() +
+                ", dogmes : " + getDogmes() +
+                ", origine : " + getOrigine() +
+                ", capacite : " + getCapacite() +
+                '}' +"\n"
+                ;
+    }
 }

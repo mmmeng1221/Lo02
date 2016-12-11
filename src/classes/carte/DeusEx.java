@@ -21,8 +21,14 @@ public class DeusEx extends Carte{
                 sac.sacrifier(parameters);
             }
             return null;
-
-
         }
 
+    @Override
+    public String toString() {
+        return "DeusEx{" +
+                "nom : " + getNomCarte() +
+                ", capacite : " + getCapacite() +
+                ", originie : " + getOrigine() + '}' +"\n"
+                ;
+    }
 }
