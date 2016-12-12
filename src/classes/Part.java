@@ -206,6 +206,22 @@ public class Part {
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
+        Croyant travailleurs1 = Factory.getFactory().createTravailleurs1("Travailleurs", "Empêche une Divinité possédant le Dogme Nature ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour.",
+                2, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(travailleurs1);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant travailleurs2 = Factory.getFactory().createTravailleurs2("Travailleurs", "Empêche une Divinité possédant le Dogme Chaos ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour.",
+                2, dogs, Constants.ORIGINE_JOUR);
+        this.cartePioche.add(travailleurs2);
+
+        dogs = new ArrayList<>();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_CHAOS);
         Croyant travailleurs3 = Factory.getFactory().createTravailleurs3("Travailleurs", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
                 2, dogs, Constants.ORIGINE_JOUR);
         this.cartePioche.add(travailleurs3);
@@ -226,60 +242,6 @@ public class Part {
                 4, dogs, Constants.ORIGINE_JOUR);
         this.cartePioche.add(GuerriersSaints);
 
-        dogs = new ArrayList<>();
-        dogs.add(Constants.DOGMES_MYSTIQUES);
-        dogs.add(Constants.DOGMES_NATURE);
-        dogs.add(Constants.DOGMES_SYMBOLES);
-        Croyant xiaozhizhang = Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
-                2, dogs, Constants.ORIGINE_JOUR);
-        this.cartePioche.add(xiaozhizhang);
-
-        dogs = new ArrayList<>();
-        dogs.add(Constants.DOGMES_HUMAIN);
-        dogs.add(Constants.DOGMES_NATURE);
-        dogs.add(Constants.DOGMES_SYMBOLES);
-        Croyant xiaozhizhang2 = Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
-                2, dogs, Constants.ORIGINE_NEANT);
-        this.cartePioche.add(xiaozhizhang2);
-
-        dogs = new ArrayList<>();
-        dogs.add(Constants.DOGMES_NATURE);
-        dogs.add(Constants.DOGMES_CHAOS);
-        dogs.add(Constants.DOGMES_SYMBOLES);
-        Croyant xiaozhizhang3 = Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
-                2, dogs, Constants.ORIGINE_NUIT);
-        this.cartePioche.add(xiaozhizhang3);
-        dogs = new ArrayList<>();
-        dogs.add(Constants.DOGMES_MYSTIQUES);
-        dogs.add(Constants.DOGMES_NATURE);
-        dogs.add(Constants.DOGMES_SYMBOLES);
-        Croyant xiaozhizhang4 = Factory.getFactory().zhizhang("zhizhang", "wo zhe ge pai mei yong de, zhen de",
-                2, dogs, Constants.ORIGINE_JOUR);
-        this.cartePioche.add(xiaozhizhang4);
-
-        dogs = new ArrayList<>();
-        dogs.add(Constants.DOGMES_MYSTIQUES);
-        dogs.add(Constants.DOGMES_NATURE);
-        dogs.add(Constants.DOGMES_HUMAIN);
-        Croyant xiaozhizhang5 = Factory.getFactory().zhizhang("zhangmeng", "wo zhe ge pai mei yong de, zhen de",
-                1, dogs, Constants.ORIGINE_JOUR);
-        this.cartePioche.add(xiaozhizhang5);
-
-        dogs = new ArrayList<>();
-        dogs.add(Constants.DOGMES_MYSTIQUES);
-        dogs.add(Constants.DOGMES_NATURE);
-        dogs.add(Constants.DOGMES_SYMBOLES);
-        Croyant xiaozhizhang6 = Factory.getFactory().zhizhang("xiaozhangmeng", "wo zhe ge pai mei yong de, zhen de",
-                2, dogs, Constants.ORIGINE_NUIT);
-        this.cartePioche.add(xiaozhizhang6);
-
-        dogs = new ArrayList<>();
-        dogs.add(Constants.DOGMES_MYSTIQUES);
-        dogs.add(Constants.DOGMES_NATURE);
-        dogs.add(Constants.DOGMES_SYMBOLES);
-        Croyant xiaozhizhang7 = Factory.getFactory().zhizhang("dazhangmeng", "wo zhe ge pai mei yong de, zhen de",
-                1, dogs, Constants.ORIGINE_NEANT);
-        this.cartePioche.add(xiaozhizhang7);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_SYMBOLES);
@@ -330,6 +292,23 @@ public class Part {
         this.cartePioche.add(Esprites);
 
         dogs.clear();
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant Alienes= Factory.getFactory().createAlienes("Alienes", "Empêche une Divinité possédant le Dogme Nature ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour de jeu.",
+                2, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Alienes);
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Croyant Alienes3= Factory.getFactory().createAlienes3("Alienes", "Empêche une Divinité possédant le Dogme Mystique ou Chaos de sacrifier un de ses Guides Spirituels durant ce tour de jeu.",
+                2, dogs, Constants.ORIGINE_NEANT);
+        this.cartePioche.add(Alienes3);
+
+
+        dogs.clear();
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
@@ -344,6 +323,15 @@ public class Part {
         Croyant Revenant= Factory.getFactory().createRevenant("Alienes", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
                 1, dogs, Constants.ORIGINE_NEANT);
         this.cartePioche.add(Revenant);
+
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_MYSTIQUES);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Croyant Alchimistes= Factory.getFactory().createAlchimistes("Alchimistes", "Empêche une Divinité possédant le Dogme Humain ou Symboles de sacrifier un de ses Guides Spirituels durant ce tour de jeu.",
+                2, dogs, Constants.ORIGINE_NUIT);
+        this.cartePioche.add(Alchimistes);
 
 
         dogs.clear();
@@ -424,7 +412,20 @@ public class Part {
         Divinite Gorpa= Factory.getFactory().createGorpa("Gorpa","Divinité joueuse et espiègle, Gorpa aime gêner ses consoeurs dans leur recherche de puissance." , "Peut imposer le sacrifice d'un Guide Spirituel ayant le Dogme Symboles ou Nature.",dogs,Constants.ORIGINE_CREPUSCULE);
         this.carteDivi.add(Gorpa);
 
+        dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_CHAOS);
+        Divinite Romec = Factory.getFactory().createRomec("Romecs","Romtec est une Divinité individualiste, pour qui chaque être vivant doit garder son libre arbitre." , "Peut empêcher un jour de créer un Guide Spirituel.La carte est défaussée.",dogs,Constants.ORIGINE_CREPUSCULE);
+        this.carteDivi.add(Romec);
 
+
+        dogs.clear();
+        dogs.add(Constants.DOGMES_HUMAIN);
+        dogs.add(Constants.DOGMES_NATURE);
+        dogs.add(Constants.DOGMES_SYMBOLES);
+        Divinite Drinded = Factory.getFactory().createDrinded("Drinded","Défenseur des hommes, quelles que soient leurs croyances, Drinded protège les chefs religieux" , "Peut empêcher le sacrifice d'un des Guides Spirituels de n'importe quel joueur.",dogs,Constants.ORIGINE_JOUR);
+        this.carteDivi.add(Drinded);
 
 
 

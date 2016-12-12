@@ -153,24 +153,62 @@ public class Factory {
     }
 
     public Croyant createTravailleurs1(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
-        List<Integer> temp = new ArrayList<>();
-        temp.addAll(dogmes);
-        return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
+
+        return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-
+                if(parameters.getMyself() instanceof JoueurVirtuel){
+                    System.out.println("Pour empecher un Divinite: \n");
+                    List<Joueur>listtemp = new ArrayList<Joueur>();
+                    for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        for(Iterator j = joueurtemp.getDivinite().getDogmes().iterator();j.hasNext();){
+                            int dogmestemp = (int)j.next();
+                            if(dogmestemp == Constants.DOGMES_NATURE ||dogmestemp == Constants.DOGMES_MYSTIQUES){
+                                listtemp.add(joueurtemp);
+                                break;
+                            }
+                        }
+                    }
+                    for(Iterator i = listtemp.iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        System.out.println(joueurtemp.getNom() + "\n");
+                    }
+                    System.out.println("Choisir un joueur! Donnez le numero.");
+                    Scanner sc = new Scanner(System.in);
+                    int nbr = sc.nextInt();
+                }
 
             }
         });
     }
 
     public Croyant createTravailleurs2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
-        List<Integer> temp = new ArrayList<>();
-        temp.addAll(dogmes);
-        return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
+
+        return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-
+                if(parameters.getMyself() instanceof JoueurVirtuel){
+                    System.out.println("Pour empecher un Divinite: \n");
+                    List<Joueur>listtemp = new ArrayList<Joueur>();
+                    for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        for(Iterator j = joueurtemp.getDivinite().getDogmes().iterator();j.hasNext();){
+                            int dogmestemp = (int)j.next();
+                            if(dogmestemp == Constants.DOGMES_CHAOS ||dogmestemp == Constants.DOGMES_MYSTIQUES){
+                                listtemp.add(joueurtemp);
+                                break;
+                            }
+                        }
+                    }
+                    for(Iterator i = listtemp.iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        System.out.println(joueurtemp.getNom() + "\n");
+                    }
+                    System.out.println("Choisir un joueur! Donnez le numero.");
+                    Scanner sc = new Scanner(System.in);
+                    int nbr = sc.nextInt();
+                }
 
             }
         });
@@ -439,7 +477,7 @@ public class Factory {
                      Joueur joueurtemp = (Joueur)i.next();
                      for(Iterator j = joueurtemp.getDivinite().getDogmes().iterator();j.hasNext();){
                          int dogmestemp = (int)j.next();
-                         if(dogmestemp == Constants.DOGMES_MYSTIQUES ||dogmestemp == Constants.DOGMES_CHAOS){
+                         if(dogmestemp == Constants.DOGMES_MYSTIQUES ||dogmestemp == Constants.DOGMES_NATURE){
                              listtemp.add(joueurtemp);
                              break;
                          }
@@ -453,6 +491,67 @@ public class Factory {
                  Scanner sc = new Scanner(System.in);
                  int nbr = sc.nextInt();
              }
+
+            }
+        });
+    }
+    public Croyant createAlchimistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+
+        return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                if(parameters.getMyself() instanceof JoueurVirtuel){
+                    System.out.println("Pour empecher un Divinite: \n");
+                    List<Joueur>listtemp = new ArrayList<Joueur>();
+                    for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        for(Iterator j = joueurtemp.getDivinite().getDogmes().iterator();j.hasNext();){
+                            int dogmestemp = (int)j.next();
+                            if(dogmestemp == Constants.DOGMES_HUMAIN ||dogmestemp == Constants.DOGMES_SYMBOLES){
+                                listtemp.add(joueurtemp);
+                                break;
+                            }
+                        }
+                    }
+                    for(Iterator i = listtemp.iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        System.out.println(joueurtemp.getNom() + "\n");
+                    }
+                    System.out.println("Choisir un joueur! Donnez le numero.");
+                    Scanner sc = new Scanner(System.in);
+                    int nbr = sc.nextInt();
+                }
+
+            }
+        });
+    }
+
+    public Croyant createAlienes3(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+
+        return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                if(parameters.getMyself() instanceof JoueurVirtuel){
+                    System.out.println("Pour empecher un Divinite: \n");
+                    List<Joueur>listtemp = new ArrayList<Joueur>();
+                    for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        for(Iterator j = joueurtemp.getDivinite().getDogmes().iterator();j.hasNext();){
+                            int dogmestemp = (int)j.next();
+                            if(dogmestemp == Constants.DOGMES_MYSTIQUES ||dogmestemp == Constants.DOGMES_CHAOS){
+                                listtemp.add(joueurtemp);
+                                break;
+                            }
+                        }
+                    }
+                    for(Iterator i = listtemp.iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        System.out.println(joueurtemp.getNom() + "\n");
+                    }
+                    System.out.println("Choisir un joueur! Donnez le numero.");
+                    Scanner sc = new Scanner(System.in);
+                    int nbr = sc.nextInt();
+                }
 
             }
         });
@@ -855,17 +954,46 @@ public class Factory {
 
 
 
-    public Croyant zhizhang(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
-
-        return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
+    public Divinite createRomec(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                System.out.println("zhe zhang pai mei yong!!!");
+                if(parameters.getMyself() instanceof JoueurVirtuel){
+                    System.out.println("Pour empecher un Divinite: \n");
+
+                    for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        System.out.println(joueurtemp.getNom() + "\n");
+                    }
+                    System.out.println("Choisir un joueur! Donnez le numero.");
+                    Scanner sc = new Scanner(System.in);
+                    int nbr = sc.nextInt();
+                }
 
             }
         });
     }
 
+
+    public Divinite createDrinded(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+        return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
+            @Override
+            public void sacrifier(Parameters parameters) {
+                if(parameters.getMyself() instanceof JoueurVirtuel){
+                    System.out.println("Pour empecher un Divinite: \n");
+
+                    for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+                        Joueur joueurtemp = (Joueur)i.next();
+                        System.out.println(joueurtemp.getNom() + "\n");
+                    }
+                    System.out.println("Choisir un joueur! Donnez le numero.");
+                    Scanner sc = new Scanner(System.in);
+                    int nbr = sc.nextInt();
+                }
+
+            }
+        });
+    }
 
     //Apocalype
     public Apocalypse creatApo(String nom, int origine) {
