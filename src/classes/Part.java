@@ -363,13 +363,28 @@ public class Part {
 
         DeusEx Phoenix= Factory.getFactory().createPhoenix("Phoenix", "Permet de bénéficier de la capacité spéciale de l'un de vos Croyants ou Guides Spirituels sans sacrifier la carte.", Constants.ORIGINE_NEANT);
         this.cartePioche.add(Phoenix);
+
+        /**
+         * Apocalypse
+         */
+        Apocalypse apocalypse1 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_JOUR);
+        this.cartePioche.add(apocalypse1);
+
+        Apocalypse apocalypse2 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NUIT);
+        this.cartePioche.add(apocalypse2);
+
+        Apocalypse apocalypse3 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NEANT);
+        this.cartePioche.add(apocalypse3);
+
+        Apocalypse apocalypse4 = Factory.getFactory().creatApo("Apocalyipse",0);
+        this.cartePioche.add(apocalypse4);
+
+        Apocalypse apocalypse5 = Factory.getFactory().creatApo("Apocalyipse",0);
+        this.cartePioche.add(apocalypse5);
+
         /**
          * Divinite
          */
-
-
-        //Divinite
-        //现在只有六个divinite
         dogs.clear();
         dogs.add(Constants.DOGMES_CHAOS);
         dogs.add(Constants.DOGMES_SYMBOLES);
@@ -469,6 +484,8 @@ public class Part {
      * Demander au utilisateur nbr de joueurs virtuels
      */
     public void initialiserJoueur() {
+        JoueurPhysique jp = new JoueurPhysique();
+        this.listeJouCourant.add(jp);
         System.out.println("Chioisissez le mode" + "\n" + "0-indiquant FACILE" + "\n"
         + "1-indiquant DUR");
         Scanner sc = new Scanner(System.in);
@@ -477,28 +494,16 @@ public class Part {
             System.out.println("Entrez 0 ou 1 s'il vous plaît.");
             mode = sc.nextInt();
         }
-
         System.out.println("Entrez le nombre de joueurs VIRTUELS(1-6)");
-
         int num = sc.nextInt();
-
-        sc.close();
-
-        JoueurPhysique jp = new JoueurPhysique();
-        this.listeJouCourant.add(jp);
-
         if(mode == 0){
         for (int i = 0; i < num; i++) {
-
                 JoueurVirtuel jv = new JoueurVirtuel(new EasyStrategy());
             this.listeJouCourant.add(jv);}
         }else{for (int i = 0; i < num; i++) {
-
             JoueurVirtuel jv = new JoueurVirtuel(new HardStrategy());
             this.listeJouCourant.add(jv);}
-
         }
-
     }
 
     /**
@@ -508,12 +513,11 @@ public class Part {
         for (Joueur j : listeJouCourant) {
             j.setDivi(this.carteDivi.get(0));
             this.carteDivi.remove(0);
-            carteDivi.remove(0);
         }
     }
 
     /**
-     * Ini
+     * Joueurs Piochent des cartes
      */
     public void piocher() {
         for (Joueur j : listeJouCourant)
@@ -561,14 +565,17 @@ public class Part {
             case 1:
             case 2:
                 faceJour();
+                System.out.println("Dé de Cosmogonie : JOUR");
                 break;
             case 3:
             case 4:
                 faceNuit();
+                System.out.println("Dé de Cosmogonie : NUIT");
                 break;
             case 5:
             case 6:
                 faceNeant();
+                System.out.println("Dé de Cosmogonie : NEANT");
                 break;
         }
     }

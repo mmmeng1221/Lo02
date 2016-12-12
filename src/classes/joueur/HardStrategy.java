@@ -35,7 +35,7 @@ public class HardStrategy implements Strategie {
                         mesGuide.remove(card);
                         Part.getPart().getCroyantCommun().remove(cr);
                         parameters.getMyself().getCarteMain().remove(card);
-                        System.out.println(parameters.getMyself().getNom() + " récupère un croyant");
+                        System.out.println(this + " récupère un croyant");
                         break;
                     }
                     if (((Guide) card).getCroyantAttache().size() >= ((Guide) card).getNbCroyant()) {
@@ -47,6 +47,7 @@ public class HardStrategy implements Strategie {
         }else{
             int num = (int)Math.random()*(parameters.getMyself().getCarteMain().size()-1);
                 parameters.getMyself().getCarteMain().remove(num);
+                System.out.println(this + "a déffaussé une carte");
             }
         }else{
             if(parameters.getMyself().getCarteMain().size()>3){
@@ -58,9 +59,11 @@ public class HardStrategy implements Strategie {
             }
             int num = (int)(Math.random()*croyant.size()-1);
                 croyant.get(num).sacrifier(parameters);
+                System.out.println(this + "a sacrifié une carte.");
         }else{
             while(parameters.getMyself().getCarteMain().size() < 7){
                 parameters.getMyself().getCarteMain().add(Part.getPart().piocher1Carte());
+                System.out.println(this + "a pioché des cartes d'action.");
             }
             }
 

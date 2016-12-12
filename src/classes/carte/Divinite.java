@@ -30,4 +30,14 @@ public class Divinite extends Carte {
     public Sacrifier sacrifier(Parameters parameters) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "votre carte divinité : " + "Divinite{" +  "\n" +
+                "nom : " + nom +
+                "origine : " + getOrigine() + "\n" +
+                "nomcCpacite : '" + nomcCpacite + '\n' +
+                "description : '" + description + '\n' +
+                '}';
+    }
 }

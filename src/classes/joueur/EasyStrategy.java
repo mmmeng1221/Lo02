@@ -16,10 +16,12 @@ public class EasyStrategy implements Strategie{
             parameters.getMyself().getCarteMain().remove(0);
             parameters.getMyself().getCarteMain().remove(1);
             parameters.getMyself().getCarteMain().remove(0);
+            System.out.println(this + "a déffausser 3 cartes");
         }else{
             while(parameters.getMyself().getCarteMain().size()<7){
                 parameters.getMyself().piocher(Part.getPart().piocher1Carte());
             }
+            System.out.println(this + "a pioché des cartes.");
         }
     }
 }
