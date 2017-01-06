@@ -2,12 +2,13 @@ package classes.carte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 
 /**
  * Created by zhangmeng on 10/11/2016.
  */
-public abstract class Carte {
+public abstract class Carte{
 
 
     private int origine;

@@ -40,7 +40,9 @@ public class JoueurPhysique extends Joueur {
 
         //Joueur veut déffausser des cartes
         if (choix == 1) {
-            this.afficherCarteAMain();
+            deffausser(scanner);
+
+            /*this.afficherCarteAMain();
             System.out.println("Combien de cartes voulez-vous déffausser?");
             int number = scanner.nextInt();
             for (int i = 0; i < number; i++) {
@@ -49,18 +51,19 @@ public class JoueurPhysique extends Joueur {
                 int cardDe = scanner.nextInt();
                 Carte cardDeff = this.getCarteMain().get(cardDe);
                 this.getCarteMain().remove(cardDeff);
-            }
+            }*/
         } else if (choix == 2) {//Joueur veut compléter sa main à 7 cartes
-            if(this.getCarteMain().size() >= 7){
+            /*if(this.getCarteMain().size() >= 7){
                 System.out.println("Vous avez 7 cartes, vous ne pouvez pas piocher des cartes.");
             }
             while (this.getCarteMain().size() < 7) {
                 this.piocher(Part.getPart().piocher1Carte());
             }
-            this.afficherCarteAMain();
+            this.afficherCarteAMain();*/
+            completer();
         } else if (choix == 3) {//Joueur veut sacrifier une carte croyant ou une carte guide
 
-            System.out.println("Choisissez les cartes pas encore jouées ou les cartes récupérée." + "\n" + "0-indiquant les cartes pas " +
+            /*System.out.println("Choisissez les cartes pas encore jouées ou les cartes récupérée." + "\n" + "0-indiquant les cartes pas " +
                     "encore jouées" + "\n" + "1-indiquant les cartes récupéreés");
             System.out.println("vos cartes à main : " + "\n");
             this.afficherCarteAMain();
@@ -109,7 +112,8 @@ public class JoueurPhysique extends Joueur {
                 card.sacrifier(para);
 
                 this.getCarteMain().remove(card);
-            }
+            }*/
+            sacrifier(scanner,para);
         } else if (choix == 4) {
             //Joueur veut poser des croyants au centre de table ou récupérer
             //des croyants, ou utiliser une carte Deux-ex ou Apocalypse
@@ -146,6 +150,81 @@ public class JoueurPhysique extends Joueur {
     }
 
 
+    public void deffausser(Scanner scanner) {
+        //this.afficherCarteAMain();
+        System.out.println("Combien de cartes voulez-vous déffausser?");
+        int number = scanner.nextInt();
+        for (int i = 0; i < number; i++) {
+            this.afficherCarteAMain();
+            System.out.println("Choisissez une cartes à déffausser");
+            int cardDe = scanner.nextInt();
+            Carte cardDeff = this.getCarteMain().get(cardDe);
+            this.getCarteMain().remove(cardDeff);
+        }
+    }
+
+    public void completer(){//Joueur veut compléter sa main à 7 cartes
+        if(this.getCarteMain().size() >= 7){
+            System.out.println("Vous avez 7 cartes, vous ne pouvez pas piocher des cartes.");
+        }
+        while (this.getCarteMain().size() < 7) {
+            this.piocher(Part.getPart().piocher1Carte());
+        }
+        this.afficherCarteAMain();
+    }
+
+    public void sacrifier(Scanner scanner,Parameters para){
+        System.out.println("Choisissez les cartes pas encore jouées ou les cartes récupérée." + "\n" + "0-indiquant les cartes pas " +
+                "encore jouées" + "\n" + "1-indiquant les cartes récupéreés");
+        System.out.println("vos cartes à main : " + "\n");
+        this.afficherCarteAMain();
+        System.out.println("vos cartes récupérées: " + "\n");
+        for (Guide card : this.getCarteGuide()) {
+            System.out.println(card);
+        }
+
+        int num = scanner.nextInt();
+        //Joueur choisit de jouer des cartes récupérées, c'est-à-dire qu'il veut sacrifier une ou plusieurs
+        // cartes récupérées
+        if (num == 1) {
+            System.out.println("Choisissez une carte guide");
+            int num1 = scanner.nextInt();
+            System.out.println("Voulez-vous sacrifier ce guide ou ses croyants rattachés?" + "\n" +
+                    "0-indiquant ce guide" + "\n" + "1-indiquant ses croyants rattachés");
+            int num2 = scanner.nextInt();
+            //Joueur choisit de sacrifier ce guide
+            if (num2 == 0) {
+                this.getCarteGuide().get(num1).sacrifier(para);
+                this.getCarteGuide().get(num1).getCroyantAttache().clear();
+                this.getCarteGuide().remove(this.getCarteGuide().get(num1));
+
+            } else if (num2 == 1) { //Joueur choisit de sacrifier ses croyants rattachés
+                System.out.println("Quel croyant voulez-vous sacrifier?");
+                for (Croyant cr : this.getCarteGuide().get(num1).getCroyantAttache()) {
+                    System.out.println(cr);
+                }
+                //Joueur choisit de sacrifier un croyant par son numéro dans la liste
+                int num3 = scanner.nextInt();
+                this.getCarteGuide().get(num1).getCroyantAttache().get(num3).sacrifier(para);
+                this.getCarteGuide().get(num1).getCroyantAttache().remove(this.getCarteGuide().get(num1).getCroyantAttache().get(num3));
+                if (this.getCarteGuide().get(num1).getCroyantAttache().size() < 1) {
+                    this.getCarteGuide().remove(this.getCarteGuide().get(num1));
+                }
+            }
+        } else if (num == 0) { //Joueur choisit de jouer des cartes pas encore jouée(cartes à main), pour la sacrifier
+            this.afficherCarteAMain();
+            int number = scanner.nextInt();
+            Carte card = getCarteMain().get(number);
+            while (!(card instanceof Croyant) && !(card instanceof Guide)) {
+                System.out.println("Vous devez choisir une carte croyant ou guide");
+                int number1 = scanner.nextInt();
+                card = getCarteMain().get(number1);
+            }
+            card.sacrifier(para);
+
+            this.getCarteMain().remove(card);
+        }
+    }
     public void utiliserCA(Scanner scanner,Parameters parameters) {
         List<Carte> cardCA = new ArrayList<>();
         cardCA.addAll(this.getCarteMain());
