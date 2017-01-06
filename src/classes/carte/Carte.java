@@ -1,5 +1,6 @@
 package classes.carte;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,18 @@ public abstract class Carte {
     private List<Integer> dogmes = new ArrayList<>();
     private String nomCarte;
     private String capacite;
+
+
+    private Image image;
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
 
     public int getOrigine() {
         return origine;

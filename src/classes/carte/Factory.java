@@ -9,7 +9,12 @@ import classes.joueur.JoueurPhysique;
 import classes.joueur.JoueurVirtuel;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
 import java.util.zip.CRC32;
 
 
@@ -37,9 +42,16 @@ public class Factory {
      * @param nbCroyant
      * @return
      */
-    public Guide createMartyr(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant) {
+    public Guide createMartyr(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant, Image image) throws IOException {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogs);
+        File file = new File("Martyr.jpg");
+
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -59,7 +71,7 @@ public class Factory {
      */
 
 
-    public Guide createClerc(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant) {
+    public Guide createClerc(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant, Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogs);
 
@@ -97,7 +109,7 @@ public class Factory {
         });
     }
 
-    public Guide createMessie(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant) {
+    public Guide createMessie(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogs);
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
@@ -137,7 +149,7 @@ public class Factory {
      * @param origine   l'origine de ce carte
      * @return
      */
-    public Croyant createMoins(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createMoins(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -152,7 +164,7 @@ public class Factory {
         });
     }
 
-    public Croyant createTravailleurs1(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createTravailleurs1(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -183,7 +195,7 @@ public class Factory {
         });
     }
 
-    public Croyant createTravailleurs2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createTravailleurs2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -214,7 +226,7 @@ public class Factory {
         });
     }
 
-    public Croyant createTravailleurs3(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createTravailleurs3(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -251,7 +263,7 @@ public class Factory {
      * @param origine   l'origine de ce carte
      * @return
      */
-    public Croyant creatermiteorIntegristes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant creatermiteorIntegristes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -272,7 +284,7 @@ public class Factory {
         });
     }
 
-    public Croyant Integristes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant Integristes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -293,7 +305,7 @@ public class Factory {
         });
     }
 
-    public Croyant createGuerriersSaints(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createGuerriersSaints(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -319,7 +331,7 @@ public class Factory {
     }
 
 
-    public Croyant createDiplomates(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createDiplomates(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -340,7 +352,7 @@ public class Factory {
         });
     }
 
-    public Croyant createDemons(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createDemons(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -355,7 +367,7 @@ public class Factory {
         });
     }
 
-    public Croyant createAlchimistes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createAlchimistes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogmes);
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
@@ -377,7 +389,7 @@ public class Factory {
         });
     }
 
-    public Croyant createVampire(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createVampire(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -398,7 +410,7 @@ public class Factory {
         });
     }
 
-    public Croyant createLycanthropes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createLycanthropes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -423,7 +435,7 @@ public class Factory {
         });
     }
 
-    public Croyant createIllusionnistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createIllusionnistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -451,7 +463,7 @@ public class Factory {
         });
     }
 
-    public Croyant createEsprites(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createEsprites(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -465,7 +477,7 @@ public class Factory {
         });
     }
 
-    public Croyant createAlienes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createAlienes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -495,7 +507,7 @@ public class Factory {
             }
         });
     }
-    public Croyant createAlchimistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createAlchimistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -526,7 +538,7 @@ public class Factory {
         });
     }
 
-    public Croyant createAlienes3(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createAlienes3(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -557,7 +569,7 @@ public class Factory {
         });
     }
 
-    public Croyant createAlienes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createAlienes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -584,7 +596,7 @@ public class Factory {
         });
     }
 
-    public Croyant createRevenant(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createRevenant(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -596,7 +608,7 @@ public class Factory {
         });
     }
 
-    public Croyant createRevolutionnaires(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant createRevolutionnaires(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -615,7 +627,7 @@ public class Factory {
         });
     }
 
-    public Croyant cretaeNihillistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine) {
+    public Croyant cretaeNihillistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
@@ -634,7 +646,7 @@ public class Factory {
         });
     }
 
-    public DeusEx cretaeColereDivine1(String nom, String capacite, int origine) {
+    public DeusEx cretaeColereDivine1(String nom, String capacite, int origine,Image image) {
 
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
@@ -665,7 +677,7 @@ public class Factory {
         });
     }
 
-    public DeusEx cretaeColereDivine2(String nom, String capacite, int origine) {
+    public DeusEx cretaeColereDivine2(String nom, String capacite, int origine,Image image) {
 
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
@@ -696,7 +708,7 @@ public class Factory {
         });
     }
 
-    public DeusEx createOrdreCeleste(String nom, String capacite, int origine) {
+    public DeusEx createOrdreCeleste(String nom, String capacite, int origine,Image image) {
 
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
@@ -720,7 +732,7 @@ public class Factory {
     }
 
 
-    public DeusEx cretaeFourberie(String nom, String capacite, int origine) {
+    public DeusEx cretaeFourberie(String nom, String capacite, int origine,Image image) {
 
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
@@ -757,7 +769,7 @@ public class Factory {
         });
     }
 
-    public DeusEx createDiversion(String nom, String capacite, int origine) {
+    public DeusEx createDiversion(String nom, String capacite, int origine,Image image) {
 
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
@@ -787,7 +799,7 @@ public class Factory {
         });
     }
 
-    public DeusEx createPhoenix(String nom, String capacite, int origine) {
+    public DeusEx createPhoenix(String nom, String capacite, int origine,Image image) {
 
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
@@ -829,7 +841,7 @@ public class Factory {
 
     //Divinite
 
-    public Divinite createYarstur(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createYarstur(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -843,7 +855,7 @@ public class Factory {
             }
         });
     }
-    public Divinite createKillinstred(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createKillinstred(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -862,7 +874,7 @@ public class Factory {
         });
     }
 
-    public Divinite createPuiTara(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createPuiTara(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -877,7 +889,7 @@ public class Factory {
         });
     }
 
-    public Divinite createGwenghelen(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createGwenghelen(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -899,7 +911,7 @@ public class Factory {
         });
     }
 
-    public Divinite createShingva(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createShingva(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -931,7 +943,7 @@ public class Factory {
         });
     }
 
-    public Divinite createGorpa(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createGorpa(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -954,7 +966,7 @@ public class Factory {
 
 
 
-    public Divinite createRomec(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createRomec(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -975,7 +987,7 @@ public class Factory {
     }
 
 
-    public Divinite createDrinded(String nom, String description,String nomCapacite, List<Integer> dogs, int origine) {
+    public Divinite createDrinded(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -996,7 +1008,7 @@ public class Factory {
     }
 
     //Apocalype
-    public Apocalypse creatApo(String nom, int origine) {
+    public Apocalypse creatApo(String nom, int origine,Image image) {
         return new Apocalypse(nom,origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
