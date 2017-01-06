@@ -78,37 +78,6 @@ public class Part {
         this.listeJouCourant = listeJouCourant;
     }
 
-//    public void JoueurAjouterPoint(int de) {
-//        switch (de) {
-//            case 1:
-//            case 2:
-//        }
-//        if (de == 1 || de == 2) {
-//            for (Joueur joueur : Part.getPart().getListeJouCourant()) {
-//                if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_JOUR) {
-//                    joueur.getPointActTot().setJour(joueur.getPointActTot().getJour() + 2);
-//                } else if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_AUBE) {
-//                    joueur.getPointActTot().setJour(joueur.getPointActTot().getJour() + 1);
-//                }
-//            }
-//        } else if (de == 3 || de == 4) {
-//            for (Joueur joueur : Part.getPart().getListeJouCourant()) {
-//                if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_NUIT) {
-//                    joueur.getPointActTot().setNuit(joueur.getPointActTot().getNuit() + 2);
-//                } else if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_CREPUSCULE) {
-//                    joueur.getPointActTot().setNuit(joueur.getPointActTot().getNuit() + 1);
-//                }
-//            }
-//        } else {
-//            for (Joueur joueur : Part.getPart().getListeJouCourant()) {
-//                if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_AUBE || joueur.getDivinite().getOrigine() == Constants.ORIGINE_CREPUSCULE) {
-//                    joueur.getPointActTot().setNeant(joueur.getPointActTot().getNeant() + 1);
-//                }
-//            }
-//
-//        }
-//
-//    }
 
     /**
      * Créer des cartes d'action et les ajouter dans la liste des cartes à piocher
@@ -793,7 +762,7 @@ public class Part {
         this.carteDivi.add(Drinded);
 
 
-
+System.out.println(cartePioche.size());
     }
 
     public List<Carte> shuffle() {
