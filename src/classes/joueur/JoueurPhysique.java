@@ -177,7 +177,7 @@ public class JoueurPhysique extends Joueur implements ActionListener {
                     JoueurPhysique.super.getCarteMain().remove(btn.getThiscarte());
 
                 }
-            }
+            };
         }
 
 

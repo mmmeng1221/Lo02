@@ -36,7 +36,7 @@ public class VueCarte extends JButton {
             setVisible(false);
 
         }
-    }
+    };
 
     public VueCarte(Carte c){
         super();
