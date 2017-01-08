@@ -31,12 +31,10 @@ public class VueCarte extends JButton {
         public void actionPerformed(ActionEvent e) {
 
 
-
-
             setVisible(false);
 
         }
-    }
+    };
 
     public VueCarte(Carte c){
         super();

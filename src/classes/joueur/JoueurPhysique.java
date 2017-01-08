@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by Administrator on 2016/12/5.
  */
-public class JoueurPhysique extends Joueur implements ActionListener {
+public class JoueurPhysique extends Joueur {
 
     public JoueurPhysique() {}
 
@@ -45,8 +45,8 @@ public class JoueurPhysique extends Joueur implements ActionListener {
 
         //Joueur veut déffausser des cartes
         if (choix == 1) {
-            deffausser(scanner);
-
+            /*deffausser(scanner);
+*/
             /*this.afficherCarteAMain();
             System.out.println("Combien de cartes voulez-vous déffausser?");
             int number = scanner.nextInt();
@@ -155,10 +155,10 @@ public class JoueurPhysique extends Joueur implements ActionListener {
     }
 
 
-    public void deffausser (Scanner scanner)  {
+   /* public void deffausser (Scanner scanner)  {
         //this.afficherCarteAMain();
 
-        Object[] obj2 =new Object[];
+        Object[] obj2 =new Object[]{};
         for(int i = 0;i < this.getCarteMain().size();i++)
         {
             obj2[i] = i;
@@ -169,7 +169,7 @@ public class JoueurPhysique extends Joueur implements ActionListener {
 
             /*int cardDe = scanner.nextInt();
             Carte cardDeff = this.getCarteMain().get(cardDe);
-            VueCarte carte = new VueCarte(cardDeff);*/
+            VueCarte carte = new VueCarte(cardDeff);
             private ActionListener bl = new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     VueCarte btn = (VueCarte) e.getSource();
@@ -178,12 +178,12 @@ public class JoueurPhysique extends Joueur implements ActionListener {
 
                 }
             }
-        }
 
 
 
 
-        }
+
+        }*/
 
     public void completer(){//Joueur veut compléter sa main à 7 cartes
         if(this.getCarteMain().size() >= 7){
@@ -596,13 +596,12 @@ public class JoueurPhysique extends Joueur implements ActionListener {
     }
 
 
-    public void afficherfalse(){
-        System.out.println("choisissez une autre joueur!");
+    public void afficherfalse() {
+        JOptionPane.showMessageDialog(null, "choisissez une autre joueur!");
+
+    }
+
     }
 
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() instanceof VueCarte)
-    }
-}
+

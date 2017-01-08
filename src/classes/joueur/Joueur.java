@@ -9,12 +9,13 @@ import classes.carte.Parameters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 
 /**
  * Created by zhangmeng on 04/12/2016.
  */
-public class Joueur implements Observable {
+public class Joueur extends Observable {
 
     private String nom;
     private Divinite divi;
