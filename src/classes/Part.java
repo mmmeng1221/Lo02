@@ -82,7 +82,7 @@ public class Part {
     /**
      * Créer des cartes d'action et les ajouter dans la liste des cartes à piocher
      */
-    public void initialiserCarte() throws IOException {
+    public void initialiserCarte() throws IOException{
 
         List<Integer> dogs = new ArrayList();
         /**
@@ -802,9 +802,10 @@ System.out.println(cartePioche.size());
     /**
      * Demander au utilisateur nbr de joueurs virtuels
      */
-    public void initialiserJoueur() {
+    public void initialiserJoueur(int nbrJ) {
         JoueurPhysique jp = new JoueurPhysique();
         this.listeJouCourant.add(jp);
+        /*
         System.out.println("Chioisissez le mode" + "\n" + "0-indiquant FACILE" + "\n"
         + "1-indiquant DUR");
         Scanner sc = new Scanner(System.in);
@@ -822,7 +823,8 @@ System.out.println(cartePioche.size());
         }else{for (int i = 0; i < num; i++) {
             JoueurVirtuel jv = new JoueurVirtuel(new HardStrategy());
             this.listeJouCourant.add(jv);}
-        }
+        }*/
+
     }
 
     public void facile(int nbr){

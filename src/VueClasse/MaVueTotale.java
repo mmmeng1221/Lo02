@@ -172,6 +172,13 @@ public class MaVueTotale extends JFrame{
     }
 
     public void setGamePanel(){
+        //part.initialiserCarte();
+        part.initialiserJoueur(nbrJoueur);
+        part.shuffle();
+        part.shuffleDivi();
+        part.piocherDivi();
+        part.piocher();
+        part.start();
         setCarteAMainPanel();
         setCroyantCommunPanel();
         setCroyantRecuPanel();

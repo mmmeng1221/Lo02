@@ -26,6 +26,8 @@ public class Joueur extends Observable {
     private int nbrCro = 0;
     private VuePoint myObserver  = null;
 
+    public Joueur(){}
+
     public String getNom() {
         return nom;
     }
