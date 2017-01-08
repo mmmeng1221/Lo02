@@ -3,7 +3,12 @@ package classes;
 import classes.carte.*;
 import classes.joueur.*;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by zhangmeng on 04/12/2016.
@@ -77,7 +82,7 @@ public class Part {
     /**
      * Créer des cartes d'action et les ajouter dans la liste des cartes à piocher
      */
-    public void initialiserCarte() {
+    public void initialiserCarte() throws IOException {
 
         List<Integer> dogs = new ArrayList();
         /**
@@ -85,87 +90,172 @@ public class Part {
          */
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_HUMAIN);
+        File file = new File("Image:Guide:Martyr 1.jpg");
+        Image image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide martyr1 = Factory.getFactory().createMartyr("Martyr", "Equivalent à la pose d'une carte Apocalypse.",
-                dogs, Constants.ORIGINE_JOUR, 2);
+                dogs, Constants.ORIGINE_JOUR, 2,image);
         this.cartePioche.add(martyr1);
 
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_SYMBOLES);
+        file = new File("Image:Guide:Martyr 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide martyr2 = Factory.getFactory().createMartyr("Martyr", "Equivalent à la pose d'une carte Apocalypse.",
-                dogs, Constants.ORIGINE_NUIT, 2);
+                dogs, Constants.ORIGINE_NUIT, 2,image);
         this.cartePioche.add(martyr2);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Guide:Martyr 3.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide martyr3 = Factory.getFactory().createMartyr("Martyr", "Equivalent à la pose d'une carte Apocalypse.",
-                dogs, Constants.ORIGINE_NEANT, 2);
+                dogs, Constants.ORIGINE_NEANT, 2,image);
         this.cartePioche.add(martyr3);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Guide:Clerc 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide clerc1 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-        ,dogs,Constants.ORIGINE_JOUR,2);
+        ,dogs,Constants.ORIGINE_JOUR,2,image);
         this.cartePioche.add(clerc1);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_NATURE);
+        file = new File("Image:Guide:Clerc 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide clerc2 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-                ,dogs,Constants.ORIGINE_NUIT,2);
+                ,dogs,Constants.ORIGINE_NUIT,2,image);
         this.cartePioche.add(clerc2);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_MYSTIQUES);
+        file = new File("Image:Guide:Clerc 3.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide clerc3 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-                ,dogs,Constants.ORIGINE_NEANT,2);
+                ,dogs,Constants.ORIGINE_NEANT,2,image);
         this.cartePioche.add(clerc3);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_CHAOS);
         dogs.add(Constants.DOGMES_NATURE);
+        file = new File("Image:Guide:Clerc 4.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide clerc4 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-                ,dogs,Constants.ORIGINE_JOUR,2);
+                ,dogs,Constants.ORIGINE_JOUR,2,image);
         this.cartePioche.add(clerc4);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_MYSTIQUES);
+        file = new File("Image:Guide:Clerc 5.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide clerc5 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-                ,dogs,Constants.ORIGINE_NUIT,2);
+                ,dogs,Constants.ORIGINE_NUIT,2,image);
         this.cartePioche.add(clerc5);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Guide:Clerc 6.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Guide clerc6 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-                ,dogs,Constants.ORIGINE_NEANT,2);
+                ,dogs,Constants.ORIGINE_NEANT,2,image);
         this.cartePioche.add(clerc6);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Guide:Clerc 7.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide clerc7 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-                ,dogs,Constants.ORIGINE_JOUR,2);
+                ,dogs,Constants.ORIGINE_JOUR,2,image);
         this.cartePioche.add(clerc7);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
+        file = new File("Image:Guide:Clerc 8.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Guide clerc8 = Factory.getFactory().createClerc("Clerc", "Fait gagner un nombre de points d'Action égal au nombre de cartes de Croyants rattachées. L'Origine des points d'Action est au choix du joueur."
-                ,dogs,Constants.ORIGINE_NUIT,2);
+                ,dogs,Constants.ORIGINE_NUIT,2,image);
         this.cartePioche.add(clerc8);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Moins 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant moins = Factory.getFactory().createMoins("Moins", "Donne un point d'Action d'Origine Jour",
-                2, dogs, Constants.ORIGINE_JOUR);
+                2, dogs, Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(moins);
 
         /**
@@ -175,40 +265,75 @@ public class Part {
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Travailleur 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant travailleurs1 = Factory.getFactory().createTravailleurs1("Travailleurs", "Empêche une Divinité possédant le Dogme Nature ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour.",
-                2, dogs, Constants.ORIGINE_JOUR);
+                2, dogs, Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(travailleurs1);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Travailleur 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant travailleurs2 = Factory.getFactory().createTravailleurs2("Travailleurs", "Empêche une Divinité possédant le Dogme Chaos ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour.",
-                2, dogs, Constants.ORIGINE_JOUR);
+                2, dogs, Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(travailleurs2);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Travailleur 3.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant travailleurs3 = Factory.getFactory().createTravailleurs3("Travailleurs", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
-                2, dogs, Constants.ORIGINE_JOUR);
+                2, dogs, Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(travailleurs3);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Ermite 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant ermite1 = Factory.getFactory().creatermiteorIntegristes("Ermite", "Impose le sacrifice d'un Croyant d'un autre joueur, qui choisit la carte. La capacité spéciale du sacrifice est jouée.",
-                1, dogs, Constants.ORIGINE_JOUR);
+                1, dogs, Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(ermite1);
 
         dogs = new ArrayList<>();
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_SYMBOLES);
+        file = new File("Image:Croyant:Guerriers Saints.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant GuerriersSaints = Factory.getFactory().createGuerriersSaints("GuerriersSaints", "Un Guide Spirituel revient dans la main de sa Divinité. Ses Croyants reviennent au centre de la table.",
-                4, dogs, Constants.ORIGINE_JOUR);
+                4, dogs, Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(GuerriersSaints);
 
 
@@ -216,64 +341,119 @@ public class Part {
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Alchimistes 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant alchimistes2= Factory.getFactory().createAlchimistes2("Alchimistes", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
-                2, dogs, Constants.ORIGINE_NUIT);
+                2, dogs, Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(alchimistes2);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_SYMBOLES);
+        file = new File("Image:Croyant:Vampire 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant vampire1= Factory.getFactory().createVampire("Vampire", "Impose le sacrifice d'un Croyant d'un autre joueur. Celui-ci choisit le sacrifié. La capacité spéciale du sacrifice est jouée.",
-                1, dogs, Constants.ORIGINE_NUIT);
+                1, dogs, Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(vampire1);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Vampire 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant vampire2= Factory.getFactory().createVampire("Vampire", "Impose le sacrifice d'un Croyant d'un autre joueur. Celui-ci choisit le sacrifié. La capacité spéciale du sacrifice est jouée.",
-                1, dogs, Constants.ORIGINE_NUIT);
+                1, dogs, Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(vampire2);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Moins 1Lycanthropes 1.jpg");
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant lycanthropes= Factory.getFactory().createLycanthropes("Lycanthropes", "Retirez tous les Croyants attachés à l'un des Guides Spirituels d'une autre Divinité. Les Croyants reviennent au milieu de la table, le Guide Spirituel est défaussé.",
-                4, dogs, Constants.ORIGINE_NUIT);
+                4, dogs, Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(lycanthropes);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Illusionnistes 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Illusionnistes= Factory.getFactory().createIllusionnistes("Illusionnistes", "Vous bénéficiez de la capacité spéciale de sacrifice d'une carte de Croyants appartenant à une autre Divinité. La carte en question reste en jeu.",
-                4, dogs, Constants.ORIGINE_NUIT);
+                4, dogs, Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(Illusionnistes);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_MYSTIQUES);
+        file = new File("Image:Croyant:Esprites 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Esprites= Factory.getFactory().createEsprites("Esprites", "Donne un point d'Action d'Origine Néant.",
-                2, dogs, Constants.ORIGINE_NEANT);
+                2, dogs, Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Esprites);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Alienes 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Alienes= Factory.getFactory().createAlienes("Alienes", "Empêche une Divinité possédant le Dogme Nature ou Mystique de sacrifier une de ses cartes de Croyants durant ce tour de jeu.",
-                2, dogs, Constants.ORIGINE_NEANT);
+                2, dogs, Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Alienes);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_SYMBOLES);
+        file = new File("Image:Croyant:Alienes 3.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Alienes3= Factory.getFactory().createAlienes3("Alienes", "Empêche une Divinité possédant le Dogme Mystique ou Chaos de sacrifier un de ses Guides Spirituels durant ce tour de jeu.",
-                2, dogs, Constants.ORIGINE_NEANT);
+                2, dogs, Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Alienes3);
 
 
@@ -281,16 +461,30 @@ public class Part {
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Alienes 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Alienes2= Factory.getFactory().createAlienes2("Alienes", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
-                2, dogs, Constants.ORIGINE_NEANT);
+                2, dogs, Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Alienes2);
 
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_MYSTIQUES);
+        file = new File("Image:Croyant:Revenant 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Revenant= Factory.getFactory().createRevenant("Alienes", "Vous piochez deux cartes au hasard dans la main d'une autre Divinité.",
-                1, dogs, Constants.ORIGINE_NEANT);
+                1, dogs, Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Revenant);
 
 
@@ -298,8 +492,15 @@ public class Part {
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Alchimistes 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Alchimistes= Factory.getFactory().createAlchimistes("Alchimistes", "Empêche une Divinité possédant le Dogme Humain ou Symboles de sacrifier un de ses Guides Spirituels durant ce tour de jeu.",
-                2, dogs, Constants.ORIGINE_NUIT);
+                2, dogs, Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(Alchimistes);
 
 
@@ -307,108 +508,257 @@ public class Part {
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_CHAOS);
+        file = new File("Image:Croyant:Revolutionnaire 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Croyant Revolutionnaire= Factory.getFactory().createRevolutionnaires("Revolutionnaire", "Imposez le sacrifice d'une carte de Croyants à autant de Divinités que vous le voulez. Chaque Divinité choisit la carte à sacrifier. Les capacités spéciales sont jouées.",
-                2, dogs, Constants.ORIGINE_NEANT);
+                2, dogs, Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Revolutionnaire);
 
         //DeusEx
-        DeusEx ColereDivine1= Factory.getFactory().cretaeColereDivine1("Colere Divine", "Détruit une carte Guide Spirituel d'Origine Nuit ou Néant, dont la capacité spéciale n'a pas effet. Les Croyants attachés reviennent au centre de la table.", Constants.ORIGINE_JOUR);
+        file = new File("Image:DeuxEx:Colere Divine 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeusEx ColereDivine1= Factory.getFactory().cretaeColereDivine1("Colere Divine", "Détruit une carte Guide Spirituel d'Origine Nuit ou Néant, dont la capacité spéciale n'a pas effet. Les Croyants attachés reviennent au centre de la table.", Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(ColereDivine1);
 
-        DeusEx ColereDivine2= Factory.getFactory().cretaeColereDivine2("Colere Divine", "Détruit une carte Guide Spirituel d'Origine Nuit ou Néant, dont la capacité spéciale n'a pas effet. Les Croyants attachés reviennent au centre de la table.", Constants.ORIGINE_NUIT);
+        file = new File("Image:DeuxEx:Colere Divine 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeusEx ColereDivine2= Factory.getFactory().cretaeColereDivine2("Colere Divine", "Détruit une carte Guide Spirituel d'Origine Nuit ou Néant, dont la capacité spéciale n'a pas effet. Les Croyants attachés reviennent au centre de la table.", Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(ColereDivine2);
 
-        DeusEx OrdreCelestes= Factory.getFactory().createOrdreCeleste("Ordre Celestes", "Vous récupérez un des Guides Spirituels posés devant une autre Divinité et le placez devant vous avec les Croyants qui y sont attachés.", Constants.ORIGINE_JOUR);
+        file = new File("Image:DeuxEx:Ordre Celeste 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeusEx OrdreCelestes= Factory.getFactory().createOrdreCeleste("Ordre Celestes", "Vous récupérez un des Guides Spirituels posés devant une autre Divinité et le placez devant vous avec les Croyants qui y sont attachés.", Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(OrdreCelestes);
 
-        DeusEx Fourberie= Factory.getFactory().cretaeFourberie("Fourberie", "Sacrifiez 2 cartes Croyants d'une autre Divinité. Les capacités spéciales ne sont pas jouées.", Constants.ORIGINE_NUIT);
+        file = new File("Image:DeuxEx:Fourberie 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeusEx Fourberie= Factory.getFactory().cretaeFourberie("Fourberie", "Sacrifiez 2 cartes Croyants d'une autre Divinité. Les capacités spéciales ne sont pas jouées.", Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(Fourberie);
 
-        DeusEx Diversion= Factory.getFactory().createDiversion("Diversion", "Prenez 3 cartes dans la main d'un autre joueur et incluez-les à votre main.", Constants.ORIGINE_NUIT);
+        file = new File("Image:DeuxEx:Diversion 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        DeusEx Diversion= Factory.getFactory().createDiversion("Diversion", "Prenez 3 cartes dans la main d'un autre joueur et incluez-les à votre main.", Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(Diversion);
 
-        DeusEx Concentration= Factory.getFactory().createOrdreCeleste("Concentration", "Vous récupérez un des Guides Spirituels posés devant une autre Divinité et le placez devant vous avec les Croyants qui y sont attachés.", Constants.ORIGINE_NEANT);
+        file = new File("Image:DeuxEx:Concentration 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        DeusEx Concentration= Factory.getFactory().createOrdreCeleste("Concentration", "Vous récupérez un des Guides Spirituels posés devant une autre Divinité et le placez devant vous avec les Croyants qui y sont attachés.", Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Concentration);
 
-        DeusEx Phoenix= Factory.getFactory().createPhoenix("Phoenix", "Permet de bénéficier de la capacité spéciale de l'un de vos Croyants ou Guides Spirituels sans sacrifier la carte.", Constants.ORIGINE_NEANT);
+        file = new File("Image:DeuxEx:Phoenix 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeusEx Phoenix= Factory.getFactory().createPhoenix("Phoenix", "Permet de bénéficier de la capacité spéciale de l'un de vos Croyants ou Guides Spirituels sans sacrifier la carte.", Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(Phoenix);
 
         /**
          * Apocalypse
          */
-        Apocalypse apocalypse1 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_JOUR);
+        file = new File("Image:Apocalypse:Apocalypse 1.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Apocalypse apocalypse1 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_JOUR,image);
         this.cartePioche.add(apocalypse1);
-
-        Apocalypse apocalypse2 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NUIT);
+        file = new File("Image:Apocalypse:Apocalypse 2.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Apocalypse apocalypse2 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NUIT,image);
         this.cartePioche.add(apocalypse2);
 
-        Apocalypse apocalypse3 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NEANT);
+        file = new File("Image:Apocalypse:Apocalypse 3.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Apocalypse apocalypse3 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NEANT,image);
         this.cartePioche.add(apocalypse3);
 
-        Apocalypse apocalypse4 = Factory.getFactory().creatApo("Apocalyipse",0);
+        file = new File("Image:Apocalypse:Apocalypse 4.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Apocalypse apocalypse4 = Factory.getFactory().creatApo("Apocalyipse",0,image);
         this.cartePioche.add(apocalypse4);
 
-        Apocalypse apocalypse5 = Factory.getFactory().creatApo("Apocalyipse",0);
+        file = new File("Image:Apocalypse:Apocalypse 5.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Apocalypse apocalypse5 = Factory.getFactory().creatApo("Apocalyipse",0,image);
         this.cartePioche.add(apocalypse5);
 
         /**
          * Divinite
          */
+
+        file = new File("Image:Divinite:Divinite Killinstred.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_CHAOS);
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_MYSTIQUES);
-        Divinite Killinstred= Factory.getFactory().createKillinstred("Killinstred","Divinité machiavélique et manipulatrice,Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_JOUR);
+        Divinite Killinstred= Factory.getFactory().createKillinstred("Killinstred","Divinité machiavélique et manipulatrice,Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_JOUR,image);
         this.carteDivi.add(Killinstred);
 
+        file = new File("Image:Divinite:Divinite Ilenella.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
-        Divinite Llewella= Factory.getFactory().createKillinstred("Llewella","Divinité machiavélique et manipulatrice, Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_NUIT);
+        Divinite Llewella= Factory.getFactory().createKillinstred("Llewella","Divinité machiavélique et manipulatrice, Killinstred cherche à influencer et contrôler ses ennemis." , "Peut obliger un joueur à poser une carte Apocalypse s'il en possède une.",dogs,Constants.ORIGINE_NUIT,image);
         this.carteDivi.add(Llewella);
 
+        file = new File("Image:Divinite:Divinite Pni-Tara.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_SYMBOLES);
-        Divinite PuiTara= Factory.getFactory().createPuiTara("Pui-Tara","Pui-Tara est la Divinité sur laquelle l'influence de la Nuit s'est faite la plus forte." , "Peut détruire toutes les cartes de Croyants au centre de la table d'Origine Jour.",dogs,Constants.ORIGINE_NUIT);
+        Divinite PuiTara= Factory.getFactory().createPuiTara("Pui-Tara","Pui-Tara est la Divinité sur laquelle l'influence de la Nuit s'est faite la plus forte." , "Peut détruire toutes les cartes de Croyants au centre de la table d'Origine Jour.",dogs,Constants.ORIGINE_NUIT,image);
         this.carteDivi.add(PuiTara);
 
+        file = new File("Image:Divinite:Divinite Gnenghelen.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_SYMBOLES);
-        Divinite Gwenghelen= Factory.getFactory().createGwenghelen("Gwenghelen","Première Divinité à recevoir l'influence du Néant, Gwenghelen est celle qui en a reçu le plus de puissance." , "Récupère autant de points d'Action supplémentaires d'Origine Néant que le nombre de Guides Spirituels que la Divinité possède.",dogs,Constants.ORIGINE_AUBE);
+        Divinite Gwenghelen= Factory.getFactory().createGwenghelen("Gwenghelen","Première Divinité à recevoir l'influence du Néant, Gwenghelen est celle qui en a reçu le plus de puissance." , "Récupère autant de points d'Action supplémentaires d'Origine Néant que le nombre de Guides Spirituels que la Divinité possède.",dogs,Constants.ORIGINE_AUBE,image);
         this.carteDivi.add(Gwenghelen);
 
+        file = new File("Image:Divinite:Divinite Shingva.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_MYSTIQUES);
         dogs.add(Constants.DOGMES_CHAOS);
-        Divinite Shingva= Factory.getFactory().createShingva("Shingva","Perverse et retorse, Shingva est une Divinité que toutes les autres détestent." , "Peut imposer le sacrifice d'un Guide Spirituel ayant le Dogme Symboles ou Nature.",dogs,Constants.ORIGINE_AUBE);
+        Divinite Shingva= Factory.getFactory().createShingva("Shingva","Perverse et retorse, Shingva est une Divinité que toutes les autres détestent." , "Peut imposer le sacrifice d'un Guide Spirituel ayant le Dogme Symboles ou Nature.",dogs,Constants.ORIGINE_AUBE,image);
         this.carteDivi.add(Shingva);
 
+        file = new File("Image:Divinite:Divinite Gorpa.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_SYMBOLES);
         dogs.add(Constants.DOGMES_CHAOS);
-        Divinite Gorpa= Factory.getFactory().createGorpa("Gorpa","Divinité joueuse et espiègle, Gorpa aime gêner ses consoeurs dans leur recherche de puissance." , "Peut imposer le sacrifice d'un Guide Spirituel ayant le Dogme Symboles ou Nature.",dogs,Constants.ORIGINE_CREPUSCULE);
+        Divinite Gorpa= Factory.getFactory().createGorpa("Gorpa","Divinité joueuse et espiègle, Gorpa aime gêner ses consoeurs dans leur recherche de puissance." , "Peut imposer le sacrifice d'un Guide Spirituel ayant le Dogme Symboles ou Nature.",dogs,Constants.ORIGINE_CREPUSCULE,image);
         this.carteDivi.add(Gorpa);
 
+        file = new File("Image:Divinite:Divinite Rontec.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_CHAOS);
-        Divinite Romec = Factory.getFactory().createRomec("Romecs","Romtec est une Divinité individualiste, pour qui chaque être vivant doit garder son libre arbitre." , "Peut empêcher un jour de créer un Guide Spirituel.La carte est défaussée.",dogs,Constants.ORIGINE_CREPUSCULE);
+        Divinite Romec = Factory.getFactory().createRomec("Romecs","Romtec est une Divinité individualiste, pour qui chaque être vivant doit garder son libre arbitre." , "Peut empêcher un jour de créer un Guide Spirituel.La carte est défaussée.",dogs,Constants.ORIGINE_CREPUSCULE,image);
         this.carteDivi.add(Romec);
 
 
+        file = new File("Image:Divinite:Divinite Drinded.jpg");
+        image = null;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         dogs.clear();
         dogs.add(Constants.DOGMES_HUMAIN);
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_SYMBOLES);
-        Divinite Drinded = Factory.getFactory().createDrinded("Drinded","Défenseur des hommes, quelles que soient leurs croyances, Drinded protège les chefs religieux" , "Peut empêcher le sacrifice d'un des Guides Spirituels de n'importe quel joueur.",dogs,Constants.ORIGINE_JOUR);
+        Divinite Drinded = Factory.getFactory().createDrinded("Drinded","Défenseur des hommes, quelles que soient leurs croyances, Drinded protège les chefs religieux" , "Peut empêcher le sacrifice d'un des Guides Spirituels de n'importe quel joueur.",dogs,Constants.ORIGINE_JOUR,image);
         this.carteDivi.add(Drinded);
 
 
