@@ -10,6 +10,7 @@ public class Main {
         part.initialiserCarte();
         part.initialiserJoueur();
         part.shuffle();
+        part.shuffleDivi();
         part.piocherDivi();
         part.piocher();
         part.start();

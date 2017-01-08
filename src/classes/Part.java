@@ -475,6 +475,17 @@ System.out.println(cartePioche.size());
         }
     }
 
+    public void facile(int nbr){
+        for (int i = 0; i < nbr; i++) {
+            JoueurVirtuel jv = new JoueurVirtuel(new EasyStrategy());
+            this.listeJouCourant.add(jv);}
+    }
+
+    public void dur(int nbr){
+        for (int i = 0; i < nbr; i++) {
+            JoueurVirtuel jv = new JoueurVirtuel(new HardStrategy());
+            this.listeJouCourant.add(jv);}
+    }
     /**
      * Joueur obtient une carte divinité
      */
