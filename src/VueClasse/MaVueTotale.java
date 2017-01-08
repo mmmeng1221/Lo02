@@ -1,5 +1,6 @@
 package VueClasse;
 
+import classes.carte.Carte;
 import classes.Part;
 import classes.joueur.Joueur;
 import classes.joueur.EasyStrategy;
@@ -24,6 +25,8 @@ public class MaVueTotale extends JFrame{
 
     private JPanel inputPanel = new JPanel();
 
+    private JPanel panelBouton = new JPanel();
+
     private JPanel comptagePanel = new JPanel();
 
     private JPanel carteAMainPanel = new JPanel();
@@ -45,7 +48,7 @@ public class MaVueTotale extends JFrame{
     private JButton boutonCompleter;
     private JButton boutonSacrifier;
     private JButton boutonUtiliser;
-
+    private JButton boutonDe;
 
     private JMenu[] menus = {
             new JMenu("Let's play!"),new JMenu("Information")
@@ -85,7 +88,7 @@ public class MaVueTotale extends JFrame{
                     "Le but du jeu est d’éliminer les autres Divinités et de prendre la place du Haut Dieu en récupérant " +
                     "les prières d’un maximum de Croyants.");
             Object[] options ={ "J'ai compris!" };
-            int m = JOptionPane.showOptionDialog(null, regles, "Règles du jeu",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+             JOptionPane.showOptionDialog(null, regles, "Règles du jeu",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
             // JOptionPane.showMessageDialog(null,regles,"Introduction",JOptionPane.INFORMATION_MESSAGE);
         }
     };
@@ -170,7 +173,11 @@ public class MaVueTotale extends JFrame{
 
     public void setGamePanel(){
         setCarteAMainPanel();
+        setCroyantCommunPanel();
+        setCroyantRecuPanel();
         setComptagePanel();
+
+
         titleLabel.setBorder((new LineBorder(new Color(231, 201, 87))));
         gamePanel.setLayout(new BorderLayout());
         gamePanel.add(titleLabel,BorderLayout.NORTH);
@@ -181,6 +188,14 @@ public class MaVueTotale extends JFrame{
         myContainer.add(gamePanel);
     }
 
+    public void setPanelBouton(){
+        panelBouton.setLayout(new GridLayout(1,4));
+        panelBouton.add(boutonDeffausser);
+        panelBouton.add(boutonCompleter);
+        panelBouton.add(boutonSacrifier);
+        panelBouton.add(boutonUtiliser);
+    }
+
     public void setCarteAMainPanel(){
             Joueur joueurPhysique = part.getListeJouCourant().get(0);
             carteAMainPanel.setLayout(new GridLayout(1,7));
@@ -189,9 +204,45 @@ public class MaVueTotale extends JFrame{
             carte.synchro(part);
             carteAMainPanel.add(carte);
         }
+           setPanelBouton();
+            carteAMainPanel.add(panelBouton);
+    }
+
+    public void setCroyantCommunPanel(){
+        croyantCommunPanel.setLayout(new GridLayout(2,9));
+        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(boutonDe);
+        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());
+        for(Carte c : part.getCroyantCommun()){
+            VueCarte vueCroyant = new VueCarte(c);
+            croyantCommunPanel.add(vueCroyant);
+        }
+    }
+
+    public void setCroyantRecuPanel(){
 
     }
 
-    public void setComptagePanel(){}
+    public void setComptagePanel(){
+        for (int i=1;i<=nbrJoueur;i++){
+            String str = new String("Joueur Virtuel " + i);
+            VuePoint computerVue = new VuePoint(str);
+            JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(i);
+            jv.add(computerVue);
+            jv.notifyChanges();
+            comptagePanel.add(computerVue);
+        }
+        VuePoint myVue = new VuePoint(nomJoueur);
+        part.getListeJouCourant().get(0);
+        part.getListeJouCourant().get(0).notifyChanges();
+        comptagePanel.setLayout(new GridLayout(nbrJoueur+1,1));
+        comptagePanel.add(myVue);
+    }
 
 }
