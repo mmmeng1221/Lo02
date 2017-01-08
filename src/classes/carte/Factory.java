@@ -52,10 +52,11 @@ public class Factory {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Image finalImage = image;
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Apocalypse apocalypse = creatApo(null,0);
+                Apocalypse apocalypse = creatApo(null,0, finalImage);
                 apocalypse.sacrifier(parameters);
             }
         });

@@ -1,14 +1,19 @@
 package classes.joueur;
 
+import VueClasse.MaVueTotale;
+import VueClasse.VueCarte;
 import classes.*;
 import classes.carte.*;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 /**
  * Created by Administrator on 2016/12/5.
  */
-public class JoueurPhysique extends Joueur {
+public class JoueurPhysique extends Joueur implements ActionListener {
 
     public JoueurPhysique() {}
 
@@ -150,18 +155,35 @@ public class JoueurPhysique extends Joueur {
     }
 
 
-    public void deffausser(Scanner scanner) {
+    public void deffausser (Scanner scanner)  {
         //this.afficherCarteAMain();
-        System.out.println("Combien de cartes voulez-vous déffausser?");
-        int number = scanner.nextInt();
-        for (int i = 0; i < number; i++) {
-            this.afficherCarteAMain();
-            System.out.println("Choisissez une cartes à déffausser");
-            int cardDe = scanner.nextInt();
-            Carte cardDeff = this.getCarteMain().get(cardDe);
-            this.getCarteMain().remove(cardDeff);
+
+        Object[] obj2 =new Object[];
+        for(int i = 0;i < this.getCarteMain().size();i++)
+        {
+            obj2[i] = i;
         }
-    }
+        int nbr = (int) JOptionPane.showInputDialog(null,"Combien de carte voulez vous deffausser?\n", "nombre", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj2, 1);
+        for (int i = 0; i < nbr; i++) {
+
+
+            /*int cardDe = scanner.nextInt();
+            Carte cardDeff = this.getCarteMain().get(cardDe);
+            VueCarte carte = new VueCarte(cardDeff);*/
+            private ActionListener bl = new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    VueCarte btn = (VueCarte) e.getSource();
+
+                    JoueurPhysique.super.getCarteMain().remove(btn.getThiscarte());
+
+                }
+            }
+        }
+
+
+
+
+        }
 
     public void completer(){//Joueur veut compléter sa main à 7 cartes
         if(this.getCarteMain().size() >= 7){
@@ -576,5 +598,11 @@ public class JoueurPhysique extends Joueur {
 
     public void afficherfalse(){
         System.out.println("choisissez une autre joueur!");
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof VueCarte)
     }
 }

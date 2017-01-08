@@ -1,6 +1,12 @@
 package VueClasse;
 
+import classes.joueur.Joueur;
+import classes.Part;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observer;
 
 /**
@@ -14,6 +20,8 @@ public class MaVueTotale extends JFrame{
     private JPanel inputPanel = new JPanel();
 
     private JPanel comtagePanel = new JPanel();
+
+
 
     private JPanel cartePanel = new JPanel();
 
@@ -82,5 +90,18 @@ public class MaVueTotale extends JFrame{
         mycon.add(inputPanel);
     }
 
+    public void setCartePanel(){
+        Joueur joueur = Part.getPart().getListeJouCourant().get(0);
+        cartePanel.setLayout(new GridLayout(1,7));
+        for (int i=1;i<=7;i++){
+            VueCarte carte = new VueCarte(joueur.getCarteMain().get(i));
+            carte.setActionCommand("1");
+            carte.addActionListener(mylistener);
+            cartePanel.add(carte);
+        }
+    }
 
+    public JPanel getCartePanel() {
+        return cartePanel;
+    }
 }
