@@ -1,6 +1,8 @@
 package VueClasse;
 
+import classes.Part;
 import classes.carte.Carte;
+import classes.joueur.Joueur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +22,8 @@ public class VueCarte extends JButton {
     }
 
     private Carte thiscarte = null;
+    private Joueur thisjoueur = null;
+    private Part mp = null;
 
 
     private ActionListener mylistener = new ActionListener() {
@@ -47,5 +51,9 @@ public class VueCarte extends JButton {
         this.setIcon(icon);
 
 
+    }
+    public void synchro(Part mp){
+        this.mp = mp;
+        this.thisjoueur = mp.getListeJouCourant().get(0);
     }
 }

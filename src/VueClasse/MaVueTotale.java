@@ -186,7 +186,7 @@ public class MaVueTotale extends JFrame{
             carteAMainPanel.setLayout(new GridLayout(1,7));
         for (int i=1;i<=7;i++){
             VueCarte carte = new VueCarte(joueurPhysique.getCarteMain().get(i));
-            //carte.synchro(part);
+            carte.synchro(part);
             carteAMainPanel.add(carte);
         }
 

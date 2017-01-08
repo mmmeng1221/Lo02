@@ -1,6 +1,9 @@
 package VueClasse;
 
+import classes.Part;
 import classes.joueur.Joueur;
+import classes.joueur.JoueurPhysique;
+import classes.joueur.JoueurVirtuel;
 
 import javax.swing.*;
 import java.util.Observable;
@@ -15,6 +18,10 @@ public class VuePoint extends JLabel implements Observer {
     private int MonNbrNuit;
     private int MonNbrNeant;
     private int MonNbrCroyant;
+
+
+
+
     private String nom;
 
     public VuePoint(String nom){
@@ -26,7 +33,8 @@ public class VuePoint extends JLabel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 
-        if(arg instanceof Joueur)
+
+       if(arg instanceof Joueur)
         {
             Joueur joueur = (Joueur)arg;
             MonNbrJour = joueur.getPointActTot().getJour();
@@ -36,5 +44,7 @@ public class VuePoint extends JLabel implements Observer {
 
 
         }
+        else
+            System.out.println("erreur");
     }
 }

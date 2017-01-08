@@ -7,9 +7,11 @@ import classes.Part;
 import classes.joueur.Joueur;
 import classes.joueur.JoueurPhysique;
 import classes.joueur.JoueurVirtuel;
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -45,13 +47,13 @@ public class Factory {
     public Guide createMartyr(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant, Image image) throws IOException {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogs);
-        File file = new File("Martyr.jpg");
+        /*File file = new File("Martyr.jpg");
 
         try {
             image = ImageIO.read(file);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         Image finalImage = image;
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
             @Override
@@ -76,20 +78,30 @@ public class Factory {
         List<Integer> temp = new ArrayList<>();
         temp.addAll(dogs);
 
+
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
                 int numPoint = ((Guide)parameters.getThisC()).getNbCroyant();
                 int choix;
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                    System.out.println("Choisissez l'origine des points d'action que vous voulez gagner"
-                     + "\n" + "0-indiquant JOUR" + "\n" + "1-indiquant NUIT" + "\n" + "2-indiqunat NEANT");
-                    Scanner scanner = new Scanner(System.in);
-                    choix = scanner.nextInt();
-                    while(choix != 0 && choix != 1 && choix != 2){
+                    Object[] obj =new Object[]{};
+                   obj[0] = "jour";
+                    obj[1] = "nuit";
+                    obj[2] = "neant";
+
+                    String name = (String) JOptionPane.showInputDialog(null,"Choisissez l'origine des points d'action que vous voulez gagner\n", "origine", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "jour");
+                    /*Scanner scanner = new Scanner(System.in);
+                    choix = scanner.nextInt();*/
+                    if(name == "jour")
+                        choix = 0;
+                    else if(name == "nuit")
+                        choix = 1;
+                    else
+                        choix = 2;
+                    /*while(choix != 0 && choix != 1 && choix != 2){
                         choix = scanner.nextInt();
-                    }
-                    scanner.close();
+                    }*/
                 }else{
                     choix = (int) Math.random()*2;
                 }
@@ -117,17 +129,28 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                    System.out.println("Choisissez une face de dé de cosgomonie que vous voulez"
-                    + "\n" + "1-JOUR" + "\n" + "2-NUIT" + "\n" + "NEANT");
-                    Scanner sc = new Scanner(System.in);
-                    int cosmo = sc.nextInt();
-                    Part.getPart().JoueurAjouterPoint(cosmo);
+                    Object[] obj =new Object[]{};
+                    obj[0] = "jour";
+                    obj[1] = "nuit";
+                    obj[2] = "neant";
+                    String name = (String) JOptionPane.showInputDialog(null,"Choisissez une face de dé de cosgomonie que vous voulez\n", "origine", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "jour");
+
+                    int choix = 0;
+                    if(name == "jour")
+                        choix = 0;
+                    else if(name == "nuit")
+                        choix = 1;
+                    else
+                        choix = 2;
+                   /* Scanner sc = new Scanner(System.in);*/
+
+                    Part.getPart().JoueurAjouterPoint(choix);
                     }else{
-                        int cosmo = 0;
-                        if(cosmo == 0){
-                        cosmo = (int) Math.random()*6;
+                        int choix = 0;
+                        if(choix == 0){
+                        choix = (int) Math.random()*6;
                         }
-                    Part.getPart().JoueurAjouterPoint(cosmo);
+                    Part.getPart().JoueurAjouterPoint(choix);
                 }
                 int position = 0;
                 for(int i =0; i< Part.getPart().getListeJouCourant().size();i ++ ){
@@ -170,8 +193,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                if(parameters.getMyself() instanceof JoueurVirtuel){
-                    System.out.println("Pour empecher un Divinite: \n");
+                if(parameters.getMyself() instanceof JoueurPhysique){
                     List<Joueur>listtemp = new ArrayList<Joueur>();
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
                         Joueur joueurtemp = (Joueur)i.next();
@@ -183,13 +205,17 @@ public class Factory {
                             }
                         }
                     }
+                    Object[] obj = new Object[]{};
+                    int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
+
                         Joueur joueurtemp = (Joueur)i.next();
+                        obj[nombre] = joueurtemp.getNom();
+                        nombre++;
                         System.out.println(joueurtemp.getNom() + "\n");
                     }
-                    System.out.println("Choisir un joueur! Donnez le numero.");
-                    Scanner sc = new Scanner(System.in);
-                    int nbr = sc.nextInt();
+                    int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
                 }
 
             }
@@ -201,8 +227,8 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                if(parameters.getMyself() instanceof JoueurVirtuel){
-                    System.out.println("Pour empecher un Divinite: \n");
+                if(parameters.getMyself() instanceof JoueurPhysique){
+                   /* System.out.println("Pour empecher un Divinite: \n");*/
                     List<Joueur>listtemp = new ArrayList<Joueur>();
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
                         Joueur joueurtemp = (Joueur)i.next();
@@ -214,13 +240,17 @@ public class Factory {
                             }
                         }
                     }
+                    Object[] obj = new Object[]{};
+                    int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
+
                         Joueur joueurtemp = (Joueur)i.next();
+                        obj[nombre] = joueurtemp.getNom();
+                        nombre++;
                         System.out.println(joueurtemp.getNom() + "\n");
                     }
-                    System.out.println("Choisir un joueur! Donnez le numero.");
-                    Scanner sc = new Scanner(System.in);
-                    int nbr = sc.nextInt();
+                    int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
                 }
 
             }
@@ -483,8 +513,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-             if(parameters.getMyself() instanceof JoueurVirtuel){
-                 System.out.println("Pour empecher un Divinite: \n");
+             if(parameters.getMyself() instanceof JoueurPhysique){
                  List<Joueur>listtemp = new ArrayList<Joueur>();
                  for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
                      Joueur joueurtemp = (Joueur)i.next();
@@ -496,13 +525,16 @@ public class Factory {
                          }
                      }
                  }
+                 Object[] obj = new Object[]{};
+                 int nombre = 0;
                  for(Iterator i = listtemp.iterator();i.hasNext();){
+
                      Joueur joueurtemp = (Joueur)i.next();
+                     obj[nombre] = joueurtemp.getNom();
+                     nombre++;
                      System.out.println(joueurtemp.getNom() + "\n");
                  }
-                 System.out.println("Choisir un joueur! Donnez le numero.");
-                 Scanner sc = new Scanner(System.in);
-                 int nbr = sc.nextInt();
+                 int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
              }
 
             }
@@ -513,8 +545,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                if(parameters.getMyself() instanceof JoueurVirtuel){
-                    System.out.println("Pour empecher un Divinite: \n");
+                if(parameters.getMyself() instanceof JoueurPhysique){
                     List<Joueur>listtemp = new ArrayList<Joueur>();
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
                         Joueur joueurtemp = (Joueur)i.next();
@@ -526,13 +557,16 @@ public class Factory {
                             }
                         }
                     }
+                    Object[] obj = new Object[]{};
+                    int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
+
                         Joueur joueurtemp = (Joueur)i.next();
+                        obj[nombre] = joueurtemp.getNom();
+                        nombre++;
                         System.out.println(joueurtemp.getNom() + "\n");
                     }
-                    System.out.println("Choisir un joueur! Donnez le numero.");
-                    Scanner sc = new Scanner(System.in);
-                    int nbr = sc.nextInt();
+                    int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
                 }
 
             }
@@ -544,8 +578,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                if(parameters.getMyself() instanceof JoueurVirtuel){
-                    System.out.println("Pour empecher un Divinite: \n");
+                if(parameters.getMyself() instanceof JoueurPhysique){
                     List<Joueur>listtemp = new ArrayList<Joueur>();
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
                         Joueur joueurtemp = (Joueur)i.next();
@@ -557,13 +590,16 @@ public class Factory {
                             }
                         }
                     }
+                    Object[] obj = new Object[]{};
+                    int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
+
                         Joueur joueurtemp = (Joueur)i.next();
+                        obj[nombre] = joueurtemp.getNom();
+                        nombre++;
                         System.out.println(joueurtemp.getNom() + "\n");
                     }
-                    System.out.println("Choisir un joueur! Donnez le numero.");
-                    Scanner sc = new Scanner(System.in);
-                    int nbr = sc.nextInt();
+                    int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
                 }
 
             }
@@ -971,16 +1007,18 @@ public class Factory {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                if(parameters.getMyself() instanceof JoueurVirtuel){
-                    System.out.println("Pour empecher un Divinite: \n");
-
+                if(parameters.getMyself() instanceof JoueurPhysique){
+                    Object[] obj = new Object[]{};
+                    int nombre = 0;
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+
                         Joueur joueurtemp = (Joueur)i.next();
+                        obj[nombre] = joueurtemp.getNom();
+                        nombre++;
                         System.out.println(joueurtemp.getNom() + "\n");
                     }
-                    System.out.println("Choisir un joueur! Donnez le numero.");
-                    Scanner sc = new Scanner(System.in);
-                    int nbr = sc.nextInt();
+                    int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
                 }
 
             }
@@ -992,16 +1030,18 @@ public class Factory {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                if(parameters.getMyself() instanceof JoueurVirtuel){
-                    System.out.println("Pour empecher un Divinite: \n");
-
+                if(parameters.getMyself() instanceof JoueurPhysique){
+                   Object[] obj = new Object[]{};
+                    int nombre = 0;
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+
                         Joueur joueurtemp = (Joueur)i.next();
+                        obj[nombre] = joueurtemp.getNom();
+                        nombre++;
                         System.out.println(joueurtemp.getNom() + "\n");
                     }
-                    System.out.println("Choisir un joueur! Donnez le numero.");
-                    Scanner sc = new Scanner(System.in);
-                    int nbr = sc.nextInt();
+                    int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
                 }
 
             }
@@ -1028,7 +1068,11 @@ public class Factory {
                         }
                     }
                     if(valider) {
+                        JOptionPane.showMessageDialog(null,"Joueur " + min + "lose" );
                         Part.getPart().getListeJouCourant().remove(min);
+
+
+
                     }else{
                         Part.getPart().start();
                     }
@@ -1048,7 +1092,10 @@ public class Factory {
                         }
                     }
                    if(valider){
-                       System.out.println("Joueur " + max + "gagne");
+                       JOptionPane.showMessageDialog(null,"Joueur " + max + "win" );
+
+
+                       System.out.println();
                        Part.getPart().whowin();
                    } else{
                        Part.getPart().start();
