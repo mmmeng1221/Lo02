@@ -1,9 +1,14 @@
 package VueClasse;
 
-import classes.joueur.Joueur;
 import classes.Part;
+import classes.joueur.Joueur;
+import classes.joueur.EasyStrategy;
+import classes.joueur.JoueurPhysique;
+import classes.joueur.JoueurVirtuel;
+import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,15 +24,22 @@ public class MaVueTotale extends JFrame{
 
     private JPanel inputPanel = new JPanel();
 
-    private JPanel comtagePanel = new JPanel();
+    private JPanel comptagePanel = new JPanel();
 
+    private JPanel carteAMainPanel = new JPanel();
 
+    private JPanel croyantCommunPanel = new JPanel();
 
-    private JPanel cartePanel = new JPanel();
+    private JPanel croyantRecuPanel = new JPanel();
+
 
     private JPanel gamePanel = new JPanel();
 
+    private Container myContainer = this.getContentPane();
+
     private String nomJoueur;
+    private Part part = Part.getPart();
+    private int nbrJoueur = 1;
 
     private JButton boutonDeffausser;
     private JButton boutonCompleter;
@@ -36,20 +48,69 @@ public class MaVueTotale extends JFrame{
 
 
     private JMenu[] menus = {
-            new JMenu("Options"),new JMenu("Aide")
+            new JMenu("Let's play!"),new JMenu("Information")
     };
 
     private JMenuItem[] items = {
-            new JMenuItem("Facile"),new JMenuItem("Introduction"),
-            new JMenuItem("Dur")
+            new JMenuItem("Info"),
+            new JMenuItem("Règles du jeu"),
+            new JMenuItem("Commencer")
     };
 
+    private ActionListener commencer = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            titleLabel.setText(((JMenuItem)e.getSource()).getText());
+            inputPanel();
+        }
+    };
+
+    private ActionListener info = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String introduction = new String("Nom du jeu: Divinae" + '\n' +
+                    "Par : Meng ZHANG, Yuetong ZHANG" + '\n' +
+                    "LO02 projet" + '\n' + "L'association Pandocréon");
+            JOptionPane.showMessageDialog(null, introduction,"Info",JOptionPane.INFORMATION_MESSAGE);
+        }
+    };
+
+    private ActionListener regle = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String regles = new String("Vous incarnez des Divinités, qui sont caractérisées par leur Origine " +
+                    "(Jour, Nuit, Aube ou Crépuscule) qui exprime leur filiation, et leurs Dogmes " +
+                    "(3 parmi : Nature, Humain, Symboles, Mystique, Chaos) qui définissent leurs croyances. " +
+                    "Chaque Divinité possèdent une capacité spéciale, un pouvoir utilisable une unique fois pendant la partie.\n" +
+                    "Le but du jeu est d’éliminer les autres Divinités et de prendre la place du Haut Dieu en récupérant " +
+                    "les prières d’un maximum de Croyants.");
+            Object[] options ={ "J'ai compris!" };
+            int m = JOptionPane.showOptionDialog(null, regles, "Règles du jeu",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            // JOptionPane.showMessageDialog(null,regles,"Introduction",JOptionPane.INFORMATION_MESSAGE);
+        }
+    };
     /**
      * Constructeur
      */
     public MaVueTotale(){
+        super("Divinae");
+        items[0].addActionListener(info);
+        items[1].addActionListener(regle);
+        items[2].addActionListener(commencer);
 
+        menus[0].add(items[1]);
+        menus[0].add(items[2]);
+        menus[1].add(items[0]);
+
+        JMenuBar  mb= new JMenuBar();
+        for (JMenu jm : menus){
+            mb.add(jm);
+        }
+        setJMenuBar(mb);
+        setLayout(new FlowLayout());
+        add(titleLabel);
     }
+
 
     /**
      * input
@@ -58,50 +119,79 @@ public class MaVueTotale extends JFrame{
         JLabel labelNomJoueur = new JLabel("Nom:");
         JTextField tf_name = new JTextField("Hero",20);
         nomJoueur = tf_name.getText();
-        String[] numAI = {"1","2","3","4","5"};
+        String[] numAI = {"1","2","3","4"};
         JLabel j_num = new JLabel("Nombre de joueur virtuel:");
         JComboBox ai = new JComboBox(numAI);
         ai.setEditable(false);
-        ai.addActionListener( new ActionListener(){
+        ai.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 JComboBox ai = (JComboBox) e.getSource();
-                numjoueur = ai.getSelectedIndex()+1  ;
+                nbrJoueur = ai.getSelectedIndex()+1 ;
+            }
+        });
+        String[] modeJeu = {"Facile", "Dur"};
+        JLabel mode = new JLabel("Mode : ");
+        JComboBox modeJv = new JComboBox(modeJeu);
+        modeJv.setEditable(false);
+        modeJv.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox modeJ = (JComboBox) e.getSource();
+                String reponseMode = modeJ.getSelectedItem().toString();
+                if(reponseMode.equals("Dur")){
+                    part.dur(nbrJoueur - 1);
+                }else{
+                    part.facile(nbrJoueur - 1);
+                }
             }
         });
 
-        JButton btn = new JButton("Oui");
+
+
+
+        JButton btn = new JButton("Confirmer");
+
         btn.addActionListener(new ActionListener(){
-           /* @Override
+            @Override
             public void actionPerformed(ActionEvent e) {
                 inputPanel.setVisible(false);
-                if (mp.getMode() instanceof ModeRapide)
-                    gamePanel();
-                else
-                    gamePanelAvance();
-            }*/
+                setGamePanel();
+            }
         });
 
-        inputPanel.add(nomJoueur);
+        inputPanel.add(labelNomJoueur);
         inputPanel.add(tf_name);
         inputPanel.add(j_num);
         inputPanel.add(ai);
         inputPanel.add(btn);
-        mycon.add(inputPanel);
+        myContainer.add(inputPanel);
     }
 
-    public void setCartePanel(){
-        Joueur joueur = Part.getPart().getListeJouCourant().get(0);
-        cartePanel.setLayout(new GridLayout(1,7));
+    public void setGamePanel(){
+        setCarteAMainPanel();
+        setComptagePanel();
+        titleLabel.setBorder((new LineBorder(new Color(231, 201, 87))));
+        gamePanel.setLayout(new BorderLayout());
+        gamePanel.add(titleLabel,BorderLayout.NORTH);
+        gamePanel.add(comptagePanel,BorderLayout.WEST);
+        gamePanel.add(croyantCommunPanel, BorderLayout.CENTER);
+        gamePanel.add(croyantRecuPanel, BorderLayout.CENTER);
+        gamePanel.add(carteAMainPanel,BorderLayout.SOUTH);
+        myContainer.add(gamePanel);
+    }
+
+    public void setCarteAMainPanel(){
+            Joueur joueurPhysique = part.getListeJouCourant().get(0);
+            carteAMainPanel.setLayout(new GridLayout(1,7));
         for (int i=1;i<=7;i++){
-            VueCarte carte = new VueCarte(joueur.getCarteMain().get(i));
-            carte.setActionCommand("1");
-            carte.addActionListener(mylistener);
-            cartePanel.add(carte);
+            VueCarte carte = new VueCarte(joueurPhysique.getCarteMain().get(i));
+            //carte.synchro(part);
+            carteAMainPanel.add(carte);
         }
+
     }
 
-    public JPanel getCartePanel() {
-        return cartePanel;
-    }
+    public void setComptagePanel(){}
+
 }
