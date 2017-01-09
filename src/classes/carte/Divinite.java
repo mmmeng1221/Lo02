@@ -29,6 +29,28 @@ public class Divinite extends Carte {
 
     }
 
+    public String origine (int ori){
+        String or;
+        switch (ori){
+            case 21:
+                or = "Jour";
+            break;
+            case 22:
+                or = "Aube";
+            break;
+            case 23:
+                or = "Néant";
+            break;
+            case 24:
+                or = "Crépuscule";
+            break;
+            default:
+                or = "Nuit";
+            break;
+        }
+        return or;
+
+    }
     @Override
     public Sacrifier sacrifier(Parameters parameters) {
         return null;
@@ -37,8 +59,8 @@ public class Divinite extends Carte {
     @Override
     public String toString() {
         return "votre carte divinité : " + "Divinite{" +  "\n" +
-                "nom : " + nom +
-                "origine : " + getOrigine() + "\n" +
+                "nom : " + nom + "\n" +
+                "origine : " + origine(getOrigine()) + "\n" +
                 "nomcCpacite : '" + nomcCpacite + '\n' +
                 "description : '" + description + '\n' +
                 '}';

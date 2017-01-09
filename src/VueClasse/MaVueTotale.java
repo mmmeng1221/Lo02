@@ -3,6 +3,7 @@ package VueClasse;
 import classes.De;
 import classes.Part;
 import classes.carte.Carte;
+import classes.carte.Divinite;
 import classes.carte.Parameters;
 import classes.joueur.Joueur;
 import classes.joueur.JoueurPhysique;
@@ -57,6 +58,7 @@ public static MaVueTotale getmaVueTotale(){
     private JButton boutonSacrifier = new JButton("Sacrifier");
     private JButton boutonUtiliser = new JButton("Utiliser");
     private JButton boutonDe = new JButton("De");
+    private JButton boutonDivi = new JButton("Divinité");
 
     private JMenu[] menus = {
             new JMenu("Let's play!"),new JMenu("Information")
@@ -67,6 +69,22 @@ public static MaVueTotale getmaVueTotale(){
             new JMenuItem("Règles du jeu"),
             new JMenuItem("Commencer")
     };
+
+    public void setBoutonsInvi(){
+        boutonDe.setVisible(false);
+        boutonUtiliser.setVisible(false);
+        boutonCompleter.setVisible(false);
+        boutonSacrifier.setVisible(false);
+        boutonDeffausser.setVisible(false);
+    }
+
+    public void setBoutonsV(){
+        boutonDe.setVisible(true);
+        boutonUtiliser.setVisible(true);
+        boutonCompleter.setVisible(true);
+        boutonSacrifier.setVisible(true);
+        boutonDeffausser.setVisible(true);
+    }
 
     private ActionListener commencer = new ActionListener() {
         @Override
@@ -92,11 +110,11 @@ public static MaVueTotale getmaVueTotale(){
     private ActionListener regle = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String regles = new String("Vous incarnez des Divinités, qui sont caractérisées par leur Origine " +
-                    "(Jour, Nuit, Aube ou Crépuscule) qui exprime leur filiation, et leurs Dogmes " +
-                    "(3 parmi : Nature, Humain, Symboles, Mystique, Chaos) qui définissent leurs croyances. " +
-                    "Chaque Divinité possèdent une capacité spéciale, un pouvoir utilisable une unique fois pendant la partie.\n" +
-                    "Le but du jeu est d’éliminer les autres Divinités et de prendre la place du Haut Dieu en récupérant " +
+            String regles = new String("Vous incarnez des Divinités, qui sont caractérisées par leur Origine " + "\n" +
+                    "(Jour, Nuit, Aube ou Crépuscule) qui exprime leur filiation, et leurs Dogmes " +"\n" +
+                    "(3 parmi : Nature, Humain, Symboles, Mystique, Chaos) qui définissent leurs croyances. " +"\n" +
+                    "Chaque Divinité possèdent une capacité spéciale, un pouvoir utilisable une unique fois pendant la partie." +"\n" +
+                    "Le but du jeu est d’éliminer les autres Divinités et de prendre la place du Haut Dieu en récupérant " +"\n" +
                     "les prières d’un maximum de Croyants.");
             Object[] options ={ "J'ai compris!" };
              JOptionPane.showOptionDialog(null, regles, "Règles du jeu",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -171,6 +189,26 @@ public static MaVueTotale getmaVueTotale(){
             }
         });*/
 
+        boutonDivi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Divinite myDivi = part.getListeJouCourant().get(0).getDivi();
+                String string = myDivi.toString();
+                string = string + "\n" + "Voulez-vous utiliser la capavité?";
+                Object[] options = {"Utiliser ma capacité", "Annuler"};
+                String mode = (String) JOptionPane.showInputDialog(null,string, "Divinité",
+                        JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), options, "Annuler");
+                if(mode == "Utiliser ma capacité"){
+                    Parameters parameters = new Parameters();
+                    parameters.setMyself(part.getListeJouCourant().get(0));
+                    parameters.setListotherjoueur(part.getListeJouCourant());
+                    myDivi.sacrifier(parameters);
+                }
+
+
+            }
+
+        });
 
 
 
@@ -218,7 +256,7 @@ public static MaVueTotale getmaVueTotale(){
         part.shuffleDivi();
         part.piocherDivi();
         part.piocher();
-        /*part.start();*/
+        //part.start();
         setCarteAMainPanel();
         setCroyantCommunPanel();
         setCroyantRecuPanel();
@@ -252,6 +290,8 @@ public static MaVueTotale getmaVueTotale(){
     }
 
     public void setPanelBouton(){
+        boutonDivi.setBackground(Color.orange);
+        boutonDivi.setOpaque(true);
         panelBouton.setLayout(new GridLayout(1,4));
         panelBouton.add(boutonDeffausser);
         boutonDeffausser.addActionListener(deffausser);
@@ -261,6 +301,7 @@ public static MaVueTotale getmaVueTotale(){
         boutonSacrifier.addActionListener(sacrifier);
 
         panelBouton.add(boutonUtiliser);
+        panelBouton.add(boutonDivi);
     }
     private ActionListener deffausser = new ActionListener() {
         @Override
@@ -357,6 +398,7 @@ public static MaVueTotale getmaVueTotale(){
         }
     };
 
+
     public void setCarteAMainPanel(){
             Joueur joueurphysique = part.getListeJouCourant().get(0);
             carteAMainPanel.setLayout(new GridLayout(1,7));
@@ -372,6 +414,7 @@ public static MaVueTotale getmaVueTotale(){
 
     public void setCroyantCommunPanel(){
         croyantCommunPanel.setLayout(new GridLayout(2,9));
+        boutonDe.addActionListener(rollDice);
         boutonDe.setPreferredSize(new Dimension(100,50));
         /*croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
