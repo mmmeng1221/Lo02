@@ -19,17 +19,12 @@ public class VuePoint extends JLabel implements Observer {
     private int MonNbrNuit;
     private int MonNbrNeant;
     private int MonNbrCroyant;
-
-
-
-
     private String nom;
-
     public VuePoint(String nom){
-        String str =  new String(
-                "Jour " + MonNbrJour +"\n" + "Nuit " + MonNbrJour + "\n" +"Neant" + MonNbrNeant);
+        this.nom = nom;
+        String str =  new String(nom + " : " + '\n' +
+                "Jour :" + MonNbrJour +"\n" + "Nuit :" + MonNbrNuit + "\n" +"Neant :" + "\n" + MonNbrNeant + "Mes points de prières :" + MonNbrCroyant );
         super.setText(str);
-
     }
     @Override
     public void update(Observable arg, Object b) {

@@ -1,9 +1,11 @@
 package VueClasse;
 
+import classes.De;
 import classes.Part;
 import classes.carte.Carte;
 import classes.carte.Parameters;
 import classes.joueur.Joueur;
+import classes.joueur.JoueurPhysique;
 import classes.joueur.JoueurVirtuel;
 
 import javax.swing.*;
@@ -205,7 +207,7 @@ public class MaVueTotale extends JFrame{
         setCroyantRecuPanel();
         setComptagePanel();
         setPanelBouton();
-        titleLabel.setText("Pandocreon");
+        titleLabel.setText("Divinae--Pandocreon");
         noteLabel.setText("Croyant commun :");
         noteLabel2.setText("Croyant recu :");
         titleLabel.setBorder((new LineBorder(new Color(231, 201, 87))));
@@ -218,9 +220,9 @@ public class MaVueTotale extends JFrame{
         centerpanel.add(croyantCommunPanel,BorderLayout.CENTER);
         centerpanel.add(panelBouton, BorderLayout.SOUTH);
 
-        titleLabel.setPreferredSize(new Dimension(1250,100));
-        comptagePanel.setPreferredSize(new Dimension(175,400));
-        croyantRecuPanel.setPreferredSize(new Dimension(525,400));
+        titleLabel.setPreferredSize(new Dimension(1250,30));
+        comptagePanel.setPreferredSize(new Dimension(175,470));
+        croyantRecuPanel.setPreferredSize(new Dimension(525,470));
         carteAMainPanel.setPreferredSize(new Dimension(1250,300));
         this.getContentPane().add(titleLabel,BorderLayout.NORTH);
         this.getContentPane().add(comptagePanel,BorderLayout.WEST);
@@ -334,6 +336,15 @@ public class MaVueTotale extends JFrame{
 
         }
     };
+
+
+    private ActionListener rollDice = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            De.getDe().lancer();
+        }
+    };
+
     public void setCarteAMainPanel(){
             Joueur joueurphysique = part.getListeJouCourant().get(0);
             carteAMainPanel.setLayout(new GridLayout(1,7));
@@ -349,6 +360,7 @@ public class MaVueTotale extends JFrame{
 
     public void setCroyantCommunPanel(){
         croyantCommunPanel.setLayout(new GridLayout(2,9));
+        boutonDe.setPreferredSize(new Dimension(100,50));
         /*croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
@@ -391,7 +403,7 @@ public class MaVueTotale extends JFrame{
         comptagePanel.setLayout(new GridLayout(numjoueur+1,1));
         comptagePanel.add(myVue);*/
         for (int i=1;i<=nbrJoueur-1;i++){
-            String str = ("Joueur Virtuel " + i+1);
+            String str = new String("Joueur Virtuel " + i);
             VuePoint computerVue = new VuePoint(str);
             JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(i);
 
@@ -400,6 +412,10 @@ public class MaVueTotale extends JFrame{
             comptagePanel.add(computerVue);
         }
         VuePoint myVue = new VuePoint(nomJoueur);
+        JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
+        jp.add(myVue);
+        jp.notifyChanges();
+        comptagePanel.add(myVue);
 
         /*part.getListeJouCourant().get(0);*/
         comptagePanel.add(myVue);
