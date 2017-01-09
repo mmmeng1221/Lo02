@@ -581,17 +581,36 @@ public class JoueurPhysique extends Joueur {
         List<Joueur> listjoueurtemp = new ArrayList<Joueur>();
         List<Joueur>listjoueursortie = new ArrayList<Joueur>();
         listjoueurtemp = listjoueur;
-        for(int j = 0;j<size;j++){
+       /* for(int j = 0;j<size;j++){
             for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
                  Joueur joueurtemp =(Joueur)i.next();
                  System.out.println(joueurtemp.getNom() + "\n");
             }
+            */
+            Object[] obj = new Object[]{};
+            int nombre = 0;
+            for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
+
+                Joueur joueurtemp = (Joueur)i.next();
+                obj[nombre] = joueurtemp.getNom();
+                nombre++;
+            }
+            String nomjoueur = (String) JOptionPane.showInputDialog(null,"quel joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+            for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
+                Joueur joueurtemp = (Joueur)i.next();
+                if(nomjoueur == joueurtemp.getNom())
+                    listjoueursortie.add(joueurtemp);
+                     listjoueurtemp.remove(i);
+                break;
+            }
+            /*
             System.out.println("Quel joueur voulez-vous choisir? Donnez le numero");
             Scanner sc = new Scanner(System.in);
             int i = sc.nextInt();
             listjoueursortie.add(listjoueurtemp.get(i));
-            listjoueurtemp.remove(i);
-        }
+            */
+
         return listjoueursortie;
     }
 

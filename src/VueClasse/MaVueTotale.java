@@ -336,15 +336,15 @@ public class MaVueTotale extends JFrame{
 
     public void setCroyantCommunPanel(){
         croyantCommunPanel.setLayout(new GridLayout(2,9));
+       /* croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());*/
         croyantCommunPanel.add(boutonDe);
+        /*croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
+        croyantCommunPanel.add(new JLabel());*/
         for(Carte c : part.getCroyantCommun()){
             VueCarte vueCroyant = new VueCarte(c);
             croyantCommunPanel.add(vueCroyant);
