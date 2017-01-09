@@ -758,7 +758,7 @@ public class Factory {
                                 for (Iterator j = cartetemp.getCroyantAttache().iterator(); j.hasNext(); ) {
                                     Croyant croyant = (Croyant) j.next();
                                     parameters.getPart().croyantCommun.add(croyant);
-
+                                    MaVueTotale.getmaVueTotale().getContentPane();
                                     cartetemp.getCroyantAttache().remove(croyant);
                                     parameters.getPart().getCarteDeffause().add(cartetemp);
 

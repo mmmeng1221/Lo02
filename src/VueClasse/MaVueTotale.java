@@ -169,7 +169,7 @@ public static MaVueTotale getmaVueTotale(){
             @Override
             public void actionPerformed(ActionEvent e){
                 JComboBox ai = (JComboBox) e.getSource();
-                nbrJoueur = ai.getSelectedIndex()+1 ;
+                nbrJoueur = ai.getSelectedIndex()+2;
             }
         });
        /* String[] modeJeu = {"Facile", "Dur"};
@@ -467,18 +467,18 @@ public static MaVueTotale getmaVueTotale(){
             jv.notifyChanges();
 
         }
-
-
+    /*    JOptionPane.showMessageDialog(null, null,"nbrjoueur" + nbrJoueur,JOptionPane.INFORMATION_MESSAGE);*/
+/*
         String str = "Joueur Virtuel " + nbrJoueur;
         VuePoint computerVue = new VuePoint(str);
         JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(nbrJoueur - 1);
         jv.add(computerVue);
         comptagePanel.add(computerVue);
         jv.notifyChanges();
+*/
 
 
 
-        
 
         VuePoint myVue = new VuePoint(nomJoueur);
         JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
