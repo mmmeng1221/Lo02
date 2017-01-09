@@ -169,7 +169,7 @@ public class MaVueTotale extends JFrame{
                     e1.printStackTrace();
                 }
                 part.initialiserJoueur(part);
-                Object[] obj = new Object[]{"facile","dur"};
+                Object[] obj = {"facile","dur"};
                 String mode = (String) JOptionPane.showInputDialog(null,"Choisir le mode\n", "mode", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "facile");
                 if(mode == "facile")
                     part.dur(nbrJoueur - 1,part);
@@ -239,11 +239,11 @@ public class MaVueTotale extends JFrame{
     private ActionListener deffausser = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
-            Object[] obj2 =new Object[]{};
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(0);
+            Object[] obj2 = new Object[joueurphysique.getCarteMain().size()];
             for(int i = 0;i < joueurphysique.getCarteMain().size();i++)
             {
-                obj2[i] = i;
+                obj2[i] = i+1;
             }
             int nbr = (int) JOptionPane.showInputDialog(null,"Combien de carte voulez vous deffausser?\n", "nombre", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj2, 1);
 
@@ -257,10 +257,11 @@ public class MaVueTotale extends JFrame{
     private ActionListener cartedefausser = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(0);
            VueCarte carte = (VueCarte) e.getSource();
            joueurphysique.getCarteMain().remove(carte.getThiscarte());
             carte.setVisible(false);
+            carteAMainPanel.remove(carte);
 
         }
     };
@@ -275,7 +276,7 @@ public class MaVueTotale extends JFrame{
                 this.piocher(Part.getPart().piocher1Carte());
             }
         }*/
-            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(0);
             if(joueurphysique.getCarteMain().size() >= 7)
                 JOptionPane.showMessageDialog(null, "Vous avez 7 cartes, vous ne pouvez pas piocher des cartes.", "Erreur",JOptionPane.ERROR_MESSAGE);
 
@@ -294,7 +295,7 @@ public class MaVueTotale extends JFrame{
     private ActionListener sacrifier = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(0);
             for(int i=0;i<joueurphysique.getCarteMain().size();i++){
                 VueCarte carte = (VueCarte) carteAMainPanel.getComponent(i);
                     carte.addActionListener(cartesacrifier);
@@ -309,7 +310,7 @@ public class MaVueTotale extends JFrame{
     private ActionListener cartesacrifier = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(0);
             VueCarte carte = (VueCarte) e.getSource();
             Parameters parameters = new Parameters();
             parameters.setMyself(joueurphysique);
@@ -322,7 +323,7 @@ public class MaVueTotale extends JFrame{
         }
     };
     public void setCarteAMainPanel(){
-            Joueur joueurphysique = part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            Joueur joueurphysique = part.getListeJouCourant().get(0);
             carteAMainPanel.setLayout(new GridLayout(1,7));
         for (int i=0;i<7;i++){
             VueCarte carte = new VueCarte(joueurphysique.getCarteMain().get(i));
