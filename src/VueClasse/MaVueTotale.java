@@ -403,19 +403,20 @@ public static MaVueTotale getmaVueTotale(){
         comptagePanel.setLayout(new GridLayout(numjoueur+1,1));
         comptagePanel.add(myVue);*/
         for (int i=1;i<=nbrJoueur-1;i++){
-            String str = new String("Joueur Virtuel " + i);
+            String str = "Joueur Virtuel " + i;
             VuePoint computerVue = new VuePoint(str);
             JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(i);
-
             jv.add(computerVue);
-            jv.notifyChanges();
             comptagePanel.add(computerVue);
+            jv.notifyChanges();
+
         }
         VuePoint myVue = new VuePoint(nomJoueur);
         JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
         jp.add(myVue);
-        jp.notifyChanges();
         comptagePanel.add(myVue);
+        jp.notifyChanges();
+
 
         /*part.getListeJouCourant().get(0);*/
         comptagePanel.add(myVue);
