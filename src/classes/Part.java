@@ -806,8 +806,8 @@ public class Part {
      * Demander au utilisateur nbr de joueurs virtuels
      */
     public void initialiserJoueur(Part part) {
-        JoueurPhysique jp = new JoueurPhysique();
-        part.listeJouCourant.add(jp);
+       // JoueurPhysique jp = new JoueurPhysique();
+        //part.listeJouCourant.add(jp);
         /*
         System.out.println("Chioisissez le mode" + "\n" + "0-indiquant FACILE" + "\n"
         + "1-indiquant DUR");
@@ -831,12 +831,16 @@ public class Part {
     }
 
     public void facile(int nbr,Part part){
+        JoueurPhysique jp = new JoueurPhysique();
+        part.listeJouCourant.add(jp);
         for (int i = 0; i < nbr; i++) {
             JoueurVirtuel jv = new JoueurVirtuel(new EasyStrategy());
             part.listeJouCourant.add(jv);}
     }
 
     public void dur(int nbr,Part part){
+        JoueurPhysique jp = new JoueurPhysique();
+        part.listeJouCourant.add(jp);
         for (int i = 0; i < nbr; i++) {
             JoueurVirtuel jv = new JoueurVirtuel(new HardStrategy());
             part.listeJouCourant.add(jv);}

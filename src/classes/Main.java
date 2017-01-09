@@ -19,6 +19,6 @@ public class Main {
         part.piocherDivi();
         part.piocher();
         part.start();*/
-        SwingConsole.run(new MaVueTotale(),1500,1000);
+        SwingConsole.run(new MaVueTotale(),1250,800);
     }
 }

@@ -214,14 +214,20 @@ public class MaVueTotale extends JFrame{
 
        this.setLayout(new BorderLayout());
         centerpanel.setLayout(new BorderLayout());
-        centerpanel.add(croyantCommunPanel,BorderLayout.NORTH);
-        centerpanel.add(croyantRecuPanel, BorderLayout.SOUTH);
-        centerpanel.add(panelBouton, BorderLayout.CENTER);
+        centerpanel.setPreferredSize(new Dimension(525,400));
+        centerpanel.add(croyantCommunPanel,BorderLayout.CENTER);
+        centerpanel.add(panelBouton, BorderLayout.SOUTH);
+
+        titleLabel.setPreferredSize(new Dimension(1250,100));
+        comptagePanel.setPreferredSize(new Dimension(175,400));
+        croyantRecuPanel.setPreferredSize(new Dimension(525,400));
+        carteAMainPanel.setPreferredSize(new Dimension(1250,300));
         this.getContentPane().add(titleLabel,BorderLayout.NORTH);
         this.getContentPane().add(comptagePanel,BorderLayout.WEST);
         this.getContentPane().add(centerpanel,BorderLayout.CENTER);
-
+        this.getContentPane().add(croyantRecuPanel,BorderLayout.EAST);
         this.getContentPane().add(carteAMainPanel,BorderLayout.SOUTH);
+
        /* myContainer.add(gamePanel);*/
     }
 
@@ -325,6 +331,7 @@ public class MaVueTotale extends JFrame{
     public void setCarteAMainPanel(){
             Joueur joueurphysique = part.getListeJouCourant().get(0);
             carteAMainPanel.setLayout(new GridLayout(1,7));
+            carteAMainPanel.setSize(1000,700);
         for (int i=0;i<7;i++){
             VueCarte carte = new VueCarte(joueurphysique.getCarteMain().get(i));
             carte.synchro(part);
@@ -336,7 +343,7 @@ public class MaVueTotale extends JFrame{
 
     public void setCroyantCommunPanel(){
         croyantCommunPanel.setLayout(new GridLayout(2,9));
-       /* croyantCommunPanel.add(new JLabel());
+        /*croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());
         croyantCommunPanel.add(new JLabel());*/
