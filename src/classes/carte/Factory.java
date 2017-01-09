@@ -1,6 +1,7 @@
 package classes.carte;
 
 
+import VueClasse.MaVueTotale;
 import classes.Constants;
 import classes.De;
 import classes.Part;
@@ -258,23 +259,44 @@ public class Factory {
             public void sacrifier(Parameters parameters) {
               /*  parameters.getMyself().setPointActTot(parameters.getMyself().getPointActTot());*/
               boolean avoirdeuxcarte = false;
-                while(avoirdeuxcarte = false){
-                 Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
-                    if(joueurtemp.getCarteMain().size() < 2){
-                        joueurtemp.afficherfalse();
+                Joueur joueurtemp = null;
+                while(avoirdeuxcarte = false) {
+                    Object[] obj = new Object[]{};
+                    int nombre = 0;
+                    for (Iterator i = parameters.getListotherjoueur().iterator(); i.hasNext(); ) {
+
+                        Joueur key = (Joueur) i.next();
+                        obj[nombre] = key.getNom();
+                        nombre++;
                     }
-                    else {
+                    String nomjoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+                    for (Iterator i = parameters.getListotherjoueur().iterator(); i.hasNext(); ) {
+                        joueurtemp = (Joueur) i.next();
+                        if (nomjoueur == joueurtemp.getNom()) {
+
+                            break;
+                        }
+                    }
+
+                    if (joueurtemp.getCarteMain().size() < 2) {
+                        joueurtemp.afficherfalse();
+                    } else {
+                        avoirdeuxcarte = true;
+                    }
+                }
                         avoirdeuxcarte = true;
                         int num = (int) Math.random() * joueurtemp.getCarteMain().size();
                         Carte a = joueurtemp.getCarteMain().get(num);
                         parameters.getMyself().getCarteMain().add(a);
+
                         joueurtemp.getCarteMain().remove(a);
                         int num2 = (int) Math.random() * joueurtemp.getCarteMain().size();
                         Carte b = joueurtemp.getCarteMain().get(num2);
                         parameters.getMyself().getCarteMain().add(a);
                         joueurtemp.getCarteMain().remove(b);
-                }
-                }
+
+
             }
         },image);
     }
@@ -739,6 +761,7 @@ public class Factory {
 
                                     cartetemp.getCroyantAttache().remove(croyant);
                                     parameters.getPart().getCarteDeffause().add(cartetemp);
+
                                     joueurtemp.getCarteGuide().remove(cartetemp);
 
                                 }

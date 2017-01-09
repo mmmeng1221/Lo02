@@ -545,7 +545,27 @@ public class JoueurPhysique extends Joueur {
     }
 
 //Foncitons pour carte croyant
-    public int jouer(Parameters parameters) {
+    /*
+    public Joueur jouer(Parameters parameters) {
+
+        Object[] obj = new Object[]{};
+        int nombre = 0;
+        for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+
+            Joueur key = (Joueur)i.next();
+            obj[nombre] = key.getNom();
+            nombre++;
+        }
+        String nomjoueur = (String) JOptionPane.showInputDialog(null,"quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+        for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
+            Joueur joueurtemp = (Joueur)i.next();
+            if(nomjoueur == joueurtemp.getNom()) {
+                return joueurtemp;
+                break;
+            }
+        }
+
         for (Iterator it = parameters.getListotherjoueur().iterator(); it.hasNext(); ) {
             Joueur key = (Joueur) it.next();
             System.out.println(key.getNom());
@@ -553,8 +573,9 @@ public class JoueurPhysique extends Joueur {
         System.out.println("quel joueur voulez-vous choisir? Donnez le numero.");
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
-        return i;
-    }
+
+    }*/
+/*
     @Override
     public int jouer(List<Carte> cartemain) {
         for (Iterator it = cartemain.iterator(); it.hasNext(); ) {
@@ -586,7 +607,7 @@ public class JoueurPhysique extends Joueur {
                  Joueur joueurtemp =(Joueur)i.next();
                  System.out.println(joueurtemp.getNom() + "\n");
             }
-            */
+
             Object[] obj = new Object[]{};
             int nombre = 0;
             for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
@@ -604,17 +625,17 @@ public class JoueurPhysique extends Joueur {
                      listjoueurtemp.remove(i);
                 break;
             }
-            /*
+
             System.out.println("Quel joueur voulez-vous choisir? Donnez le numero");
             Scanner sc = new Scanner(System.in);
             int i = sc.nextInt();
             listjoueursortie.add(listjoueurtemp.get(i));
-            */
+
 
         return listjoueursortie;
     }
 
-
+*/
     public void afficherfalse() {
         JOptionPane.showMessageDialog(null, "choisissez une autre joueur!");
 

@@ -811,7 +811,7 @@ public class Part {
         /*
         System.out.println("Chioisissez le mode" + "\n" + "0-indiquant FACILE" + "\n"
         + "1-indiquant DUR");
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scannerd(System.in);
         int mode = sc.nextInt();
         while(mode != 0 && mode !=1){
             System.out.println("Entrez 0 ou 1 s'il vous plaît.");

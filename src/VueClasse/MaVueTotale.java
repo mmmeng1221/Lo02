@@ -25,6 +25,11 @@ public class MaVueTotale extends JFrame{
     private JLabel noteLabel2 = new JLabel("Croyant recu :");
     private JPanel inputPanel = new JPanel();
 
+    private static MaVueTotale maVueTotale  = new MaVueTotale();
+
+public static MaVueTotale getmaVueTotale(){
+    return maVueTotale;
+}
 
     private JPanel panelBouton = new JPanel();
 
@@ -99,7 +104,7 @@ public class MaVueTotale extends JFrame{
     /**
      * Constructeur
      */
-    public MaVueTotale(){
+    private MaVueTotale(){
         super("Divinae");
         items[0].addActionListener(info);
         items[1].addActionListener(regle);
@@ -227,6 +232,7 @@ public class MaVueTotale extends JFrame{
         this.getContentPane().add(centerpanel,BorderLayout.CENTER);
         this.getContentPane().add(croyantRecuPanel,BorderLayout.EAST);
         this.getContentPane().add(carteAMainPanel,BorderLayout.SOUTH);
+
 
        /* myContainer.add(gamePanel);*/
     }

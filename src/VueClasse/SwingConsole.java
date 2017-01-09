@@ -6,6 +6,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+
+
 /**
  * Created by Administrator on 2017/1/6.
  */
@@ -16,7 +18,8 @@ public class SwingConsole {
         @Override
         public void run() {
 
-            JFrame frame = new MaVueTotale();
+
+            JFrame frame = MaVueTotale.getmaVueTotale();
             frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setVisible(true);
