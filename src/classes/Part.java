@@ -1,5 +1,6 @@
 package classes;
 
+import VueClasse.MaVueTotale;
 import VueClasse.VuePoint;
 import classes.carte.*;
 import classes.joueur.*;
@@ -880,7 +881,12 @@ public class Part {
             open = true;
             JoueurAjouterPoint(De.getDe().lancer());
             Joueur joueur = listeJouCourant.get(startIndex);
-            joueur.jouer();
+            if(!(joueur instanceof JoueurPhysique)){
+                MaVueTotale.getmaVueTotale().setBoutonsInvi();
+            joueur.jouer();}
+            if(!(joueur instanceof JoueurPhysique)){
+                MaVueTotale.getmaVueTotale().setBoutonsV();
+            }
             startotherJour();
             startIndex = startIndex < listeJouCourant.size() -1 ? startIndex + 1 : 0;
             open = false;
@@ -893,7 +899,12 @@ public class Part {
         currentIndex = startIndex < listeJouCourant.size() -1 ? startIndex + 1 : 0;
         while (currentIndex != startIndex) {
             Joueur joueur = listeJouCourant.get(currentIndex);
-            joueur.jouer();
+            if(!(joueur instanceof JoueurPhysique)){
+                MaVueTotale.getmaVueTotale().setBoutonsInvi();
+            joueur.jouer();}
+            if(!(joueur instanceof JoueurPhysique)){
+                MaVueTotale.getmaVueTotale().setBoutonsV();
+            }
             System.out.println(currentIndex + "joueur");
             currentIndex = currentIndex < listeJouCourant.size() -1 ? currentIndex + 1 : 0;
         }
