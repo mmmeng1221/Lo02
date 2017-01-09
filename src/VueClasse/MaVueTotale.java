@@ -467,12 +467,18 @@ public static MaVueTotale getmaVueTotale(){
             jv.notifyChanges();
 
         }
+
+
         String str = "Joueur Virtuel " + nbrJoueur;
         VuePoint computerVue = new VuePoint(str);
         JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(nbrJoueur - 1);
         jv.add(computerVue);
         comptagePanel.add(computerVue);
         jv.notifyChanges();
+
+
+
+        
 
         VuePoint myVue = new VuePoint(nomJoueur);
         JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
