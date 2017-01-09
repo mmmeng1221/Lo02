@@ -43,7 +43,7 @@ public class VueCarte extends JButton {
         super();
         this.thiscarte = c;
         Image image = c.getImage();
-        this.setBounds(new Rectangle(0,0,100,155));
+        this.setBounds(new Rectangle(0,0,175,300));
         /*this.addActionListener(mylistener);*/
         this.setActionCommand("enable");
         this.setLayout(new BorderLayout());
