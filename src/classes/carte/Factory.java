@@ -54,14 +54,13 @@ public class Factory {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        Image finalImage = image;
         return new Guide(nom, capacite, temp, origine, nbCroyant, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Apocalypse apocalypse = creatApo(null,0, finalImage);
+                Apocalypse apocalypse = creatApo(null,0);
                 apocalypse.sacrifier(parameters);
             }
-        });
+        },image);
     }
 
     /**
@@ -91,8 +90,6 @@ public class Factory {
                     obj[2] = "neant";
 
                     String name = (String) JOptionPane.showInputDialog(null,"Choisissez l'origine des points d'action que vous voulez gagner\n", "origine", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "jour");
-                    /*Scanner scanner = new Scanner(System.in);
-                    choix = scanner.nextInt();*/
                     if(name == "jour")
                         choix = 0;
                     else if(name == "nuit")
@@ -119,7 +116,7 @@ public class Factory {
 
 
             }
-        });
+        },image);
     }
 
     public Guide createMessie(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant,Image image) {
@@ -142,7 +139,6 @@ public class Factory {
                         choix = 1;
                     else
                         choix = 2;
-                   /* Scanner sc = new Scanner(System.in);*/
 
                     Part.getPart().JoueurAjouterPoint(choix);
                     }else{
@@ -160,7 +156,7 @@ public class Factory {
                 }
                 Part.getPart().setStartIndex(position);
                 }
-        });
+        },image);
     }
 
 //Croyant
@@ -212,7 +208,6 @@ public class Factory {
                         Joueur joueurtemp = (Joueur)i.next();
                         obj[nombre] = joueurtemp.getNom();
                         nombre++;
-                        System.out.println(joueurtemp.getNom() + "\n");
                     }
                     int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
@@ -228,7 +223,6 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                   /* System.out.println("Pour empecher un Divinite: \n");*/
                     List<Joueur>listtemp = new ArrayList<Joueur>();
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
                         Joueur joueurtemp = (Joueur)i.next();
@@ -247,7 +241,6 @@ public class Factory {
                         Joueur joueurtemp = (Joueur)i.next();
                         obj[nombre] = joueurtemp.getNom();
                         nombre++;
-                        System.out.println(joueurtemp.getNom() + "\n");
                     }
                     int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
@@ -532,7 +525,6 @@ public class Factory {
                      Joueur joueurtemp = (Joueur)i.next();
                      obj[nombre] = joueurtemp.getNom();
                      nombre++;
-                     System.out.println(joueurtemp.getNom() + "\n");
                  }
                  int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
              }
@@ -564,7 +556,6 @@ public class Factory {
                         Joueur joueurtemp = (Joueur)i.next();
                         obj[nombre] = joueurtemp.getNom();
                         nombre++;
-                        System.out.println(joueurtemp.getNom() + "\n");
                     }
                     int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
                 }
@@ -597,7 +588,6 @@ public class Factory {
                         Joueur joueurtemp = (Joueur)i.next();
                         obj[nombre] = joueurtemp.getNom();
                         nombre++;
-                        System.out.println(joueurtemp.getNom() + "\n");
                     }
                     int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
                 }
@@ -849,8 +839,18 @@ public class Factory {
                     }
                 }
                 if (listcartetemp != null) {
-                    Carte cartetemp = listcartetemp.get(parameters.getMyself().jouer(listcartetemp));
-                    cartetemp.sacrifier(parameters);
+                    Object[] obj = new Object[]{};
+                    int nombre = 0;
+                    for(Iterator i = listcartetemp.iterator();i.hasNext();){
+
+                        Carte cartetemp = (Carte)i.next();
+                        obj[nombre] = cartetemp;
+                        nombre++;
+                    }
+                    int nbr = (int) JOptionPane.showInputDialog(null,"quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+                    /*Carte cartetemp = listcartetemp.get(parameters.getMyself().jouer(listcartetemp));*/
+                    /*cartetemp.sacrifier(parameters);*/
                 }
                 ///这张卡cartetemp， sacrifier之后还应该保留着，怎么处理？？
             }
@@ -1015,7 +1015,6 @@ public class Factory {
                         Joueur joueurtemp = (Joueur)i.next();
                         obj[nombre] = joueurtemp.getNom();
                         nombre++;
-                        System.out.println(joueurtemp.getNom() + "\n");
                     }
                     int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
@@ -1038,7 +1037,6 @@ public class Factory {
                         Joueur joueurtemp = (Joueur)i.next();
                         obj[nombre] = joueurtemp.getNom();
                         nombre++;
-                        System.out.println(joueurtemp.getNom() + "\n");
                     }
                     int nbr = (int) JOptionPane.showInputDialog(null,"Pour empecher un Divinite: \n Choisir un joueur!\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
@@ -1049,7 +1047,7 @@ public class Factory {
     }
 
     //Apocalype
-    public Apocalypse creatApo(String nom, int origine,Image image) {
+    public Apocalypse creatApo(String nom, int origine) {
         return new Apocalypse(nom,origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
@@ -1095,7 +1093,6 @@ public class Factory {
                        JOptionPane.showMessageDialog(null,"Joueur " + max + "win" );
 
 
-                       System.out.println();
                        Part.getPart().whowin();
                    } else{
                        Part.getPart().start();

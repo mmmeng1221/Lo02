@@ -6,6 +6,7 @@ import classes.joueur.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class Part {
 
-    private List<Joueur> listeJouCourant;
+    private LinkedList<Joueur> listeJouCourant;
     private List<Carte> cartePioche;
     private List<Carte> carteDeffause;
     public List<Croyant> croyantCommun;
@@ -28,7 +29,7 @@ public class Part {
     private static Part part = new Part();
 
     private Part() {
-        this.listeJouCourant = new ArrayList();
+        this.listeJouCourant = new LinkedList();
         this.cartePioche = new ArrayList<>();
         this.carteDeffause = new ArrayList<>();
         this.croyantCommun = new ArrayList<>();
@@ -76,7 +77,7 @@ public class Part {
         return listeJouCourant;
     }
 
-    public void setListeJouCourant(List<Joueur> listeJouCourant) {
+    public void setListeJouCourant(LinkedList<Joueur> listeJouCourant) {
         this.listeJouCourant = listeJouCourant;
     }
 
@@ -93,7 +94,7 @@ public class Part {
         dogs.add(Constants.DOGMES_NATURE);
         dogs.add(Constants.DOGMES_HUMAIN);
         File file = new File("src/Image/Guide/Maryr 1.jpg");
-        Image image = null;
+        BufferedImage image = null;
         try {
             image = ImageIO.read(file);
         } catch (IOException e) {
@@ -604,7 +605,7 @@ public class Part {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Apocalypse apocalypse1 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_JOUR,image);
+        Apocalypse apocalypse1 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_JOUR);
         this.cartePioche.add(apocalypse1);
         file = new File("src/Image/Apocalypse/Apocalypse 2.jpg");
         image = null;
@@ -613,7 +614,7 @@ public class Part {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Apocalypse apocalypse2 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NUIT,image);
+        Apocalypse apocalypse2 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NUIT);
         this.cartePioche.add(apocalypse2);
 
         file = new File("src/Image/Apocalypse/Apocalypse 3.jpg");
@@ -623,7 +624,7 @@ public class Part {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Apocalypse apocalypse3 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NEANT,image);
+        Apocalypse apocalypse3 = Factory.getFactory().creatApo("Apocalyipse",Constants.ORIGINE_NEANT);
         this.cartePioche.add(apocalypse3);
 
         file = new File("src/Image/Apocalypse/Apocalypse 4.jpg");
@@ -633,7 +634,7 @@ public class Part {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Apocalypse apocalypse4 = Factory.getFactory().creatApo("Apocalyipse",0,image);
+        Apocalypse apocalypse4 = Factory.getFactory().creatApo("Apocalyipse",0);
         this.cartePioche.add(apocalypse4);
 
         file = new File("src/Image/Apocalypse/Apocalypse 5.jpg");
@@ -643,7 +644,7 @@ public class Part {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Apocalypse apocalypse5 = Factory.getFactory().creatApo("Apocalyipse",0,image);
+        Apocalypse apocalypse5 = Factory.getFactory().creatApo("Apocalyipse",0);
         this.cartePioche.add(apocalypse5);
 
         /**

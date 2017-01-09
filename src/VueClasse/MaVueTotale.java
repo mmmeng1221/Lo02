@@ -4,6 +4,7 @@ import classes.Part;
 import classes.carte.Carte;
 import classes.carte.Parameters;
 import classes.joueur.Joueur;
+import classes.joueur.JoueurVirtuel;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -36,9 +37,9 @@ public class MaVueTotale extends JFrame{
     private JPanel croyantRecuPanel = new JPanel();
 
     private JPanel centerpanel = new JPanel();
-    private JPanel gamePanel = new JPanel();
+/*    private JPanel gamePanel = new JPanel();
 
-    private Container myContainer = this.getContentPane();
+    private Container myContainer = this.getContentPane();*/
 
     private String nomJoueur;
     private Part part = Part.getPart();
@@ -64,6 +65,9 @@ public class MaVueTotale extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
             titleLabel.setText(((JMenuItem)e.getSource()).getText());
+
+
+
             inputPanel();
         }
     };
@@ -133,7 +137,7 @@ public class MaVueTotale extends JFrame{
                 nbrJoueur = ai.getSelectedIndex()+1 ;
             }
         });
-        String[] modeJeu = {"Facile", "Dur"};
+       /* String[] modeJeu = {"Facile", "Dur"};
         JLabel mode = new JLabel("Mode : ");
         JComboBox modeJv = new JComboBox(modeJeu);
         modeJv.setEditable(false);
@@ -148,7 +152,7 @@ public class MaVueTotale extends JFrame{
                     part.facile(nbrJoueur - 1,part);
                 }
             }
-        });
+        });*/
 
 
 
@@ -160,6 +164,19 @@ public class MaVueTotale extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 inputPanel.setVisible(false);
                 try {
+                    part.initialiserCarte();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                part.initialiserJoueur(part);
+                Object[] obj = new Object[]{"facile","dur"};
+                String mode = (String) JOptionPane.showInputDialog(null,"Choisir le mode\n", "mode", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "facile");
+                if(mode == "facile")
+                    part.dur(nbrJoueur - 1,part);
+                    else
+                        part.facile(nbrJoueur - 1,part);
+                try {
+
                     setGamePanel();
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -171,14 +188,13 @@ public class MaVueTotale extends JFrame{
         inputPanel.add(tf_name);
         inputPanel.add(j_num);
         inputPanel.add(ai);
-        inputPanel.add(modeJv);
+       /* inputPanel.add(modeJv);*/
         inputPanel.add(btn);
-        myContainer.add(inputPanel);
+        this.getContentPane().add(inputPanel);
     }
 
     public void setGamePanel() throws IOException {
         part.initialiserCarte();
-        part.initialiserJoueur(part);
         part.shuffle();
         part.shuffleDivi();
         part.piocherDivi();
@@ -196,16 +212,17 @@ public class MaVueTotale extends JFrame{
         noteLabel.setBorder((new LineBorder(Color.BLACK,1,true)));
         noteLabel2.setBorder((new LineBorder(Color.BLACK,1,true)));
 
-        gamePanel.setLayout(new BorderLayout());
+       this.setLayout(new BorderLayout());
         centerpanel.setLayout(new BorderLayout());
-        gamePanel.add(titleLabel,BorderLayout.NORTH);
-        gamePanel.add(comptagePanel,BorderLayout.WEST);
-        gamePanel.add(centerpanel,BorderLayout.CENTER);
         centerpanel.add(croyantCommunPanel,BorderLayout.NORTH);
-       centerpanel.add(croyantRecuPanel, BorderLayout.SOUTH);
+        centerpanel.add(croyantRecuPanel, BorderLayout.SOUTH);
         centerpanel.add(panelBouton, BorderLayout.CENTER);
-        gamePanel.add(carteAMainPanel,BorderLayout.SOUTH);
-        myContainer.add(gamePanel);
+        this.getContentPane().add(titleLabel,BorderLayout.NORTH);
+        this.getContentPane().add(comptagePanel,BorderLayout.WEST);
+        this.getContentPane().add(centerpanel,BorderLayout.CENTER);
+
+        this.getContentPane().add(carteAMainPanel,BorderLayout.SOUTH);
+       /* myContainer.add(gamePanel);*/
     }
 
     public void setPanelBouton(){
@@ -359,10 +376,10 @@ public class MaVueTotale extends JFrame{
         mp.getMode().getJoueur(0).notifyChanges();
         comptagePanel.setLayout(new GridLayout(numjoueur+1,1));
         comptagePanel.add(myVue);*/
-        for (int i=0;i<(nbrJoueur-1);i++){
+        for (int i=1;i<=nbrJoueur-1;i++){
             String str = ("Joueur Virtuel " + i+1);
             VuePoint computerVue = new VuePoint(str);
-            Joueur jv = (Joueur)part.getListeJouCourant().get(i);
+            JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(i);
 
             jv.add(computerVue);
             jv.notifyChanges();
@@ -372,8 +389,8 @@ public class MaVueTotale extends JFrame{
 
         /*part.getListeJouCourant().get(0);*/
         comptagePanel.add(myVue);
-        part.getListeJouCourant().get(part.getListeJouCourant().size()-1).add(myVue);
-        part.getListeJouCourant().get(part.getListeJouCourant().size()-1).notifyChanges();
+        part.getListeJouCourant().get(0).add(myVue);
+        part.getListeJouCourant().get(0).notifyChanges();
         comptagePanel.setLayout(new GridLayout(nbrJoueur+1,1));
 
     }

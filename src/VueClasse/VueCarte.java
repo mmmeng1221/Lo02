@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.Observable;
 import java.awt.Image;
@@ -42,13 +43,18 @@ public class VueCarte extends JButton {
         super();
         this.thiscarte = c;
         Image image = c.getImage();
-        this.setBounds(new Rectangle(0,0,110,165));
+        this.setBounds(new Rectangle(0,0,100,155));
         /*this.addActionListener(mylistener);*/
         this.setActionCommand("enable");
         this.setLayout(new BorderLayout());
 
-       Image temp = image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_FAST);
-        ImageIcon icon = new ImageIcon(temp);
+        BufferedImage mybufferedimage = new BufferedImage(this.getWidth(),this.getHeight(),Image.SCALE_SMOOTH);
+        Graphics2D g2 = mybufferedimage.createGraphics();
+
+        g2.drawImage(image, 0, 0,this.getWidth(), this.getHeight(), Color.white,null);
+
+       /*BufferedImage temp = new BufferedImage.(this.getWidth(), this.getHeight(), BufferedImage.SCALE_SMOOTH);*/
+        ImageIcon icon = new ImageIcon(mybufferedimage);
         this.setIcon(icon);
 
 

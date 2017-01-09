@@ -1,5 +1,7 @@
 package classes.carte;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class Guide extends Carte{
         this.croyantAttache = croyantAttache;
     }
 
-    public Guide(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant, Sacrifier sac) {
+    public Guide(String nom, String capacite, List<Integer> dogs, int origine, int nbCroyant, Sacrifier sac, Image image) {
         this.setNomCarte(nom);
         this.setCapacite(capacite);
         this.setDogmes(dogs);
@@ -45,6 +47,7 @@ public class Guide extends Carte{
         this.nbCroyant = nbCroyant;
         this.nbCryAttahce = 0;
         this.croyantAttache = null;
+        this.setImage(image);
 
     }
 

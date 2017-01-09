@@ -1,6 +1,7 @@
 package classes.carte;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 /**
