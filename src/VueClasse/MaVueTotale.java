@@ -1,19 +1,17 @@
 package VueClasse;
 
-import classes.carte.Carte;
 import classes.Part;
+import classes.carte.Carte;
+import classes.carte.Parameters;
 import classes.joueur.Joueur;
-import classes.joueur.EasyStrategy;
-import classes.joueur.JoueurPhysique;
-import classes.joueur.JoueurVirtuel;
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observer;
+import java.io.IOException;
+
 
 /**
  * Created by Administrator on 2017/1/6.
@@ -22,8 +20,10 @@ public class MaVueTotale extends JFrame{
     private static final long serialVersionUID = 12345L;
 
     private JLabel titleLabel = new JLabel("Pandocréon-Divinae by MengZHANG & YuetongZHANG");
-
+    private JLabel noteLabel = new JLabel("Croyant commun :");
+    private JLabel noteLabel2 = new JLabel("Croyant recu :");
     private JPanel inputPanel = new JPanel();
+
 
     private JPanel panelBouton = new JPanel();
 
@@ -35,7 +35,7 @@ public class MaVueTotale extends JFrame{
 
     private JPanel croyantRecuPanel = new JPanel();
 
-
+    private JPanel centerpanel = new JPanel();
     private JPanel gamePanel = new JPanel();
 
     private Container myContainer = this.getContentPane();
@@ -44,11 +44,11 @@ public class MaVueTotale extends JFrame{
     private Part part = Part.getPart();
     private int nbrJoueur = 1;
 
-    private JButton boutonDeffausser;
-    private JButton boutonCompleter;
-    private JButton boutonSacrifier;
-    private JButton boutonUtiliser;
-    private JButton boutonDe;
+    private JButton boutonDeffausser = new JButton("Deffausser");
+    private JButton boutonCompleter = new JButton("Completer");
+    private JButton boutonSacrifier = new JButton("Sacrifier");
+    private JButton boutonUtiliser = new JButton("Utiliser");
+    private JButton boutonDe = new JButton("De");
 
     private JMenu[] menus = {
             new JMenu("Let's play!"),new JMenu("Information")
@@ -143,9 +143,9 @@ public class MaVueTotale extends JFrame{
                 JComboBox modeJ = (JComboBox) e.getSource();
                 String reponseMode = modeJ.getSelectedItem().toString();
                 if(reponseMode.equals("Dur")){
-                    part.dur(nbrJoueur - 1);
+                    part.dur(nbrJoueur - 1,part);
                 }else{
-                    part.facile(nbrJoueur - 1);
+                    part.facile(nbrJoueur - 1,part);
                 }
             }
         });
@@ -159,7 +159,11 @@ public class MaVueTotale extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 inputPanel.setVisible(false);
-                setGamePanel();
+                try {
+                    setGamePanel();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -167,30 +171,39 @@ public class MaVueTotale extends JFrame{
         inputPanel.add(tf_name);
         inputPanel.add(j_num);
         inputPanel.add(ai);
+        inputPanel.add(modeJv);
         inputPanel.add(btn);
         myContainer.add(inputPanel);
     }
 
-    public void setGamePanel(){
-        //part.initialiserCarte();
-        part.initialiserJoueur(nbrJoueur);
+    public void setGamePanel() throws IOException {
+        part.initialiserCarte();
+        part.initialiserJoueur(part);
         part.shuffle();
         part.shuffleDivi();
         part.piocherDivi();
         part.piocher();
-        part.start();
+        /*part.start();*/
         setCarteAMainPanel();
         setCroyantCommunPanel();
         setCroyantRecuPanel();
         setComptagePanel();
-
-
+        setPanelBouton();
+        titleLabel.setText("Pandocreon");
+        noteLabel.setText("Croyant commun :");
+        noteLabel2.setText("Croyant recu :");
         titleLabel.setBorder((new LineBorder(new Color(231, 201, 87))));
+        noteLabel.setBorder((new LineBorder(Color.BLACK,1,true)));
+        noteLabel2.setBorder((new LineBorder(Color.BLACK,1,true)));
+
         gamePanel.setLayout(new BorderLayout());
+        centerpanel.setLayout(new BorderLayout());
         gamePanel.add(titleLabel,BorderLayout.NORTH);
         gamePanel.add(comptagePanel,BorderLayout.WEST);
-        gamePanel.add(croyantCommunPanel, BorderLayout.CENTER);
-        gamePanel.add(croyantRecuPanel, BorderLayout.CENTER);
+        gamePanel.add(centerpanel,BorderLayout.CENTER);
+        centerpanel.add(croyantCommunPanel,BorderLayout.NORTH);
+       centerpanel.add(croyantRecuPanel, BorderLayout.SOUTH);
+        centerpanel.add(panelBouton, BorderLayout.CENTER);
         gamePanel.add(carteAMainPanel,BorderLayout.SOUTH);
         myContainer.add(gamePanel);
     }
@@ -198,21 +211,109 @@ public class MaVueTotale extends JFrame{
     public void setPanelBouton(){
         panelBouton.setLayout(new GridLayout(1,4));
         panelBouton.add(boutonDeffausser);
+        boutonDeffausser.addActionListener(deffausser);
         panelBouton.add(boutonCompleter);
+        boutonCompleter.addActionListener(completer);
         panelBouton.add(boutonSacrifier);
+        boutonSacrifier.addActionListener(sacrifier);
+
         panelBouton.add(boutonUtiliser);
     }
+    private ActionListener deffausser = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            Object[] obj2 =new Object[]{};
+            for(int i = 0;i < joueurphysique.getCarteMain().size();i++)
+            {
+                obj2[i] = i;
+            }
+            int nbr = (int) JOptionPane.showInputDialog(null,"Combien de carte voulez vous deffausser?\n", "nombre", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj2, 1);
 
+            for(int i=0;i<joueurphysique.getCarteMain().size();i++){
+               VueCarte carte = (VueCarte) carteAMainPanel.getComponent(i);
+                carte.addActionListener(cartedefausser);
+            }
+
+        }
+    };
+    private ActionListener cartedefausser = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+           VueCarte carte = (VueCarte) e.getSource();
+           joueurphysique.getCarteMain().remove(carte.getThiscarte());
+            carte.setVisible(false);
+
+        }
+    };
+
+    private ActionListener completer = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           /* if(this.getCarteMain().size() >= 7){
+                System.out.println("");
+            }
+            while (this.getCarteMain().size() < 7) {
+                this.piocher(Part.getPart().piocher1Carte());
+            }
+        }*/
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            if(joueurphysique.getCarteMain().size() >= 7)
+                JOptionPane.showMessageDialog(null, "Vous avez 7 cartes, vous ne pouvez pas piocher des cartes.", "Erreur",JOptionPane.ERROR_MESSAGE);
+
+            else
+                while(joueurphysique.getCarteMain().size() < 7){
+                    joueurphysique.piocher(part.getCartePioche().get(0));
+                    VueCarte carte =new VueCarte(part.getCartePioche().get(0));
+                    carte.synchro(part);
+                    carteAMainPanel.add(carte);
+                    part.getCartePioche().remove(part.getCartePioche().get(0));
+                }
+
+        }
+    };
+
+    private ActionListener sacrifier = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            for(int i=0;i<joueurphysique.getCarteMain().size();i++){
+                VueCarte carte = (VueCarte) carteAMainPanel.getComponent(i);
+                    carte.addActionListener(cartesacrifier);
+                }
+
+
+
+
+        }
+    };
+
+    private ActionListener cartesacrifier = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Joueur joueurphysique = (Joueur)part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
+            VueCarte carte = (VueCarte) e.getSource();
+            Parameters parameters = new Parameters();
+            parameters.setMyself(joueurphysique);
+            parameters.setListotherjoueur(part.getListeJouCourant());
+            parameters.setThisC(carte.getThiscarte());
+            carte.getThiscarte().sacrifier(parameters);
+            carte.setVisible(false);
+
+
+        }
+    };
     public void setCarteAMainPanel(){
-            Joueur joueurPhysique = part.getListeJouCourant().get(0);
+            Joueur joueurphysique = part.getListeJouCourant().get(part.getListeJouCourant().size()-1);
             carteAMainPanel.setLayout(new GridLayout(1,7));
-        for (int i=1;i<=7;i++){
-            VueCarte carte = new VueCarte(joueurPhysique.getCarteMain().get(i));
+        for (int i=0;i<7;i++){
+            VueCarte carte = new VueCarte(joueurphysique.getCarteMain().get(i));
             carte.synchro(part);
             carteAMainPanel.add(carte);
         }
-           setPanelBouton();
-            carteAMainPanel.add(panelBouton);
+
+           /* carteAMainPanel.add(panelBouton);*/
     }
 
     public void setCroyantCommunPanel(){
@@ -237,19 +338,44 @@ public class MaVueTotale extends JFrame{
     }
 
     public void setComptagePanel(){
-        for (int i=1;i<=nbrJoueur;i++){
-            String str = new String("Joueur Virtuel " + i);
+        /*String str = new String("Moi ");
+        VuePoint computerVue = new VuePoint(str);
+        JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
+        jp.add(computerVue);
+        jp.notifyChanges();*/
+
+      /*  for (int i=1;i<=numjoueur;i++){
+            String str = new String("Computer" + i);
+            VueComptage computerVue = new VueComptage(str);
+            JoueurVirtuel jv = (JoueurVirtuel)mp.getMode().getJoueur(i);
+            computerVue.setMode(mp.getMode());
+            jv.add(computerVue);
+            jv.notifyChanges();
+            comptagePanel.add(computerVue);
+        }
+        VueComptage myVue = new VueComptage(namejoueur);
+        myVue.setMode(mp.getMode());
+        mp.getMode().getJoueur(0).add(myVue);
+        mp.getMode().getJoueur(0).notifyChanges();
+        comptagePanel.setLayout(new GridLayout(numjoueur+1,1));
+        comptagePanel.add(myVue);*/
+        for (int i=0;i<(nbrJoueur-1);i++){
+            String str = ("Joueur Virtuel " + i+1);
             VuePoint computerVue = new VuePoint(str);
-            JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(i);
+            Joueur jv = (Joueur)part.getListeJouCourant().get(i);
+
             jv.add(computerVue);
             jv.notifyChanges();
             comptagePanel.add(computerVue);
         }
         VuePoint myVue = new VuePoint(nomJoueur);
-        part.getListeJouCourant().get(0);
-        part.getListeJouCourant().get(0).notifyChanges();
-        comptagePanel.setLayout(new GridLayout(nbrJoueur+1,1));
+
+        /*part.getListeJouCourant().get(0);*/
         comptagePanel.add(myVue);
+        part.getListeJouCourant().get(part.getListeJouCourant().size()-1).add(myVue);
+        part.getListeJouCourant().get(part.getListeJouCourant().size()-1).notifyChanges();
+        comptagePanel.setLayout(new GridLayout(nbrJoueur+1,1));
+
     }
 
 }

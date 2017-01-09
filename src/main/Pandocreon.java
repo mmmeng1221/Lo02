@@ -8,6 +8,6 @@ import VueClasse.SwingConsole;
  */
 public class Pandocreon {
     public static void main(String[] args) {
-        SwingConsole.run(new MaVueTotale(),1500,500);
+        SwingConsole.run(new MaVueTotale(),1200,800);
     }
 }

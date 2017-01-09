@@ -8,7 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
 import java.util.Observable;
+import java.awt.Image;
 
 
 
@@ -26,7 +28,7 @@ public class VueCarte extends JButton {
     private Part mp = null;
 
 
-    private ActionListener mylistener = new ActionListener() {
+   /* private ActionListener mylistener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -34,17 +36,18 @@ public class VueCarte extends JButton {
             setVisible(false);
 
         }
-    };
+    };*/
 
     public VueCarte(Carte c){
         super();
         this.thiscarte = c;
-        this.setBounds(new Rectangle(0,0,200,200));
-        this.addActionListener(mylistener);
+        Image image = c.getImage();
+        this.setBounds(new Rectangle(0,0,110,165));
+        /*this.addActionListener(mylistener);*/
         this.setActionCommand("enable");
         this.setLayout(new BorderLayout());
-        Image image = c.getImage();
-        Image temp = image.getScaledInstance(this.getWidth(), this.getHeight(), image.SCALE_SMOOTH );
+
+       Image temp = image.getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_FAST);
         ImageIcon icon = new ImageIcon(temp);
         this.setIcon(icon);
 

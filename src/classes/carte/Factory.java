@@ -185,7 +185,7 @@ public class Factory {
             }
 
 
-        });
+        },image);
     }
 
     public Croyant createTravailleurs1(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -219,7 +219,7 @@ public class Factory {
                 }
 
             }
-        });
+        },image);
     }
 
     public Croyant createTravailleurs2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -254,7 +254,7 @@ public class Factory {
                 }
 
             }
-        });
+        },image);
     }
 
     public Croyant createTravailleurs3(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -283,7 +283,7 @@ public class Factory {
                 }
                 }
             }
-        });
+        },image);
     }
 
     /**
@@ -312,7 +312,7 @@ public class Factory {
                 croyanttemp.get(joueurtemp.jouer(croyanttemp)).sacrifier(parameters);
 
             }
-        });
+        },image);
     }
 
     public Croyant Integristes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -333,7 +333,7 @@ public class Factory {
                 guidetemp.get(joueurtemp.jouer(guidetemp)).sacrifier(parameters);
 
             }
-        });
+        },image);
     }
 
     public Croyant createGuerriersSaints(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -357,7 +357,7 @@ public class Factory {
 
 
             }
-        });
+        },image);
 
     }
 
@@ -380,7 +380,7 @@ public class Factory {
                 guidetemp.get(joueurtemp.jouer(guidetemp)).sacrifier(parameters);
 
             }
-        });
+        },image);
     }
 
     public Croyant createDemons(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -395,7 +395,7 @@ public class Factory {
             }
 
 
-        });
+        },image);
     }
 
     public Croyant createAlchimistes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -417,7 +417,7 @@ public class Factory {
             }
 
 
-        });
+        },image);
     }
 
     public Croyant createVampire(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -438,7 +438,7 @@ public class Factory {
             }
 
 
-        });
+        },image);
     }
 
     public Croyant createLycanthropes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -463,7 +463,7 @@ public class Factory {
 
 
             }
-        });
+        },image);
     }
 
     public Croyant createIllusionnistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -491,7 +491,7 @@ public class Factory {
             }
 
 
-        });
+        },image);
     }
 
     public Croyant createEsprites(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -505,7 +505,7 @@ public class Factory {
             }
 
 
-        });
+        },image);
     }
 
     public Croyant createAlienes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -538,7 +538,7 @@ public class Factory {
              }
 
             }
-        });
+        },image);
     }
     public Croyant createAlchimistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
 
@@ -570,7 +570,7 @@ public class Factory {
                 }
 
             }
-        });
+        },image);
     }
 
     public Croyant createAlienes3(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -603,7 +603,7 @@ public class Factory {
                 }
 
             }
-        });
+        },image);
     }
 
     public Croyant createAlienes2(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -630,7 +630,7 @@ public class Factory {
                 joueurtemp.getCarteMain().remove(b);
 
             }
-        });
+        },image);
     }
 
     public Croyant createRevenant(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -642,7 +642,7 @@ public class Factory {
                 Part.getPart().JoueurAjouterPoint( De.getDe().lancer());
 
             }
-        });
+        },image);
     }
 
     public Croyant createRevolutionnaires(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -661,7 +661,7 @@ public class Factory {
                     joueurtemp.getCarteMain().get(cartenbr).sacrifier(parameters);//zhe li de parameters xu yao xiu gai ma?
                 }
             }
-        });
+        },image);
     }
 
     public Croyant cretaeNihillistes(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
@@ -680,7 +680,7 @@ public class Factory {
                     joueurtemp.getCarteMain().get(cartenbr).sacrifier(parameters);//zhe li de parameters xu yao xiu gai ma?
                 }
             }
-        });
+        },image);
     }
 
     public DeusEx cretaeColereDivine1(String nom, String capacite, int origine,Image image) {
@@ -711,7 +711,7 @@ public class Factory {
                     }
                 }
             }
-        });
+        },image);
     }
 
     public DeusEx cretaeColereDivine2(String nom, String capacite, int origine,Image image) {
@@ -742,7 +742,7 @@ public class Factory {
                     }
                 }
             }
-        });
+        },image);
     }
 
     public DeusEx createOrdreCeleste(String nom, String capacite, int origine,Image image) {
@@ -765,7 +765,7 @@ public class Factory {
                 joueurtemp.getCarteGuide().remove(cartetemp);
             }
 
-        });
+        },image);
     }
 
 
@@ -803,7 +803,7 @@ public class Factory {
                 joueurtemp.getCarteMain().remove(b);
                 listcroyanttemp.remove(b);
             }
-        });
+        },image);
     }
 
     public DeusEx createDiversion(String nom, String capacite, int origine,Image image) {
@@ -833,7 +833,7 @@ public class Factory {
 
             }
 
-        });
+        },image);
     }
 
     public DeusEx createPhoenix(String nom, String capacite, int origine,Image image) {
@@ -855,7 +855,7 @@ public class Factory {
                 ///这张卡cartetemp， sacrifier之后还应该保留着，怎么处理？？
             }
 
-        });
+        },image);
     }
     /*public DeusEx createInfluenceJour(String nom, String capacite, int origine){
 
@@ -890,7 +890,7 @@ public class Factory {
                     }
                 }
             }
-        });
+        },image);
     }
     public Divinite createKillinstred(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
         return new Divinite(nom, description, nomCapacite,dogs, origine,new Sacrifier() {
@@ -908,7 +908,7 @@ public class Factory {
                     }
                 }
 
-        });
+        },image);
     }
 
     public Divinite createPuiTara(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
@@ -923,7 +923,7 @@ public class Factory {
                     }
                 }
             }
-        });
+        },image);
     }
 
     public Divinite createGwenghelen(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
@@ -945,7 +945,7 @@ public class Factory {
                 }
                 parameters.getMyself().getPointActTot().setNeant(parameters.getMyself().getPointActTot().getNeant() + nbrguide);
             }
-        });
+        },image);
     }
 
     public Divinite createShingva(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
@@ -977,7 +977,7 @@ public class Factory {
                     }
                 }
             }
-        });
+        },image);
     }
 
     public Divinite createGorpa(String nom, String description,String nomCapacite, List<Integer> dogs, int origine,Image image) {
@@ -995,7 +995,7 @@ public class Factory {
                 joueurtemp.getPointActTot().setNuit(0);
                 joueurtemp.getPointActTot().setNeant(0);
             }
-        });
+        },image);
     }
 
 
@@ -1022,7 +1022,7 @@ public class Factory {
                 }
 
             }
-        });
+        },image);
     }
 
 
@@ -1045,7 +1045,7 @@ public class Factory {
                 }
 
             }
-        });
+        },image);
     }
 
     //Apocalype

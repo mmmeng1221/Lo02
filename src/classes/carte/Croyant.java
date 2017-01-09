@@ -1,5 +1,6 @@
 package classes.carte;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -7,12 +8,13 @@ import java.util.List;
  */
 public class Croyant extends Carte{
     private Sacrifier sac;
-    public Croyant(String nom, String capacite, int nbcroyant, List<Integer> dogs, int origine, Sacrifier sac){
+    public Croyant(String nom, String capacite, int nbcroyant, List<Integer> dogs, int origine, Sacrifier sac, Image image){
         this.setNomCarte(nom);
         this.setCapacite(capacite);
         this.setDogmes(dogs);
         this.setOrigine(origine);
         this.sac = sac;
+        this.setImage(image);
 
 
     }
