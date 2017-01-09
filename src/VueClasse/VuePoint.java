@@ -22,10 +22,16 @@ public class VuePoint extends JLabel implements Observer {
     private String nom;
     public VuePoint(String nom){
         this.nom = nom;
-        String str =  nom + " : " + "\n"+
+       /* String str =  nom + " : " + "\n"+
                 "Jour :" + MonNbrJour +"\n" + "Nuit :" +
                 MonNbrNuit + "\n" +"Neant :" + "\n" + MonNbrNeant +
-                "Mes points de prières :" + MonNbrCroyant;
+                "Mes points de prières :" + MonNbrCroyant;*/
+        String str1 = new String(nom +
+                " Jour : " + MonNbrJour);
+        String str2 = new String("Nuit :" + MonNbrJour);
+        String str3 = new String("Neant :" + MonNbrNeant );
+        String str4 = new String("Mes points de prières :" + MonNbrCroyant);
+        String str = "<html>" + str1 +"<br>" + str2 + "<br>" + str3 + "<br>" + str4 + "<html>";
         super.setText(str);
     }
     @Override
@@ -39,10 +45,14 @@ public class VuePoint extends JLabel implements Observer {
             MonNbrNuit = joueur.getPointActTot().getNuit();
             MonNbrNeant = joueur.getPointActTot().getNeant();
 
-            String str = joueur.getNom();
-            String str1 =  new String( +
-                    " Jour : " + MonNbrJour +'\n'+ "Nuit :" + MonNbrJour + '\n' +"Neant :" + MonNbrNeant + "Mes points de prières :" + MonNbrCroyant);
-            setText(str1);
+            String str1 = new String(nom +
+                    " Jour : " + MonNbrJour);
+            String str2 = new String("Nuit :" + MonNbrJour);
+            String str3 = new String("Neant :" + MonNbrNeant );
+            String str4 = new String("Mes points de prières :" + MonNbrCroyant);
+            String str = "<html>" + str1 +"<br>" + str2 + "<br>" + str3 + "<br>" + str4 + "<html>";
+
+            setText(str);
         }
 
             /*List<Joueur> joueurlist = (List) ((Part) arg).getListeJouCourant();

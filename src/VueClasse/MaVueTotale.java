@@ -130,9 +130,19 @@ public static MaVueTotale getmaVueTotale(){
      * input
      */
     public void inputPanel(){
-        JLabel labelNomJoueur = new JLabel("Nom:");
+       /* JLabel labelNomJoueur = new JLabel("Nom:");
         JTextField tf_name = new JTextField("Hero",20);
-        nomJoueur = tf_name.getText();
+
+
+        tf_name.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                part.getListeJouCourant().get(0).setNom(tf_name.getText());
+            }
+        });
+        nomJoueur = tf_name.getText();*/
+       part.initialiserJoueur(part);
         String[] numAI = {"1","2","3","4"};
         JLabel j_num = new JLabel("Nombre de joueur virtuel:");
         JComboBox ai = new JComboBox(numAI);
@@ -171,11 +181,13 @@ public static MaVueTotale getmaVueTotale(){
             public void actionPerformed(ActionEvent e) {
                 inputPanel.setVisible(false);
                 try {
+
                     part.initialiserCarte();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                part.initialiserJoueur(part);
+                String str = JOptionPane.showInputDialog("Donner votre nom：\n");
+                part.getListeJouCourant().get(0).setNom(str);
                 Object[] obj = {"facile","dur"};
                 String mode = (String) JOptionPane.showInputDialog(null,"Choisir le mode\n", "mode", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "facile");
                 if(mode == "facile")
@@ -191,8 +203,8 @@ public static MaVueTotale getmaVueTotale(){
             }
         });
 
-        inputPanel.add(labelNomJoueur);
-        inputPanel.add(tf_name);
+        /*inputPanel.add(labelNomJoueur);
+        inputPanel.add(tf_name);*/
         inputPanel.add(j_num);
         inputPanel.add(ai);
        /* inputPanel.add(modeJv);*/
@@ -201,7 +213,7 @@ public static MaVueTotale getmaVueTotale(){
     }
 
     public void setGamePanel() throws IOException {
-        part.initialiserCarte();
+
         part.shuffle();
         part.shuffleDivi();
         part.piocherDivi();
@@ -402,6 +414,7 @@ public static MaVueTotale getmaVueTotale(){
         mp.getMode().getJoueur(0).notifyChanges();
         comptagePanel.setLayout(new GridLayout(numjoueur+1,1));
         comptagePanel.add(myVue);*/
+
         for (int i=1;i<=nbrJoueur-1;i++){
             String str = "Joueur Virtuel " + i;
             VuePoint computerVue = new VuePoint(str);
@@ -411,6 +424,13 @@ public static MaVueTotale getmaVueTotale(){
             jv.notifyChanges();
 
         }
+        String str = "Joueur Virtuel " + nbrJoueur;
+        VuePoint computerVue = new VuePoint(str);
+        JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(nbrJoueur - 1);
+        jv.add(computerVue);
+        comptagePanel.add(computerVue);
+        jv.notifyChanges();
+
         VuePoint myVue = new VuePoint(nomJoueur);
         JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
         jp.add(myVue);
