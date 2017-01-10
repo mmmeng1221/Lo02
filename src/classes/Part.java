@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by zhangmeng on 04/12/2016.
  */
-public class Part {
+public class Part extends Observable{
 
     private LinkedList<Joueur> listeJouCourant;
     private List<Carte> cartePioche;

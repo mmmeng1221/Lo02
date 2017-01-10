@@ -155,6 +155,17 @@ public static MaVueTotale getmaVueTotale(){
         add(titleLabel);
     }
 
+    public JPanel getCroyantCommunPanel() {
+        return croyantCommunPanel;
+    }
+
+    public JPanel getCarteAMainPanel() {
+        return carteAMainPanel;
+    }
+
+    public JPanel getCenterpanel() {
+        return centerpanel;
+    }
 
     /**
      * input
@@ -311,10 +322,11 @@ public static MaVueTotale getmaVueTotale(){
         boutonCompleter.addActionListener(completer);
         panelBouton.add(boutonSacrifier);
         boutonSacrifier.addActionListener(sacrifier);
-
+        boutonUtiliser.addActionListener(utiliser);
         panelBouton.add(boutonUtiliser);
         panelBouton.add(boutonDivi);
     }
+
     private ActionListener deffausser = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -333,6 +345,7 @@ public static MaVueTotale getmaVueTotale(){
 
         }
     };
+
     private ActionListener cartedefausser = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -402,6 +415,44 @@ public static MaVueTotale getmaVueTotale(){
         }
     };
 
+    private ActionListener utiliser = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
+            Object[] obj = {"Poser des croyants au centre de la table","Récupérer des croyants",
+                    "Utilisez une carte Deux-Ex ou Apocalypse"};
+            String mode = (String) JOptionPane.showInputDialog(null,"Choisissez un moyen d'utiliser des cartes\n",
+                    "Utiliser", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj,
+                    "Poser des croyants au centre de la table");
+            int answer;
+            if(mode == "Poser des croyants au centre de la table"){
+                answer = 0;
+                JOptionPane.showMessageDialog(null, "Choisissez un croyant à poser au centre de table", "Poser des croyants",JOptionPane.INFORMATION_MESSAGE);
+            } else if(mode == "Récupérer des croyants"){
+                answer = 1;
+
+                JOptionPane.showMessageDialog(null, "Choisissez un guide pour récupérer des croyants", "Récupérer des croyants",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                answer = 2;
+                JOptionPane.showMessageDialog(null, "Choisissez une carte Deux-Ex ou une carte Apocalypse", "Utiliser un Deux-ex ou Apocalypse",JOptionPane.INFORMATION_MESSAGE);
+            }
+            for(int i=0;i<jp.getCarteMain().size();i++){
+                VueCarte carte = (VueCarte) carteAMainPanel.getComponent(i);
+                carte.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
+                        VueCarte carte = (VueCarte) e.getSource();
+                        jp.getCarteMain().remove(carte.getThiscarte());
+                        carte.setVisible(false);
+                        carteAMainPanel.remove(carte);
+                        jp.utiliser(answer,carte);
+                    }
+                });
+            }
+        }
+    };
+
 
     private ActionListener rollDice = new ActionListener() {
         @Override
@@ -425,7 +476,7 @@ public static MaVueTotale getmaVueTotale(){
     }
 
     public void setCroyantCommunPanel(){
-        croyantCommunPanel.setLayout(new GridLayout(2,9));
+        croyantCommunPanel.setLayout(new GridLayout());
         boutonDe.addActionListener(rollDice);
         boutonDe.setPreferredSize(new Dimension(100,50));
         /*croyantCommunPanel.add(new JLabel());
@@ -480,8 +531,8 @@ public static MaVueTotale getmaVueTotale(){
 
         }
     /*    JOptionPane.showMessageDialog(null, null,"nbrjoueur" + nbrJoueur,JOptionPane.INFORMATION_MESSAGE);*/
-/*
-        String str = "Joueur Virtuel " + nbrJoueur;
+
+        /*String str = "Joueur Virtuel " + nbrJoueur;
         VuePoint computerVue = new VuePoint(str);
         JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(nbrJoueur - 1);
         jv.add(computerVue);
@@ -490,7 +541,7 @@ public static MaVueTotale getmaVueTotale(){
 */
 
 
-
+        
 
         VuePoint myVue = new VuePoint(nomJoueur);
         JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
