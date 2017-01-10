@@ -471,7 +471,9 @@ public class MaVueTotale extends JFrame{
                     carte.synchro(part);
                     joueurphysique.getCarteMain().add(carte.getThiscarte());
                     carteAMainPanel.add(carte);
-                    setCarteAMainPanel();
+                    JPanel panel = new JPanel();
+
+                    // setCarteAMainPanel();
                     part.getCartePioche().remove(part.getCartePioche().get(0));
                 }
 
