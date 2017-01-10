@@ -473,7 +473,8 @@ public class MaVueTotale extends JFrame{
                     carteAMainPanel.add(carte);
                     JPanel panel = new JPanel();
 
-                    // setCarteAMainPanel();
+                 //  MaVueTotale.getmaVueTotale().carteAMainPanel.removeAll();
+                 //   setCarteAMainPanel();
                     part.getCartePioche().remove(part.getCartePioche().get(0));
                 }
 
