@@ -16,7 +16,6 @@ import java.util.*;
 public class JoueurPhysique extends Joueur {
 
     public JoueurPhysique() {}
-
     /**
      * joueur physique choisit une carte pour jouer
      */
@@ -120,7 +119,7 @@ public class JoueurPhysique extends Joueur {
             }*/
             sacrifier(scanner,para);
         } else if (choix == 4) {
-            //Joueur veut poser des croyants au centre de table ou récupérer
+           /* //Joueur veut poser des croyants au centre de table ou récupérer
             //des croyants, ou utiliser une carte Deux-ex ou Apocalypse
             this.afficherCarteAMain();
             boolean poser = true;
@@ -151,9 +150,43 @@ public class JoueurPhysique extends Joueur {
                     scanner.close();
                 }
             }
-        }
+        }*/
+    }
     }
 
+public void utiliser(int answer, VueCarte vueCarte){
+    //Joueur veut poser des croyants au centre de table ou récupérer
+    //des croyants, ou utiliser une carte Deux-ex ou Apocalypse
+    /*while (poser) {
+        System.out.println("Vous pouvez :" + "\n" + "0.Poser des croyants au centre de la table"
+                + "\n" + "1.Récupérer des croyants" + "\n" + "2.Utilisez une carte Deux-Ex ou Apocalypse");
+        int answer = scanner.nextInt();
+        while (answer != 0 && answer != 1 && answer != 2) {
+            System.out.println("Vous devez entrer 0 ou 1 ou 2");
+            answer = scanner.nextInt();
+        }*/
+    Parameters para = new Parameters();
+    para.setMyself(this);
+        if (answer == 0) {
+            //Joueur veut poser des croyants
+            poser(vueCarte);
+
+        } else if (answer == 1) {
+            //Joueur veut récupérer des croyants
+            recuperer(vueCarte);
+        } else {
+            // Joueur veut utiliser une carte Deus-Ex ou une carte Apocalypse
+            utiliserCA(para,vueCarte);
+        }
+        /*//Demander au joueur s'il a fini sa phase de jouer
+        System.out.println("Avez-vous fini de poser des croyants et de récupérer des croyants?"
+                + "\n" + "0-indiqant fini" + "\n" + "1-indiquant continuer à faire cette étape");
+        int answer1 = scanner.nextInt();
+        if (answer1 == 0) {
+            poser = false;
+            scanner.close();
+        }*/
+    }
 
    /* public void deffausser (Scanner scanner)  {
         //this.afficherCarteAMain();
@@ -247,34 +280,39 @@ public class JoueurPhysique extends Joueur {
             this.getCarteMain().remove(card);
         }
     }
-    public void utiliserCA(Scanner scanner,Parameters parameters) {
+    public void utiliserCA(Parameters parameters,VueCarte vueCarte) {
         List<Carte> cardCA = new ArrayList<>();
         cardCA.addAll(this.getCarteMain());
         List<Carte> cardCAValid = new ArrayList<>();
         cardCAValid.addAll(this.getCarteValid(cardCA,DeusEx.class));
         cardCAValid.addAll(this.getCarteValid(cardCA,Apocalypse.class));
-        this.afficherCarte(cardCAValid);
+
+       /* this.afficherCarte(cardCAValid);
         System.out.println("Choisissez une carte Deux-Ex ou une carte Apocalypse");
-        int ca = scanner.nextInt();
-        Carte caChoisi = cardCAValid.get(ca);
+        int ca = scanner.nextInt();*/
+
+
+        Carte caChoisi = vueCarte.getThiscarte();
         int jour = this.getPointActTot().getJour();
         int neant = this.getPointActTot().getNeant();
         int nuit = this.getPointActTot().getNuit();
-        utiliserPoint(scanner,caChoisi,jour,nuit,neant);
+        utiliserPoint(caChoisi,jour,nuit,neant);
 
         caChoisi.sacrifier(parameters);
         this.getCarteMain().remove(caChoisi);
     }
 
 
-    public void recuperer(Scanner scanner) {
+    public void recuperer(VueCarte vueCarte) {//// TODO: 10/01/2017
         //Joueur veut récupérer des croyants
-        List<Carte> cardGuide = new ArrayList<>();
+        /*List<Carte> cardGuide = new ArrayList<>();
         cardGuide.addAll(this.getCarteMain());
         this.afficherCarte(this.getCarteValid(cardGuide,Guide.class));
         System.out.println("Choisissez un guide pour récupérer des croyants");
-        int card = scanner.nextInt();
-        Carte crPoser = this.getCarteValid(cardGuide,Guide.class).get(card);//obtenir une carte guide
+        int card = scanner.nextInt();*/
+
+        //Carte crPoser = this.getCarteValid(cardGuide,Guide.class).get(card);//obtenir une carte guide
+        Carte crPoser = vueCarte.getThiscarte();
         int jour = this.getPointActTot().getJour();
         int neant = this.getPointActTot().getNeant();
         int nuit = this.getPointActTot().getNuit();
@@ -282,12 +320,11 @@ public class JoueurPhysique extends Joueur {
         List<Carte> cardCrCommun = new ArrayList<>();
         cardCrCommun.addAll(Part.getPart().getCroyantCommun());
         List<Carte> crValid = this.getCarteValid(cardCrCommun,Croyant.class);
-        utiliserPoint(scanner,crPoser,jour,nuit,neant);
-
-        recupereCarteJN(crPoser, scanner,crValid);
+        utiliserPoint(crPoser,jour,nuit,neant);
+        recupereCarteJN(vueCarte,crValid);
     }
 
-    public void utiliserPoint(Scanner scanner,Carte card,int jour,int nuit,int neant){
+    public void utiliserPoint(Carte card,int jour,int nuit,int neant){
         switch(card.getOrigine()){
             case Constants.ORIGINE_JOUR:
                 this.getPointActTot().setJour(jour - 1);
@@ -303,56 +340,76 @@ public class JoueurPhysique extends Joueur {
                 }else if(nuit > 1 && jour < 2 && neant < 1){
                     this.getPointActTot().setNuit(nuit - 2);
                 }else if(neant > 0 && jour > 1 && nuit < 2){
-                    System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
+                    /*System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
                             "\n" + "0-indiquant JOUR" + "\n" + "1-indiquant NEANT");
                     System.out.println("JOUR : " + jour + "\n" + "NEAT : " + neant);
-                    int or = scanner.nextInt();
+
                     while (or != 0 && or != 1) {
                         System.out.println("Saisir 0 ou 1, s'il vous plait");
                         or = scanner.nextInt();
-                    }
+                    }*/
+                    Object[] options ={ "JOUR！", "NEANT！" };
+                    int or = JOptionPane.showOptionDialog(null,
+                            "Vous voulez utiliser point d'action JOUR ou NEANT？", "JOUR OU NEANT",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if(or == 0){
                         this.getPointActTot().setJour(jour - 2);
                     }else{
                         this.getPointActTot().setNeant(neant-1);
                     }
                 }else if(neant > 0 && nuit > 1 && jour < 2){
-                    System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
+                    /*System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
                             "\n" + "0-indiquant NUIT" + "\n" + "1-indiquant NEANT");
                     System.out.println("NUIT : " + nuit + "\n" + "NEAT : " + neant);
                     int or = scanner.nextInt();
                     while (or != 0 && or != 1) {
                         System.out.println("Saisir 0 ou 1, s'il vous plait");
                         or = scanner.nextInt();
-                    }
+                    }*/
+                    Object[] options ={ "NUIT！", "NEANT！" };
+                    int or = JOptionPane.showOptionDialog(null,
+                            "Vous voulez utiliser point d'action NUIT ou NEANT？", "NUIT OU NEANT",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if(or == 0){
                         this.getPointActTot().setNuit(nuit - 2);
                     }else{
                         this.getPointActTot().setNeant(neant-1);
                     }
                 }else if(neant < 1 && nuit > 1 && jour > 1){
-                    System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
+                    /*System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
                             "\n" + "0-indiquant NUIT" + "\n" + "1-indiquant JOUR");
                     System.out.println("NUIT : " + nuit + "\n" + "JOUR : " + jour);
                     int or = scanner.nextInt();
                     while (or != 0 && or != 1) {
                         System.out.println("Saisir 0 ou 1, s'il vous plait");
                         or = scanner.nextInt();
-                    }
+                    }*/
+                    Object[] options ={ "NUIT！", "JOUR！" };
+                    int or = JOptionPane.showOptionDialog(null,
+                            "Vous voulez utiliser point d'action NUIT ou JOUR？", "NUIT OU JOUR",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if(or == 0){
                         this.getPointActTot().setNuit(nuit - 2);
                     }else{
                         this.getPointActTot().setJour(jour-1);
                     }
                 }else{
-                    System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
+                   /* System.out.println("Vous voulez utiliser point d'action JOUR ou NEANT?" +
                             "\n" + "0-indiquant NUIT" + "\n" + "1-indiquant JOUR"+ "\n" + "2-indiquant NEANT");
                     System.out.println("NUIT : " + nuit + "\n" + "JOUR : " + jour);
                     int or = scanner.nextInt();
                     while (or != 0 && or != 1 && or !=2) {
                         System.out.println("Saisir 0 ou 1 ou 2, s'il vous plait");
                         or = scanner.nextInt();
-                    }
+                    }*/
+                    Object[] options ={ "NUIT！", "JOUR！","NEANT" };
+                    int or = JOptionPane.showOptionDialog(null,
+                            "Vous voulez utiliser point d'action JOUR ou NEANT？", "JOUR OU NEANT",
+                            JOptionPane.YES_NO_CANCEL_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                     if(or == 0){
                         this.getPointActTot().setNuit(nuit - 2);
                     }else if (or == 1){
@@ -367,7 +424,8 @@ public class JoueurPhysique extends Joueur {
         }
     }
 
-    private void recupereCarteJN( Carte crPoser, Scanner scanner,List<Carte> croyantValid) {
+    private void recupereCarteJN( VueCarte vueCarte,List<Carte> croyantValid) {
+        Carte crPoser = vueCarte.getThiscarte();
             this.getCarteGuide().add((Guide) crPoser);
             List<Carte> crTemp = new ArrayList<>();
             List<Carte> crTot = new ArrayList<>();
@@ -381,21 +439,37 @@ public class JoueurPhysique extends Joueur {
             boolean continuer = true;
             while (((Guide) crPoser).getNbCryAttahce() < ((Guide) crPoser).getNbCroyant() && continuer == true) {
                 for (Carte cr : crTemp) {
-                    System.out.println(cr);
+                    JOptionPane.showMessageDialog(null, cr.toString(),
+                            "info sur des croyants",JOptionPane.INFORMATION_MESSAGE);
                 }
-                System.out.println("Choisissez un croyant");
-                int croyantNew = scanner.nextInt();
-                Carte cardCro = crTemp.get(croyantNew);
-                ((Guide) crPoser).getCroyantAttache().add((Croyant) cardCro);
-                Part.getPart().getCroyantCommun().remove(cardCro);
-                crTot.remove(cardCro);
-                crTemp.remove(cardCro);
-                ((Guide) crPoser).setNbCryAttahce(((Guide) crPoser).getNbCryAttahce() + 1);
-                this.setNbrCro(this.getNbrCro()+1);
+                JOptionPane.showMessageDialog(null, "Choisissez un croyant.", "Récupérer un croyant",JOptionPane.PLAIN_MESSAGE);
+                //int croyantNew = scanner.nextInt();
+                for(int i=0;i<crTemp.size();i++){
+                    VueCarte carte = (VueCarte) MaVueTotale.getmaVueTotale().getCroyantCommunPanel().getComponent(i);
+                    carte.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            VueCarte vueCarte1 = (VueCarte) e.getSource();
+                            Carte croyantNew = vueCarte1.getThiscarte();
+                            Carte cardCro = croyantNew;
+                            ((Guide) crPoser).getCroyantAttache().add((Croyant) cardCro);
+                            Part.getPart().getCroyantCommun().remove(cardCro);
+                            crTot.remove(cardCro);
+                            crTemp.remove(cardCro);
+                            ((Guide) crPoser).setNbCryAttahce(((Guide) crPoser).getNbCryAttahce() + 1);
+                            Part.getPart().getListeJouCourant().get(0).setNbrCro(Part.getPart().getListeJouCourant().get(0).getNbrCro()+1);}
+                    });
+                }
+
                 if(((Guide) crPoser).getNbCryAttahce() < ((Guide) crPoser).getNbCroyant()) {
-                    System.out.println("Voulez-vous continuer à attacher des croyants?" + "\n" + "0-indiquant continuer"
+                   /* System.out.println("Voulez-vous continuer à attacher des croyants?" + "\n" + "0-indiquant continuer"
                             + "\n" + "1-indiquant arrêter");
-                    int recuperer = scanner.nextInt();
+                    int recuperer = scanner.nextInt();*/
+                    Object[] options ={ "Continuer", "Arrêter" };
+                    int recuperer = JOptionPane.showOptionDialog(null,
+                            "Voulez-vous continuer à attacher des croyants？", "Continuer à attacher des croyant?",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
                     if (recuperer == 1) {
                         continuer = false;
                     }
@@ -471,45 +545,49 @@ public class JoueurPhysique extends Joueur {
 
     /**
      * Joueur veut poser des croyants
-     * @param scanner
+     * @param
      */
-    public void poser(Scanner scanner) {
-        this.afficherCarte(getCarteValid(this.getCarteMain(),Croyant.class));
+    public void poser(VueCarte vueCarte) {
+       /* this.afficherCarte(getCarteValid(this.getCarteMain(),Croyant.class));
         System.out.println("Choisissez un croyant à poser au centre");
         int card = scanner.nextInt();
         Carte crPoser = this.getCarteValid(this.getCarteMain(),Croyant.class).get(card);
-
+*/
         int jour = this.getPointActTot().getJour();
         int neant = this.getPointActTot().getNeant();
         int nuit = this.getPointActTot().getNuit();
-
-        switch (crPoser.getOrigine()) {
+        Carte carte = vueCarte.getThiscarte();
+        switch (carte.getOrigine()) {
             case Constants.ORIGINE_JOUR:
-                poseByPointJour(jour, crPoser, scanner);
+                poseByPointJour(jour, carte);
                 break;
             case Constants.ORIGINE_NUIT:
-                poseByPointNuit(nuit, crPoser, scanner);
+                poseByPointNuit(nuit, carte);
                 break;
             default:
-                poseBy3Point(jour, nuit, neant, crPoser, scanner);
+                poseBy3Point(jour, nuit, neant, carte);
                 break;
         }
+        MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
+        MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
+
+
     }
 
-    private void poseByPointJour(int jour, Carte crPoser, Scanner scanner) {
+    private void poseByPointJour(int jour, Carte carte) {
             this.getPointActTot().setJour(jour - 1);
-            Part.getPart().getCroyantCommun().add((Croyant) crPoser);
-            this.getCarteMain().remove(crPoser);
+            Part.getPart().getCroyantCommun().add((Croyant) carte);
+            this.getCarteMain().remove(carte);
     }
 
-    private void poseByPointNuit(int nuit, Carte crPoser, Scanner scanner) {
+    private void poseByPointNuit(int nuit, Carte carte) {
             this.getPointActTot().setNuit(nuit - 1);
-            Part.getPart().getCroyantCommun().add((Croyant) crPoser);
-            this.getCarteMain().remove(crPoser);
+            Part.getPart().getCroyantCommun().add((Croyant) carte);
+            this.getCarteMain().remove(carte);
     }
 
-    private void poseBy3Point(int jour, int nuit, int neant, Carte crPoser, Scanner scanner) {
-            System.out.println("Vous voulez utiliser point d'action de jour ou de néant?" +
+    private void poseBy3Point(int jour, int nuit, int neant, Carte crPoser) {
+            /*System.out.println("Vous voulez utiliser point d'action de jour ou de néant?" +
                     "\n" + "0-indiquant NEANT" + "\n" + "1-indiquant JOUR" + "\n" + "2-indiqant NUIT");
             System.out.println("Vos points d'action : " + "\n" +
                     "JOUR : " + jour + "\n" + "NEAT : " + neant + "\n" + "NUIT : " + nuit);
@@ -517,7 +595,18 @@ public class JoueurPhysique extends Joueur {
             while (or != 0 && or != 1 && or != 2) {
                 System.out.println("Saisir 0 ou 1 ou 2, s'il vous plait");
                 or = scanner.nextInt();
-            }
+            }*/
+        Object[] obj = {"NEANT","JOUR","NUIT"};
+        String mode = (String) JOptionPane.showInputDialog(null,"Quel point d'action voulez-vous utiliser?\n", "Choix d'utilisation de " +
+                "point d'action", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "JOUR");
+        int or;
+        if(mode == "NEANT"){
+            or = 0;
+        } else if(mode == "JOUR"){
+            or = 1;
+        }else{
+            or = 2;
+        }
             switch (or) {
                 case 0:
                     this.getPointActTot().setNeant(neant - 1);
