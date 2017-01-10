@@ -937,6 +937,7 @@ public class Part extends Observable{
                 JOptionPane.showMessageDialog(null, "Dé de Cosmogonie : NEANT.", "Dé de Cosmogonie",JOptionPane.PLAIN_MESSAGE);
                 break;
         }
+        measurementsChanged();
     }
 
     private void faceJour() {
@@ -978,6 +979,12 @@ public class Part extends Observable{
     }
     public void notifyChanges() {
         this.myObserver.update(this,null);
+    }
+
+
+    public void measurementsChanged() {
+        setChanged();
+        notifyObservers();
     }
 
     public void whowin(){

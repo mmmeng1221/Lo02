@@ -595,18 +595,43 @@ public class MaVueTotale extends JFrame{
     }
     public void update(Observable arg, Object ob) {
 
-        if(arg instanceof Part){
+        if (arg instanceof Part) {
 
-            int nbr = MaVueTotale.getmaVueTotale().getComponentCount();
-            JPanel croyantcommuntemp = MaVueTotale.getmaVueTotale().croyantCommunPanel;
-        for(int i=0;i< nbr;i++){
-            MaVueTotale.getmaVueTotale().croyantCommunPanel.remove(i);
+            //  int nbr = MaVueTotale.getmaVueTotale().getCroyantCommunPanel().getComponentCount();
 
-        }
-        for(int i = 0;i < part.croyantCommun.size();i++){
-            VueCarte vueCarte = new VueCarte(part.croyantCommun.get(i));
-            MaVueTotale.getmaVueTotale().croyantCommunPanel.add(vueCarte);
-        }
+            //      for(int i=0;i< nbr;i++){
+            MaVueTotale.getmaVueTotale().croyantCommunPanel.removeAll();
+
+            //    }
+            for (int i = 0; i < part.croyantCommun.size(); i++) {
+                VueCarte vueCarte = new VueCarte(part.croyantCommun.get(i));
+                MaVueTotale.getmaVueTotale().croyantCommunPanel.add(vueCarte);
+            }
+
+
+            //  nbr = MaVueTotale.getmaVueTotale().getCroyantRecuPanel().getComponentCount();
+
+            MaVueTotale.getmaVueTotale().getCroyantRecuPanel().removeAll();
+
+            if (part.getListeJouCourant().get(0).getCarteGuide() != null) {
+                for (int j = 0; j < part.getListeJouCourant().get(0).getCarteGuide().size(); j++) {
+                    if (part.getListeJouCourant().get(0).getCarteGuide().get(j).getCroyantAttache() != null) {
+                        for (int i = 0; i < part.getListeJouCourant().get(0).getCarteGuide().get(j).getCroyantAttache().size(); i++) {
+                            VueCarte vueCarte = new VueCarte(part.getListeJouCourant().get(0).getCarteGuide().get(j).getCroyantAttache().get(i));
+                            MaVueTotale.getmaVueTotale().getCroyantRecuPanel().add(vueCarte);
+                        }
+                    }
+                }
+            }
+
+            MaVueTotale.getmaVueTotale().carteAMainPanel.removeAll();
+
+
+            for (int j = 0; j < part.getListeJouCourant().get(0).getCarteMain().size(); j++) {
+                VueCarte vueCarte = new VueCarte(part.getListeJouCourant().get(0).getCarteMain().get(j));
+                MaVueTotale.getmaVueTotale().carteAMainPanel.add(vueCarte);
+            }
+
 
         }
 

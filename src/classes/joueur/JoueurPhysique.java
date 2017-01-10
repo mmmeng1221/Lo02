@@ -186,6 +186,7 @@ public void utiliser(int answer, VueCarte vueCarte){
             poser = false;
             scanner.close();
         }*/
+    measurementsChanged();
     }
 
    /* public void deffausser (Scanner scanner)  {
@@ -279,6 +280,7 @@ public void utiliser(int answer, VueCarte vueCarte){
 
             this.getCarteMain().remove(card);
         }
+        measurementsChanged();
     }
     public void utiliserCA(Parameters parameters,VueCarte vueCarte) {
         List<Carte> cardCA = new ArrayList<>();
@@ -757,7 +759,11 @@ public void utiliser(int answer, VueCarte vueCarte){
 
     }
 
-    }
 
+    public void measurementsChanged() {
+        setChanged();
+        notifyObservers();
+    }
+}
 
 
