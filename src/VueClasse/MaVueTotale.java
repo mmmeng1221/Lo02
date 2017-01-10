@@ -38,9 +38,21 @@ public static MaVueTotale getmaVueTotale(){
 
     private JPanel comptagePanel = new JPanel();
 
+    public JPanel getCarteAMainPanel() {
+        return carteAMainPanel;
+    }
+
     private JPanel carteAMainPanel = new JPanel();
 
+    public JPanel getCroyantCommunPanel() {
+        return croyantCommunPanel;
+    }
+
     private JPanel croyantCommunPanel = new JPanel();
+
+    public JPanel getCroyantRecuPanel() {
+        return croyantRecuPanel;
+    }
 
     private JPanel croyantRecuPanel = new JPanel();
 

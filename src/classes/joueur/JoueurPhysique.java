@@ -575,26 +575,52 @@ public class JoueurPhysique extends Joueur {
         int i = sc.nextInt();
 
     }*/
-/*
+
     @Override
-    public int jouer(List<Carte> cartemain) {
+  /*public int jouer(List<Carte> cartemain) {
         for (Iterator it = cartemain.iterator(); it.hasNext(); ) {
             Carte key = (Carte) it.next();
             System.out.println(key.getNomCarte());
         }
-        System.out.println("quel Carte voulez-vous choisir? Donnez le numero.");
-        Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
-        return i;
-    }
+
+
+        Object[] obj = new Object[]{};
+        int nombre = 0;
+        for (Iterator i = cartemain.iterator(); i.hasNext(); ) {
+
+            Carte cartetemp = (Carte) i.next();
+            obj[nombre] = cartetemp.getCapacite();
+            nombre++;
+        }
+        String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+        for (Iterator i = cartemain.iterator(); i.hasNext(); ) {
+            Carte cartetemp = (Carte) i.next();
+            if (nomcarte == cartetemp.getCapacite()) {
+                return cartetemp;
+                break;
+            }
+        }
+
+    }*/
 
     public int jouer (int size){
         for(int i=1;i<=size;i++){
             System.out.println(i +" ");
         }
+        Object[] obj = new Object[]{};
+
+            int nbr = 1;
+            for (nbr = 1; nbr <=size; nbr++) {
+
+                obj[nbr] = nbr;
+            }
+            int i = (int) JOptionPane.showInputDialog(null, "quel Nombre voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+         /*
         System.out.println("quel nombre voulez-vous choisir?");
         Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
+        int i = sc.nextInt();*/
         return i;
     }
 
@@ -602,40 +628,41 @@ public class JoueurPhysique extends Joueur {
         List<Joueur> listjoueurtemp = new ArrayList<Joueur>();
         List<Joueur>listjoueursortie = new ArrayList<Joueur>();
         listjoueurtemp = listjoueur;
-       /* for(int j = 0;j<size;j++){
-            for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
-                 Joueur joueurtemp =(Joueur)i.next();
-                 System.out.println(joueurtemp.getNom() + "\n");
-            }
-
-            Object[] obj = new Object[]{};
-            int nombre = 0;
-            for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
-
-                Joueur joueurtemp = (Joueur)i.next();
-                obj[nombre] = joueurtemp.getNom();
-                nombre++;
-            }
-            String nomjoueur = (String) JOptionPane.showInputDialog(null,"quel joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
-
-            for(Iterator i = listjoueurtemp.iterator();i.hasNext();){
-                Joueur joueurtemp = (Joueur)i.next();
-                if(nomjoueur == joueurtemp.getNom())
-                    listjoueursortie.add(joueurtemp);
-                     listjoueurtemp.remove(i);
-                break;
-            }
-
-            System.out.println("Quel joueur voulez-vous choisir? Donnez le numero");
-            Scanner sc = new Scanner(System.in);
-            int i = sc.nextInt();
-            listjoueursortie.add(listjoueurtemp.get(i));
+        Object[] obj = new Object[]{};
+       for(int j = 0;j<size;j++) {
+           /*for (Iterator i = listjoueurtemp.iterator(); i.hasNext(); ) {
+               Joueur joueurtemp = (Joueur) i.next();
+               System.out.println(joueurtemp.getNom() + "\n");
+           }*/
 
 
+           int nombre = 0;
+           for (Iterator i = listjoueurtemp.iterator(); i.hasNext(); ) {
+
+               Joueur joueurtemp = (Joueur) i.next();
+               obj[nombre] = joueurtemp.getNom();
+               nombre++;
+           }
+           String nomjoueur = (String) JOptionPane.showInputDialog(null, "quel joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+           for (Iterator i = listjoueurtemp.iterator(); i.hasNext(); ) {
+               Joueur joueurtemp = (Joueur) i.next();
+               if (nomjoueur == joueurtemp.getNom())
+               {   listjoueursortie.add(joueurtemp);
+               listjoueurtemp.remove(joueurtemp);}
+               break;
+           }
+
+         /*  System.out.println("Quel joueur voulez-vous choisir? Donnez le numero");
+           Scanner sc = new Scanner(System.in);
+           int i = sc.nextInt();
+           listjoueursortie.add(listjoueurtemp.get(i));
+*/
+       }
         return listjoueursortie;
     }
 
-*/
+
     public void afficherfalse() {
         JOptionPane.showMessageDialog(null, "choisissez une autre joueur!");
 

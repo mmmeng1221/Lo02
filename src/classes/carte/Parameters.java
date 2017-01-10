@@ -47,7 +47,7 @@ public class Parameters {
 
     }
     public List<Joueur> getListotherjoueur() {
-        return listjoueur;
+        return part.getListeJouCourant();
     }
 
     public void setListotherjoueur(List<Joueur> listotherjoueur) {
