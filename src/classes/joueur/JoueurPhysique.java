@@ -445,7 +445,7 @@ public void utiliser(int answer, VueCarte vueCarte){
                 JOptionPane.showMessageDialog(null, "Choisissez un croyant.", "Récupérer un croyant",JOptionPane.PLAIN_MESSAGE);
                 //int croyantNew = scanner.nextInt();
                 for(int i=0;i<crTemp.size();i++){
-                    VueCarte carte = (VueCarte) MaVueTotale.getmaVueTotale().getCroyantCommunPanel().getComponent(i);
+                  VueCarte carte = (VueCarte) MaVueTotale.getmaVueTotale().getCroyantCommunPanel().getComponent(i);
                     carte.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -568,8 +568,8 @@ public void utiliser(int answer, VueCarte vueCarte){
                 poseBy3Point(jour, nuit, neant, carte);
                 break;
         }
-       MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
-        MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
+     //  MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
+     //   MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
 
 
     }

@@ -50,6 +50,9 @@ public class MaVueTotale extends JFrame{
     private JPanel carteAMainPanel = new JPanel();
 
 
+    public JPanel getCroyantCommunPanel() {
+        return croyantCommunPanel;
+    }
 
     private JPanel croyantCommunPanel = new JPanel();
 
