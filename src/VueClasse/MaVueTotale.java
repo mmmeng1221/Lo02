@@ -15,6 +15,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.*;
+import java.util.List;
 
 
 /**
@@ -28,9 +30,14 @@ public class MaVueTotale extends JFrame{
     private JLabel noteLabel2 = new JLabel("Croyant recu :");
     private JPanel inputPanel = new JPanel();
 
+    private List<JButton> tousBoutons = new ArrayList<>();
+    private List<JButton> boutonsFonctions = new ArrayList<>();
+
+
+
     private static MaVueTotale maVueTotale  = new MaVueTotale();
 
-public static MaVueTotale getmaVueTotale(){
+    public static MaVueTotale getmaVueTotale(){
     return maVueTotale;
 }
 
@@ -38,15 +45,10 @@ public static MaVueTotale getmaVueTotale(){
 
     private JPanel comptagePanel = new JPanel();
 
-    public JPanel getCarteAMainPanel() {
-        return carteAMainPanel;
-    }
 
     private JPanel carteAMainPanel = new JPanel();
 
-    public JPanel getCroyantCommunPanel() {
-        return croyantCommunPanel;
-    }
+
 
     private JPanel croyantCommunPanel = new JPanel();
 
@@ -57,7 +59,10 @@ public static MaVueTotale getmaVueTotale(){
     private JPanel croyantRecuPanel = new JPanel();
 
     private JPanel centerpanel = new JPanel();
-/*    private JPanel gamePanel = new JPanel();
+
+
+
+    /*    private JPanel gamePanel = new JPanel();
 
     private Container myContainer = this.getContentPane();*/
 
@@ -65,12 +70,17 @@ public static MaVueTotale getmaVueTotale(){
     private Part part = Part.getPart();
     private int nbrJoueur = 1;
 
-    private JButton boutonDeffausser = new JButton("Deffausser");
+    private JButton boutonDeffausser = new JButton("Déffausser");
     private JButton boutonCompleter = new JButton("Completer");
     private JButton boutonSacrifier = new JButton("Sacrifier");
     private JButton boutonUtiliser = new JButton("Utiliser");
-    private JButton boutonDe = new JButton("De");
+    private static JButton boutonDe = new JButton("De");
     private JButton boutonDivi = new JButton("Divinité");
+    private JButton boutonFinir = new JButton("Finir ce tour");
+
+    public JButton getBoutonDe() {
+        return boutonDe;
+    }
 
     private JMenu[] menus = {
             new JMenu("Let's play!"),new JMenu("Information")
@@ -82,20 +92,22 @@ public static MaVueTotale getmaVueTotale(){
             new JMenuItem("Commencer")
     };
 
-    public void setBoutonsInvi(){
-        boutonDe.setVisible(false);
-        boutonUtiliser.setVisible(false);
-        boutonCompleter.setVisible(false);
-        boutonSacrifier.setVisible(false);
-        boutonDeffausser.setVisible(false);
+    public void setBoutonInvi(JButton button){
+        button.setEnabled(false);
     }
+    public void setBoutonV(JButton button){
+        button.setEnabled(true);
+    }
+    
+    public void setBoutonsInvi(List<JButton> buttons){
+        for(int i = 0; i<buttons.size();i++){
+        buttons.get(i).setEnabled(false);
+    }}
 
-    public void setBoutonsV(){
-        boutonDe.setVisible(true);
-        boutonUtiliser.setVisible(true);
-        boutonCompleter.setVisible(true);
-        boutonSacrifier.setVisible(true);
-        boutonDeffausser.setVisible(true);
+    public void setBoutonsV(List<JButton> buttons){
+        for(int i = 0; i<buttons.size();i++){
+            buttons.get(i).setEnabled(true);
+        }
     }
 
     private ActionListener commencer = new ActionListener() {
@@ -248,7 +260,9 @@ public static MaVueTotale getmaVueTotale(){
                     e1.printStackTrace();
                 }
                 String str = JOptionPane.showInputDialog("Donner votre nom：\n");
+                nomJoueur = str;
                 part.getListeJouCourant().get(0).setNom(str);
+                System.out.print(str);
                 Object[] obj = {"facile","dur"};
                 String mode = (String) JOptionPane.showInputDialog(null,"Choisir le mode\n", "mode", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "facile");
                 if(mode == "facile")
@@ -325,6 +339,19 @@ public static MaVueTotale getmaVueTotale(){
         boutonUtiliser.addActionListener(utiliser);
         panelBouton.add(boutonUtiliser);
         panelBouton.add(boutonDivi);
+        boutonFinir.addActionListener(finir);
+        panelBouton.add(boutonFinir);
+
+        tousBoutons.add(boutonCompleter);
+        tousBoutons.add(boutonDe);
+        tousBoutons.add(boutonDeffausser);
+        tousBoutons.add(boutonDivi);
+        tousBoutons.add(boutonSacrifier);
+        tousBoutons.add(boutonUtiliser);
+        tousBoutons.add(boutonFinir);
+
+        boutonsFonctions.addAll(tousBoutons);
+        boutonsFonctions.remove(boutonDe);
     }
 
     private ActionListener deffausser = new ActionListener() {
@@ -355,6 +382,14 @@ public static MaVueTotale getmaVueTotale(){
             carte.setVisible(false);
             carteAMainPanel.remove(carte);
 
+        }
+    };
+
+    private ActionListener finir = new ActionListener() {//// TODO: 10/01/2017  
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setBoutonsInvi(tousBoutons);
+            part.start();
         }
     };
 
@@ -457,7 +492,8 @@ public static MaVueTotale getmaVueTotale(){
     private ActionListener rollDice = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            De.getDe().lancer();
+            part.JoueurAjouterPoint(De.getDe().lancer());
+            setBoutonsV(boutonsFonctions);
         }
     };
 
@@ -531,17 +567,6 @@ public static MaVueTotale getmaVueTotale(){
 
         }
     /*    JOptionPane.showMessageDialog(null, null,"nbrjoueur" + nbrJoueur,JOptionPane.INFORMATION_MESSAGE);*/
-
-        /*String str = "Joueur Virtuel " + nbrJoueur;
-        VuePoint computerVue = new VuePoint(str);
-        JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(nbrJoueur - 1);
-        jv.add(computerVue);
-        comptagePanel.add(computerVue);
-        jv.notifyChanges();
-*/
-
-
-        
 
         VuePoint myVue = new VuePoint(nomJoueur);
         JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
