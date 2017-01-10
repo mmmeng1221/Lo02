@@ -22,7 +22,7 @@ public class JoueurVirtuel extends Joueur {
 
     @Override
     public void jouer() {
-//todo:
+
         Parameters para = new Parameters();
         para.setMyself(this);
         strategie.jouer(para);
