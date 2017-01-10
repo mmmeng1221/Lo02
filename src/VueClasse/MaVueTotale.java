@@ -204,7 +204,7 @@ public class MaVueTotale extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 JComboBox ai = (JComboBox) e.getSource();
-                nbrJoueur = ai.getSelectedIndex()+2;
+                nbrJoueur = ai.getSelectedIndex()+1;
             }
         });
        /* String[] modeJeu = {"Facile", "Dur"};
@@ -266,9 +266,9 @@ public class MaVueTotale extends JFrame{
                 Object[] obj = {"facile","dur"};
                 String mode = (String) JOptionPane.showInputDialog(null,"Choisir le mode\n", "mode", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "facile");
                 if(mode == "facile")
-                    part.facile(nbrJoueur - 1,part);
+                    part.facile(nbrJoueur ,part);
                     else
-                        part.dur(nbrJoueur - 1,part);
+                        part.dur(nbrJoueur ,part);
                 try {
 
                     setGamePanel();
@@ -566,7 +566,7 @@ public class MaVueTotale extends JFrame{
         comptagePanel.setLayout(new GridLayout(numjoueur+1,1));
         comptagePanel.add(myVue);*/
 
-        for (int i=1;i<=nbrJoueur-1;i++){
+        for (int i=1;i<=nbrJoueur;i++){
             String str = "Joueur Virtuel " + i;
             VuePoint computerVue = new VuePoint(str);
             JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(i);
@@ -584,12 +584,9 @@ public class MaVueTotale extends JFrame{
         jp.setNom("null");
         comptagePanel.add(myVue);
         jp.notifyChanges();
-
-
         /*part.getListeJouCourant().get(0);*/
-        comptagePanel.add(myVue);
-        part.getListeJouCourant().get(0).add(myVue);
-        part.getListeJouCourant().get(0).notifyChanges();
+
+
         comptagePanel.setLayout(new GridLayout(nbrJoueur+1,1));
 
     }
