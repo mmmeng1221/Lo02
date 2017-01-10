@@ -580,5 +580,24 @@ public class MaVueTotale extends JFrame{
         comptagePanel.setLayout(new GridLayout(nbrJoueur+1,1));
 
     }
+    public void update(Observable arg, Object ob) {
+
+        if(arg instanceof Part){
+
+            int nbr = MaVueTotale.getmaVueTotale().getComponentCount();
+            JPanel croyantcommuntemp = MaVueTotale.getmaVueTotale().croyantCommunPanel;
+        for(int i=0;i< nbr;i++){
+            MaVueTotale.getmaVueTotale().croyantCommunPanel.remove(i);
+
+        }
+        for(int i = 0;i < part.croyantCommun.size();i++){
+            VueCarte vueCarte = new VueCarte(part.croyantCommun.get(i));
+            MaVueTotale.getmaVueTotale().croyantCommunPanel.add(vueCarte);
+        }
+
+        }
+
+
+    }
 
 }

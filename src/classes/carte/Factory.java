@@ -420,7 +420,7 @@ public class Factory {
                                     Croyant croyant = (Croyant) j.next();
                                     VueCarte vueCarte = new VueCarte(croyant);
                                     parameters.getPart().croyantCommun.add(croyant);
-                                    MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
+                               //     MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
                                 }
                                 parameters.getMyself().getCarteGuide().remove(cartetemp);//去掉Guide
                                 break;
@@ -535,13 +535,13 @@ public class Factory {
                     Carte a = joueurtemp.getCarteMain().get(num);
                     VueCarte vueCarte = new VueCarte(a);
                     parameters.getMyself().getCarteMain().add(a);
-                    MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);
+                 /*   MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);*/
                     joueurtemp.getCarteMain().remove(a);
                     int num2 = (int) Math.random() * joueurtemp.getCarteMain().size();
                     Carte b = joueurtemp.getCarteMain().get(num2);
                     vueCarte = new VueCarte(b);
                     parameters.getMyself().getCarteMain().add(b);
-                    MaVueTotale.getmaVueTotale().add(vueCarte);
+                   /* MaVueTotale.getmaVueTotale().add(vueCarte);*/
                     joueurtemp.getCarteMain().remove(b);
 
                 }
@@ -1023,7 +1023,7 @@ public class Factory {
                                             Croyant croyant = (Croyant) j.next();
                                             parameters.getPart().croyantCommun.add(croyant);
                                             VueCarte vueCroyant = new VueCarte(croyant);
-                                            MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
+                                          //  MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
                                             cartetemp.getCroyantAttache().remove(croyant);
                                             MaVueTotale.getmaVueTotale().getCroyantRecuPanel().add(vueCroyant);
                                             parameters.getPart().getCarteDeffause().add(cartetemp);
@@ -1099,7 +1099,7 @@ public class Factory {
                                             Croyant croyant = (Croyant) j.next();
                                             parameters.getPart().croyantCommun.add(croyant);
                                             VueCarte vueCroyant = new VueCarte(croyant);
-                                            MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
+                                     //       MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
                                             cartetemp.getCroyantAttache().remove(croyant);
                                             MaVueTotale.getmaVueTotale().getCroyantRecuPanel().add(vueCroyant);
                                             parameters.getPart().getCarteDeffause().add(cartetemp);
@@ -1241,14 +1241,14 @@ public class Factory {
                             VueCarte vueCarte = new VueCarte(a);
                             parameters.getPart().getCarteDeffause().add(a);
                             joueurtemp.getCarteMain().remove(a);
-                            MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
+                        //    MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
                             listcroyanttemp.remove(a);
                             int num2 = (int) listcroyanttemp.size();
                             Carte b = joueurtemp.getCarteMain().get(num2);
                             parameters.getPart().getCarteDeffause().add(b);
                             vueCarte = new VueCarte(b);
                             joueurtemp.getCarteMain().remove(b);
-                            MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
+                         //   MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
                             listcroyanttemp.remove(b);
                         }
                       /*  if(avoirdeuxcroyant == false)
@@ -1308,18 +1308,18 @@ public class Factory {
                     Carte cartetemp = joueurtemp.getCarteMain().get(parameters.getMyself().jouer(num));
                     VueCarte vueCarte = new VueCarte(cartetemp);
                     parameters.getMyself().getCarteMain().add(cartetemp);
-                    MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);
+             //       MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);
                     joueurtemp.getCarteMain().remove(cartetemp);
                     num = num - 1;
                     Carte cartetemp2 = joueurtemp.getCarteMain().get(parameters.getMyself().jouer(num));
                     parameters.getMyself().getCarteMain().add(cartetemp2);
                     vueCarte = new VueCarte(cartetemp2);
-                    MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);
+                   // MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);
                     joueurtemp.getCarteMain().remove(cartetemp2);
                     num = num - 1;
                     Carte cartetemp3 = joueurtemp.getCarteMain().get(parameters.getMyself().jouer(num));
                     vueCarte = new VueCarte(cartetemp3);
-                    MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);
+                  //  MaVueTotale.getmaVueTotale().getCarteAMainPanel().add(vueCarte);
                     parameters.getMyself().getCarteMain().add(cartetemp3);
                     joueurtemp.getCarteMain().remove(cartetemp3);
 

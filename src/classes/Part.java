@@ -26,11 +26,11 @@ public class Part extends Observable{
     private List<Divinite> carteDivi;
     private int startIndex = 0;
     private boolean isEnd = false;
-    private VuePoint myObserver = null;
+    private MaVueTotale myObserver = MaVueTotale.getmaVueTotale();
 
     public void add(Observer observer) {
-        if (observer instanceof VuePoint){
-            this.myObserver = (VuePoint)observer;
+        if (observer instanceof MaVueTotale){
+            this.myObserver = (MaVueTotale) observer;
         }
     }
 
@@ -976,9 +976,9 @@ public class Part extends Observable{
             }
         }
     }
-   /* public void notifyChanges() {
+    public void notifyChanges() {
         this.myObserver.update(this,null);
-    }*/
+    }
 
     public void whowin(){
         isEnd = true;
