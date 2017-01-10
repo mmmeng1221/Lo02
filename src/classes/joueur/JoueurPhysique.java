@@ -478,6 +478,7 @@ public void utiliser(int answer, VueCarte vueCarte){
                 }
             }
             this.getCarteMain().remove(crPoser);
+
         }
 
 
