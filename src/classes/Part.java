@@ -6,6 +6,7 @@ import classes.carte.*;
 import classes.joueur.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -26,6 +27,12 @@ public class Part extends Observable{
     private int startIndex = 0;
     private boolean isEnd = false;
     private VuePoint myObserver = null;
+
+    public void add(Observer observer) {
+        if (observer instanceof VuePoint){
+            this.myObserver = (VuePoint)observer;
+        }
+    }
 
     private static Part part = new Part();
 
@@ -880,13 +887,12 @@ public class Part extends Observable{
         boolean open;
         while (!isEnd) {
             open = true;
-            JoueurAjouterPoint(De.getDe().lancer());
+            //JoueurAjouterPoint(De.getDe().lancer());
             Joueur joueur = listeJouCourant.get(startIndex);
             if(!(joueur instanceof JoueurPhysique)){
-                MaVueTotale.getmaVueTotale().setBoutonsInvi();
             joueur.jouer();}
-            if(!(joueur instanceof JoueurPhysique)){
-                MaVueTotale.getmaVueTotale().setBoutonsV();
+            if(joueur instanceof JoueurPhysique){
+                MaVueTotale.getmaVueTotale().setBoutonV(MaVueTotale.getmaVueTotale().getBoutonDe());
             }
             startotherJour();
             startIndex = startIndex < listeJouCourant.size() -1 ? startIndex + 1 : 0;
@@ -901,10 +907,9 @@ public class Part extends Observable{
         while (currentIndex != startIndex) {
             Joueur joueur = listeJouCourant.get(currentIndex);
             if(!(joueur instanceof JoueurPhysique)){
-                MaVueTotale.getmaVueTotale().setBoutonsInvi();
             joueur.jouer();}
-            if(!(joueur instanceof JoueurPhysique)){
-                MaVueTotale.getmaVueTotale().setBoutonsV();
+            if(joueur instanceof JoueurPhysique){
+                MaVueTotale.getmaVueTotale().setBoutonV(MaVueTotale.getmaVueTotale().getBoutonDe());
             }
             System.out.println(currentIndex + "joueur");
             currentIndex = currentIndex < listeJouCourant.size() -1 ? currentIndex + 1 : 0;
@@ -916,17 +921,20 @@ public class Part extends Observable{
             case 1:
             case 2:
                 faceJour();
-                System.out.println("Dé de Cosmogonie : JOUR");
+                //System.out.println("Dé de Cosmogonie : JOUR");
+                JOptionPane.showMessageDialog(null, "Dé de Cosmogonie : JOUR.", "Dé de Cosmogonie",JOptionPane.PLAIN_MESSAGE);
                 break;
             case 3:
             case 4:
                 faceNuit();
                 System.out.println("Dé de Cosmogonie : NUIT");
+                JOptionPane.showMessageDialog(null, "Dé de Cosmogonie : NUIT.", "Dé de Cosmogonie",JOptionPane.PLAIN_MESSAGE);
                 break;
             case 5:
             case 6:
                 faceNeant();
                 System.out.println("Dé de Cosmogonie : NEANT");
+                JOptionPane.showMessageDialog(null, "Dé de Cosmogonie : NEANT.", "Dé de Cosmogonie",JOptionPane.PLAIN_MESSAGE);
                 break;
         }
     }
