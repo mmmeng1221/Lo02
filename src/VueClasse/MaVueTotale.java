@@ -32,6 +32,7 @@ public class MaVueTotale extends JFrame{
 
     private List<JButton> tousBoutons = new ArrayList<>();
     private List<JButton> boutonsFonctions = new ArrayList<>();
+    private List<JButton> listCarteMain = new ArrayList<>();
 
 
 
@@ -352,6 +353,8 @@ public class MaVueTotale extends JFrame{
 
         boutonsFonctions.addAll(tousBoutons);
         boutonsFonctions.remove(boutonDe);
+
+        setBoutonsInvi(boutonsFonctions);
     }
 
     private ActionListener deffausser = new ActionListener() {
@@ -385,9 +388,14 @@ public class MaVueTotale extends JFrame{
         }
     };
 
-    private ActionListener finir = new ActionListener() {//// TODO: 10/01/2017  
+    private ActionListener finir = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            for(JButton vc : listCarteMain){
+                for (ActionListener al : vc.getActionListeners()) {
+                    vc.removeActionListener(al);
+                }
+            }
             setBoutonsInvi(tousBoutons);
             part.start();
         }
@@ -494,6 +502,7 @@ public class MaVueTotale extends JFrame{
         public void actionPerformed(ActionEvent e) {
             part.JoueurAjouterPoint(De.getDe().lancer());
             setBoutonsV(boutonsFonctions);
+            setBoutonInvi(boutonDe);
         }
     };
 
@@ -506,6 +515,7 @@ public class MaVueTotale extends JFrame{
             VueCarte carte = new VueCarte(joueurphysique.getCarteMain().get(i));
             carte.synchro(part);
             carteAMainPanel.add(carte);
+            listCarteMain.add(carte);
         }
 
            /* carteAMainPanel.add(panelBouton);*/
