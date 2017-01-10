@@ -8,6 +8,7 @@ import classes.carte.Croyant;
 import classes.carte.Guide;
 import classes.carte.Parameters;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class HardStrategy implements Strategie {
                         Part.getPart().getCroyantCommun().remove(cr);
                         parameters.getMyself().getCarteMain().remove(card);
                         System.out.println(this + " récupère un croyant");
+                        JOptionPane.showMessageDialog(null, "il récupère un croyant", "Joueur Vituel",JOptionPane.PLAIN_MESSAGE);
                         break;
                     }
                     if (((Guide) card).getCroyantAttache().size() >= ((Guide) card).getNbCroyant()) {
@@ -50,6 +52,7 @@ public class HardStrategy implements Strategie {
             int num = (int)Math.random()*(parameters.getMyself().getCarteMain().size()-1);
                 parameters.getMyself().getCarteMain().remove(num);
                 System.out.println(this + "a déffaussé une carte");
+                JOptionPane.showMessageDialog(null, "il a déffaussé une carte", "Joueur Vituel",JOptionPane.PLAIN_MESSAGE);
             }
         }else{
             if(parameters.getMyself().getCarteMain().size()>3){
@@ -62,10 +65,12 @@ public class HardStrategy implements Strategie {
             int num = (int)(Math.random()*croyant.size()-1);
                 croyant.get(num).sacrifier(parameters);
                 System.out.println(this + "a sacrifié une carte.");
+                JOptionPane.showMessageDialog(null, "il a sacrifié une carte.", "Joueur Vituel",JOptionPane.PLAIN_MESSAGE);
         }else{
             while(parameters.getMyself().getCarteMain().size() < 7){
                 parameters.getMyself().getCarteMain().add(Part.getPart().piocher1Carte());
                 System.out.println(this + "a pioché des cartes d'action.");
+                JOptionPane.showMessageDialog(null, "il a pioché des cartes d'action.", "Joueur Vituel",JOptionPane.PLAIN_MESSAGE);
             }
             }
 

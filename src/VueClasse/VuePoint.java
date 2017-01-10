@@ -20,6 +20,9 @@ public class VuePoint extends JLabel implements Observer {
     private int MonNbrNeant;
     private int MonNbrCroyant;
     private String nom;
+
+
+
     public VuePoint(String nom){
         this.nom = nom;
        /* String str =  nom + " : " + "\n"+

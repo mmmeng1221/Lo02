@@ -889,7 +889,7 @@ public class Part extends Observable{
             open = true;
             //JoueurAjouterPoint(De.getDe().lancer());
             Joueur joueur = listeJouCourant.get(startIndex);
-            if(!(joueur instanceof JoueurPhysique)){
+            if(joueur instanceof JoueurVirtuel){
             joueur.jouer();}
             if(joueur instanceof JoueurPhysique){
                 MaVueTotale.getmaVueTotale().setBoutonV(MaVueTotale.getmaVueTotale().getBoutonDe());
@@ -906,12 +906,12 @@ public class Part extends Observable{
         currentIndex = startIndex < listeJouCourant.size() -1 ? startIndex + 1 : 0;
         while (currentIndex != startIndex) {
             Joueur joueur = listeJouCourant.get(currentIndex);
-            if(!(joueur instanceof JoueurPhysique)){
+            if(joueur instanceof JoueurVirtuel){
             joueur.jouer();}
             if(joueur instanceof JoueurPhysique){
                 MaVueTotale.getmaVueTotale().setBoutonV(MaVueTotale.getmaVueTotale().getBoutonDe());
             }
-            System.out.println(currentIndex + "joueur");
+            JOptionPane.showMessageDialog(null, currentIndex + "joueur joue", "Joueur Virtuel",JOptionPane.PLAIN_MESSAGE);
             currentIndex = currentIndex < listeJouCourant.size() -1 ? currentIndex + 1 : 0;
         }
     }
@@ -921,7 +921,6 @@ public class Part extends Observable{
             case 1:
             case 2:
                 faceJour();
-                //System.out.println("Dé de Cosmogonie : JOUR");
                 JOptionPane.showMessageDialog(null, "Dé de Cosmogonie : JOUR.", "Dé de Cosmogonie",JOptionPane.PLAIN_MESSAGE);
                 break;
             case 3:

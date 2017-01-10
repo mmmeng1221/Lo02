@@ -25,6 +25,9 @@ import java.util.List;
 public class MaVueTotale extends JFrame{
     private static final long serialVersionUID = 12345L;
 
+    private int startIndex = 0;
+    private boolean isEnd = false;
+
     private JLabel titleLabel = new JLabel("Pandocréon-Divinae by MengZHANG & YuetongZHANG");
     private JLabel noteLabel = new JLabel("Croyant commun :");
     private JLabel noteLabel2 = new JLabel("Croyant recu :");
@@ -383,6 +386,7 @@ public class MaVueTotale extends JFrame{
            joueurphysique.getCarteMain().remove(carte.getThiscarte());
             carte.setVisible(false);
             carteAMainPanel.remove(carte);
+            part.getListeJouCourant().get(0).getCarteMain().remove(carte.getThiscarte());
 
         }
     };
@@ -396,9 +400,55 @@ public class MaVueTotale extends JFrame{
                 }
             }
             setBoutonsInvi(tousBoutons);
-            part.start();
+            if(startIndex + 1 >= part.getListeJouCourant().size()){
+                startIndex = 0;
+            }else{
+                startIndex = startIndex + 1;
+            }
+            for(int i = 1; i<=nbrJoueur; i ++){
+                Joueur j = part.getListeJouCourant().get(startIndex);
+                if( j instanceof JoueurVirtuel){
+                    j.jouer();
+                }
+            }
+            boutonDe.setEnabled(true);
         }
     };
+
+    public void start() {
+        isEnd = false;
+        startIndex=0;
+        boolean open;
+        while (!isEnd) {
+            open = true;
+            //JoueurAjouterPoint(De.getDe().lancer());
+            Joueur joueur = part.getListeJouCourant().get(startIndex);
+            if(joueur instanceof JoueurVirtuel){
+                joueur.jouer();}
+            if(joueur instanceof JoueurPhysique){
+                MaVueTotale.getmaVueTotale().setBoutonV(MaVueTotale.getmaVueTotale().getBoutonDe());
+            }
+            startotherJour();
+            startIndex = startIndex < part.getListeJouCourant().size() -1 ? startIndex + 1 : 0;
+            open = false;
+        }
+
+    }
+
+    private void startotherJour() {
+        int currentIndex;
+        currentIndex = startIndex < part.getListeJouCourant().size() -1 ? startIndex + 1 : 0;
+        while (currentIndex != startIndex) {
+            Joueur joueur = part.getListeJouCourant().get(currentIndex);
+            if(joueur instanceof JoueurVirtuel){
+                joueur.jouer();}
+            if(joueur instanceof JoueurPhysique){
+                MaVueTotale.getmaVueTotale().setBoutonV(MaVueTotale.getmaVueTotale().getBoutonDe());
+            }
+            JOptionPane.showMessageDialog(null, currentIndex + "joueur joue", "Joueur Virtuel",JOptionPane.PLAIN_MESSAGE);
+            currentIndex = currentIndex < part.getListeJouCourant().size() -1 ? currentIndex + 1 : 0;
+        }
+    }
 
     private ActionListener completer = new ActionListener() {
         @Override
@@ -419,7 +469,9 @@ public class MaVueTotale extends JFrame{
                     joueurphysique.piocher(part.getCartePioche().get(0));
                     VueCarte carte =new VueCarte(part.getCartePioche().get(0));
                     carte.synchro(part);
+                    joueurphysique.getCarteMain().add(carte.getThiscarte());
                     carteAMainPanel.add(carte);
+                    setCarteAMainPanel();
                     part.getCartePioche().remove(part.getCartePioche().get(0));
                 }
 
