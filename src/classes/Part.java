@@ -775,11 +775,11 @@ public class Part extends Observable{
         Random random = new Random();
         random.setSeed(date.getTime());
         for (int i = 0; i < 10; i++) {
-            temp1 = this.cartePioche.get(random.nextInt(9));
+            temp1 = this.cartePioche.get(random.nextInt(20));
             this.cartePioche.remove(temp1);
             this.cartePioche.add(temp1);
 
-            temp2 = this.cartePioche.get(random.nextInt(5));
+            temp2 = this.cartePioche.get(random.nextInt(15));
             this.cartePioche.remove(temp2);
             this.cartePioche.add(temp2);
         }
@@ -808,6 +808,7 @@ public class Part extends Observable{
      */
     public void initialiserJoueur(Part part) {
         JoueurPhysique jp = new JoueurPhysique();
+
         part.listeJouCourant.add(jp);
         /*
         System.out.println("Chioisissez le mode" + "\n" + "0-indiquant FACILE" + "\n"
@@ -859,7 +860,7 @@ public class Part extends Observable{
     /**
      * Joueurs Piochent des cartes
      */
-    public void piocher() {
+    public void piocher(List<Joueur> listeJouCourant) {
         for (Joueur j : listeJouCourant)
             for (int i = 0; i < 7; i++) {
                 j.getCarteMain().add(this.cartePioche.get(i));

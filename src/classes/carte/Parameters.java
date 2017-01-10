@@ -10,7 +10,8 @@ import java.util.List;
  * Created by zhangmeng on 04/12/2016.
  */
 public class Parameters {
-    private List<Joueur> listjoueur = new ArrayList<Joueur>();
+    private List<Joueur> listjoueur =Part.getPart().getListeJouCourant();
+    /*new ArrayList<Joueur>();*/
     private Joueur myself;
     private Joueur certain;
     private Carte thisC;
@@ -47,7 +48,7 @@ public class Parameters {
 
     }
     public List<Joueur> getListotherjoueur() {
-        return part.getListeJouCourant();
+        return this.listjoueur;
     }
 
     public void setListotherjoueur(List<Joueur> listotherjoueur) {

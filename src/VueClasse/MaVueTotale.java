@@ -155,13 +155,9 @@ public static MaVueTotale getmaVueTotale(){
         add(titleLabel);
     }
 
-    public JPanel getCroyantCommunPanel() {
-        return croyantCommunPanel;
-    }
 
-    public JPanel getCarteAMainPanel() {
-        return carteAMainPanel;
-    }
+
+
 
     public JPanel getCenterpanel() {
         return centerpanel;
@@ -278,7 +274,7 @@ public static MaVueTotale getmaVueTotale(){
         part.shuffle();
         part.shuffleDivi();
         part.piocherDivi();
-        part.piocher();
+        part.piocher(part.getListeJouCourant());
         //part.start();
         setCarteAMainPanel();
         setCroyantCommunPanel();
@@ -525,6 +521,7 @@ public static MaVueTotale getmaVueTotale(){
             String str = "Joueur Virtuel " + i;
             VuePoint computerVue = new VuePoint(str);
             JoueurVirtuel jv = (JoueurVirtuel)part.getListeJouCourant().get(i);
+            jv.setNom(str);
             jv.add(computerVue);
             comptagePanel.add(computerVue);
             jv.notifyChanges();
@@ -546,6 +543,7 @@ public static MaVueTotale getmaVueTotale(){
         VuePoint myVue = new VuePoint(nomJoueur);
         JoueurPhysique jp = (JoueurPhysique) part.getListeJouCourant().get(0);
         jp.add(myVue);
+        jp.setNom("null");
         comptagePanel.add(myVue);
         jp.notifyChanges();
 

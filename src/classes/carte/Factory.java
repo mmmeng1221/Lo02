@@ -86,7 +86,7 @@ public class Factory {
                 int numPoint = ((Guide)parameters.getThisC()).getNbCroyant();
                 int choix;
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                    Object[] obj =new Object[]{};
+                    Object[] obj =new Object[3];
                    obj[0] = "jour";
                     obj[1] = "nuit";
                     obj[2] = "neant";
@@ -128,7 +128,7 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                    Object[] obj =new Object[]{};
+                    Object[] obj =new Object[3];
                     obj[0] = "jour";
                     obj[1] = "nuit";
                     obj[2] = "neant";
@@ -203,7 +203,7 @@ public class Factory {
                             }
                         }
                     }
-                    Object[] obj = new Object[]{};
+                    Object[] obj = new Object[listtemp.size()] ;
                     int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
 
@@ -236,7 +236,7 @@ public class Factory {
                             }
                         }
                     }
-                    Object[] obj = new Object[]{};
+                    Object[] obj = new Object[listtemp.size()];
                     int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
 
@@ -262,7 +262,7 @@ public class Factory {
               boolean avoirdeuxcarte = false;
                 Joueur joueurtemp = null;
                 while(avoirdeuxcarte = false) {
-                    Object[] obj = new Object[]{};
+                    Object[] obj =new Object[parameters.getListotherjoueur().size()];
                     int nombre = 0;
                     for (Iterator i = parameters.getListotherjoueur().iterator(); i.hasNext(); ) {
 
@@ -280,12 +280,8 @@ public class Factory {
                         }
                     }
 
-                    if (joueurtemp.getCarteMain().size() < 2) {
-                        joueurtemp.afficherfalse();
-                    } else {
-                        avoirdeuxcarte = true;
-                    }
-                }
+                    if (joueurtemp.getCarteMain().size() >=2) {
+
                         avoirdeuxcarte = true;
                         int num = (int) Math.random() * joueurtemp.getCarteMain().size();
                         Carte a = joueurtemp.getCarteMain().get(num);
@@ -296,6 +292,12 @@ public class Factory {
                         Carte b = joueurtemp.getCarteMain().get(num2);
                         parameters.getMyself().getCarteMain().add(a);
                         joueurtemp.getCarteMain().remove(b);
+
+                    }
+                    if(avoirdeuxcarte = false)
+                        parameters.getMyself().afficherfalse();
+                }
+
 
 
             }
@@ -316,7 +318,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
                     int nbr = 0;
@@ -335,7 +337,7 @@ public class Factory {
               /*  Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
                         List<Carte> croyanttemp = new ArrayList<Carte>();
                         List<Carte> cartemain = joueurtemp.getCarteMain();
-                        Object[] obj1 = new Object[]{};
+                        Object[] obj1 = new Object[cartemain.size()];
                         int nombre = 0;
                         for (Iterator i = cartemain.iterator(); i.hasNext(); ) {
 
@@ -396,70 +398,76 @@ public class Factory {
                     Carte a = (Guide) i.next();
                 }*/
                 if (parameters.getMyself() instanceof JoueurPhysique) {
-                    Object[] obj = new Object[]{};
+                    Object[] obj = new Object[parameters.getMyself().getCarteGuide().size()];
+                    boolean avoircarteguide = false;
                     int nombre = 0;
-                    for (Iterator i = parameters.getMyself().getCarteGuide().iterator(); i.hasNext(); ) {
+                    if (parameters.getMyself().getCarteGuide() != null) {
+                        for (Iterator i = parameters.getMyself().getCarteGuide().iterator(); i.hasNext(); ) {
 
-                        Carte cartetemp = (Carte) i.next();
-                        obj[nombre] = cartetemp.getCapacite();
-                        nombre++;
-                    }
-                    String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+                            Carte cartetemp = (Carte) i.next();
+                            obj[nombre] = cartetemp.getCapacite();
+                            nombre++;
+                        }
+                        String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
-                    for (Iterator i = parameters.getMyself().getCarteGuide().iterator(); i.hasNext(); ) {
-                        Guide cartetemp = (Guide) i.next();
-                        if (nomcarte == cartetemp.getCapacite()) {
+                        for (Iterator i = parameters.getMyself().getCarteGuide().iterator(); i.hasNext(); ) {
+                            Guide cartetemp = (Guide) i.next();
+                            if (nomcarte == cartetemp.getCapacite()) {
                 /* cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));*/
 
-                            parameters.getMyself().getCarteMain().add(cartetemp);
-                            for (Iterator j = cartetemp.getCroyantAttache().iterator(); j.hasNext(); ) {
-                                Croyant croyant = (Croyant) j.next();
-                                VueCarte vueCarte = new VueCarte(croyant);
-                                parameters.getPart().croyantCommun.add(croyant);
-                                MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
+                                parameters.getMyself().getCarteMain().add(cartetemp);
+                                for (Iterator j = cartetemp.getCroyantAttache().iterator(); j.hasNext(); ) {
+                                    Croyant croyant = (Croyant) j.next();
+                                    VueCarte vueCarte = new VueCarte(croyant);
+                                    parameters.getPart().croyantCommun.add(croyant);
+                                    MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
+                                }
+                                parameters.getMyself().getCarteGuide().remove(cartetemp);//去掉Guide
+                                break;
                             }
-                            parameters.getMyself().getCarteGuide().remove(cartetemp);//去掉Guide
-                        break;
                         }
                     }
+                    else
+                        JOptionPane.showMessageDialog(null, "Vous n'avez pas la carte Croyant ! Appuyez 'finir' pour finir.");
                 }
             }
         },image);
 
     }
+    /*
+ public Croyant createDiplomates(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
+            List<Integer> temp = new ArrayList<>();
+            temp.addAll(dogmes);
+            return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
+                @Override
+                public void sacrifier(Parameters parameters) {
+                    Object[] obj =new Object[parameters.getListotherjoueur().size()];
+                    Joueur joueurtemp = null;
+                    if (parameters.getMyself() instanceof JoueurPhysique) {
+                        boolean avoircrtguide = false;
+                        while(avoircrtguide = false){
+                        int nbr = 0;
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
 
-
-    public Croyant createDiplomates(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
-        List<Integer> temp = new ArrayList<>();
-        temp.addAll(dogmes);
-        return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
-            @Override
-            public void sacrifier(Parameters parameters) {
-                Object[] obj = new Object[]{};
-                Joueur joueurtemp = null;
-                if (parameters.getMyself() instanceof JoueurPhysique) {
-                    int nbr = 0;
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
-
-                        obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
-                    }
-                    String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
-
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
-                        if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
-                            joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
-                            break;
+                            obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
                         }
-                    }
-               /* Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
-                    List<Carte> guidetemp = new ArrayList<Carte>();
+                        String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
+                            if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
+                                joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
+                                break;
+                            }
+                        }
+                   Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+             /*       List<Carte> guidetemp = new ArrayList<Carte>();
                     List<Carte> cartemain = joueurtemp.getCarteMain();
-                /*for (Iterator i = cartemain.iterator(); i.hasNext(); ) {
+                for (Iterator i = cartemain.iterator(); i.hasNext(); ) {
                     Carte key = (Carte) i.next();
                     if (key instanceof Guide)
                         guidetemp.add(key);
-                }*/
-                    Object[] obj1 = new Object[]{};
+                }
+                    Object[] obj1 =new Object[parameters.getMyself().getCarteGuide().size()];
                     int nombre = 0;
                     for (Iterator i = parameters.getMyself().getCarteGuide().iterator(); i.hasNext(); ) {
 
@@ -467,7 +475,8 @@ public class Factory {
                         obj[nombre] = cartetemp.getCapacite();
                         nombre++;
                     }
-                    String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Guide voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
+*/
+            /*        String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Guide voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
 
                     for (Iterator i = parameters.getMyself().getCarteGuide().iterator(); i.hasNext(); ) {
                         Guide cartetemp = (Guide) i.next();
@@ -475,12 +484,14 @@ public class Factory {
                             cartetemp.sacrifier(parameters);
                         }
 
-            /*    guidetemp.get(joueurtemp.jouer(guidetemp)).sacrifier(parameters);*/
+               guidetemp.get(joueurtemp.jouer(guidetemp)).sacrifier(parameters);
                     }
                 }
             }
         },image);
-    }
+    }*/
+
+
 
     public Croyant createDemons(String nom, String capacite, int nbcroyant, List<Integer> dogmes, int origine,Image image) {
         List<Integer> temp = new ArrayList<>();
@@ -503,7 +514,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, temp, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
                     int nbr = 0;
@@ -543,7 +554,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
                     int nbr = 0;
@@ -567,7 +578,7 @@ public class Factory {
                         if (key instanceof Croyant)
                             croyanttemp.add(key);
                     }
-                    Object[] obj1 = new Object[]{};
+                    Object[] obj1 = new Object[croyanttemp.size()];
                     int nombre = 0;
                     for (Iterator i = croyanttemp.iterator(); i.hasNext(); ) {
 
@@ -598,7 +609,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
                     int nbr = 0;
@@ -620,7 +631,7 @@ public class Factory {
                         Guide a = (Guide) i.next();
                         listguidetemp.add(a);
                     }
-                    Object[] obj1 = new Object[]{};
+                    Object[] obj1 =new Object[listguidetemp.size()];
                     int nombre = 0;
                     for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
 
@@ -655,11 +666,11 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                boolean avoircroyant = true;
+                boolean avoircroyant = false;
                 List<Carte> croyanttemp = new ArrayList<Carte>();
 
-                while (avoircroyant = true) {
-                    Object[] obj = new Object[]{};
+                while (avoircroyant = false) {
+                    Object[] obj = new Object[parameters.getListotherjoueur().size()] ;
                     Joueur joueurtemp = null;
                     if (parameters.getMyself() instanceof JoueurPhysique) {
                         int nbr = 0;
@@ -683,12 +694,12 @@ public class Factory {
                             if (key instanceof Croyant)
                                 croyanttemp.add(key);
                         }
-                        if (croyanttemp == null) {
-                            avoircroyant = false;
+                        if (croyanttemp != null) {
+                            avoircroyant = true;
                         }
 
                     }
-                    Object[] obj1 = new Object[]{};
+                    Object[] obj1 =new Object[croyanttemp.size()];
                     int nombre = 0;
                     for (Iterator i = croyanttemp.iterator(); i.hasNext(); ) {
 
@@ -705,6 +716,8 @@ public class Factory {
                             break;
                         }
                     }
+                    if(avoircroyant = false)
+                        parameters.getMyself().afficherfalse();
                 /*croyanttemp.get(joueurtemp.jouer(croyanttemp)).sacrifier(parameters);*/
                 }
 
@@ -743,7 +756,7 @@ public class Factory {
                          }
                      }
                  }
-                 Object[] obj = new Object[]{};
+                 Object[] obj = new Object[listtemp.size()];
                  int nombre = 0;
                  for(Iterator i = listtemp.iterator();i.hasNext();){
 
@@ -774,7 +787,7 @@ public class Factory {
                             }
                         }
                     }
-                    Object[] obj = new Object[]{};
+                    Object[] obj =new Object[listtemp.size()];
                     int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
 
@@ -806,7 +819,7 @@ public class Factory {
                             }
                         }
                     }
-                    Object[] obj = new Object[]{};
+                    Object[] obj =new Object[listtemp.size()];
                     int nombre = 0;
                     for(Iterator i = listtemp.iterator();i.hasNext();){
 
@@ -827,10 +840,10 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 Joueur joueurtemp = new Joueur();
-                Object[] obj = new Object[]{};
-                boolean avoirdeuxcarte = true;
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
+                boolean avoirdeuxcarte = false;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
-                    while (avoirdeuxcarte = true) {
+                    while (avoirdeuxcarte = false) {
                         int nbr = 0;
 
                         for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
@@ -848,19 +861,22 @@ public class Factory {
 
 
                     /*joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
-                        if (joueurtemp.getCarteMain().size() < 2) {
-                            avoirdeuxcarte = false;
-                            joueurtemp.afficherfalse();
+                        if (joueurtemp.getCarteMain().size() >= 2) {
+                            avoirdeuxcarte = true;
+
+
+                            int num = (int) Math.random() * joueurtemp.getCarteMain().size();
+                            Carte a = joueurtemp.getCarteMain().get(num);
+                            parameters.getMyself().getCarteMain().add(a);
+                            joueurtemp.getCarteMain().remove(a);
+                            int num2 = (int) Math.random() * joueurtemp.getCarteMain().size();
+                            Carte b = joueurtemp.getCarteMain().get(num2);
+                            parameters.getMyself().getCarteMain().add(b);
+                            joueurtemp.getCarteMain().remove(b);
                         }
+                        if(avoirdeuxcarte = false)
+                            parameters.getMyself().afficherfalse();
                     }
-                    int num = (int) Math.random() * joueurtemp.getCarteMain().size();
-                    Carte a = joueurtemp.getCarteMain().get(num);
-                    parameters.getMyself().getCarteMain().add(a);
-                    joueurtemp.getCarteMain().remove(a);
-                    int num2 = (int) Math.random() * joueurtemp.getCarteMain().size();
-                    Carte b = joueurtemp.getCarteMain().get(num2);
-                    parameters.getMyself().getCarteMain().add(b);
-                    joueurtemp.getCarteMain().remove(b);
                 }
             }
         },image);
@@ -889,7 +905,7 @@ public class Factory {
                     for (Iterator i = listjoueurtemp.iterator(); i.hasNext(); ) {
                         Joueur joueurtemp = (Joueur) i.next();
                        */
-                    Object[]obj1 = new Object[]{};
+                    Object[]obj1 = new Object[parameters.getListotherjoueur().size()];
                     int nombre = 0;
                     for (Iterator k = parameters.getListotherjoueur().iterator(); k.hasNext(); ) {
 
@@ -925,7 +941,7 @@ public class Factory {
         return new Croyant(nom, capacite, nbcroyant, dogmes, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-              /*  Object[] obj = new Object[]{};
+              /*  Object[] obj = {};
                 int nombre = 0;
                 for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
 
@@ -961,68 +977,72 @@ public class Factory {
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if(parameters.getMyself() instanceof JoueurPhysique) {
-                    int nbr = 0;
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
+                    boolean avoiracrteguide = false;
+                    while (avoiracrteguide = false) {
+                        int nbr = 0;
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
 
-                        obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
-                    }
-                    String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
-
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
-                        if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
-                            joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
-                            break;
+                            obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
                         }
-                    }
+                        String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
-                    if (joueurtemp.getCarteGuide() != null) {
-                        List<Carte> listguidetemp = new ArrayList<Carte>();
-                        for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
-                            Carte a = (Guide) i.next();
-                            if (a.getOrigine() == Constants.ORIGINE_NEANT || a.getOrigine() == Constants.ORIGINE_NUIT) {
-                                listguidetemp.add(a);
-                            }
-                        }
-                        if (listguidetemp != null) {
-                            Object[] obj1 = new Object[]{};
-                            int nombre = 0;
-                            for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
-
-                                Carte cartetemp = (Carte) i.next();
-                                obj[nombre] = cartetemp.getCapacite();
-                                nombre++;
-                            }
-                            String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
-
-                            for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
-                                Guide cartetemp = (Guide) i.next();
-                                if (nomcarte == cartetemp.getCapacite()) {
-                                    for (Iterator j = cartetemp.getCroyantAttache().iterator(); j.hasNext(); ) {
-                                        Croyant croyant = (Croyant) j.next();
-                                        parameters.getPart().croyantCommun.add(croyant);
-                                        VueCarte vueCroyant = new VueCarte(croyant);
-                                        MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
-                                        cartetemp.getCroyantAttache().remove(croyant);
-                                        MaVueTotale.getmaVueTotale().getCroyantRecuPanel().add(vueCroyant);
-                                        parameters.getPart().getCarteDeffause().add(cartetemp);
-
-                                        joueurtemp.getCarteGuide().remove(cartetemp);
-
-
-                                    }
-                                }
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
+                            if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
+                                joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
                                 break;
                             }
-                        /*Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));*/
-
-
                         }
-                    }
-                }
 
+                        if (joueurtemp.getCarteGuide() != null) {
+                            List<Carte> listguidetemp = new ArrayList<Carte>();
+                            for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
+                                Carte a = (Guide) i.next();
+                                if (a.getOrigine() == Constants.ORIGINE_NEANT || a.getOrigine() == Constants.ORIGINE_NUIT) {
+                                    listguidetemp.add(a);
+                                }
+                            }
+                            if (listguidetemp != null) {
+                                avoiracrteguide = true;
+                                Object[] obj1 = new Object[listguidetemp.size()];
+                                int nombre = 0;
+                                for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
+
+                                    Carte cartetemp = (Carte) i.next();
+                                    obj[nombre] = cartetemp.getCapacite();
+                                    nombre++;
+                                }
+                                String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
+
+                                for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
+                                    Guide cartetemp = (Guide) i.next();
+                                    if (nomcarte == cartetemp.getCapacite()) {
+                                        for (Iterator j = cartetemp.getCroyantAttache().iterator(); j.hasNext(); ) {
+                                            Croyant croyant = (Croyant) j.next();
+                                            parameters.getPart().croyantCommun.add(croyant);
+                                            VueCarte vueCroyant = new VueCarte(croyant);
+                                            MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
+                                            cartetemp.getCroyantAttache().remove(croyant);
+                                            MaVueTotale.getmaVueTotale().getCroyantRecuPanel().add(vueCroyant);
+                                            parameters.getPart().getCarteDeffause().add(cartetemp);
+
+                                            joueurtemp.getCarteGuide().remove(cartetemp);//
+
+
+                                        }
+                                    }
+                                    break;
+                                }
+                        /*Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));*/
+                            }
+                        }
+
+
+                    if (avoiracrteguide = false)
+                        parameters.getMyself().afficherfalse();
+                }   }
             }
         },image);
     }
@@ -1033,67 +1053,72 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
 
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if(parameters.getMyself() instanceof JoueurPhysique) {
-                    int nbr = 0;
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
+                    boolean avoiracrteguide = false;
+                    while (avoiracrteguide = false) {
+                        int nbr = 0;
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
 
-                        obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
-                    }
-                    String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
-
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
-                        if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
-                            joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
-                            break;
+                            obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
                         }
-                    }
+                        String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
-                    if (joueurtemp.getCarteGuide() != null) {
-                        List<Carte> listguidetemp = new ArrayList<Carte>();
-                        for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
-                            Carte a = (Guide) i.next();
-                            if (a.getOrigine() == Constants.ORIGINE_JOUR || a.getOrigine() == Constants.ORIGINE_NEANT) {
-                                listguidetemp.add(a);
-                            }
-                        }
-                        if (listguidetemp != null) {
-                            Object[] obj1 = new Object[]{};
-                            int nombre = 0;
-                            for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
-
-                                Carte cartetemp = (Carte) i.next();
-                                obj[nombre] = cartetemp.getCapacite();
-                                nombre++;
-                            }
-                            String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
-
-                            for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
-                                Guide cartetemp = (Guide) i.next();
-                                if (nomcarte == cartetemp.getCapacite()) {
-                                    for (Iterator j = cartetemp.getCroyantAttache().iterator(); j.hasNext(); ) {
-                                        Croyant croyant = (Croyant) j.next();
-                                        parameters.getPart().croyantCommun.add(croyant);
-                                        VueCarte vueCroyant = new VueCarte(croyant);
-                                        MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
-                                        cartetemp.getCroyantAttache().remove(croyant);
-                                        MaVueTotale.getmaVueTotale().getCroyantRecuPanel().add(vueCroyant);
-                                        parameters.getPart().getCarteDeffause().add(cartetemp);
-
-                                        joueurtemp.getCarteGuide().remove(cartetemp);//
-
-
-                                    }
-                                }
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
+                            if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
+                                joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
                                 break;
                             }
-                        /*Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));*/
-
-
                         }
-                    }
-                }
+
+                        if (joueurtemp.getCarteGuide() != null) {
+                            List<Carte> listguidetemp = new ArrayList<Carte>();
+                            for (Iterator i = joueurtemp.getCarteGuide().iterator(); i.hasNext(); ) {
+                                Carte a = (Guide) i.next();
+                                if (a.getOrigine() == Constants.ORIGINE_JOUR || a.getOrigine() == Constants.ORIGINE_NEANT) {
+                                    listguidetemp.add(a);
+                                }
+                            }
+                            if (listguidetemp != null) {
+                                avoiracrteguide = true;
+                                Object[] obj1 = new Object[listguidetemp.size()];
+                                int nombre = 0;
+                                for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
+
+                                    Carte cartetemp = (Carte) i.next();
+                                    obj[nombre] = cartetemp.getCapacite();
+                                    nombre++;
+                                }
+                                String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
+
+                                for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
+                                    Guide cartetemp = (Guide) i.next();
+                                    if (nomcarte == cartetemp.getCapacite()) {
+                                        for (Iterator j = cartetemp.getCroyantAttache().iterator(); j.hasNext(); ) {
+                                            Croyant croyant = (Croyant) j.next();
+                                            parameters.getPart().croyantCommun.add(croyant);
+                                            VueCarte vueCroyant = new VueCarte(croyant);
+                                            MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCroyant);
+                                            cartetemp.getCroyantAttache().remove(croyant);
+                                            MaVueTotale.getmaVueTotale().getCroyantRecuPanel().add(vueCroyant);
+                                            parameters.getPart().getCarteDeffause().add(cartetemp);
+
+                                            joueurtemp.getCarteGuide().remove(cartetemp);//
+
+
+                                        }
+                                    }
+                                    break;
+                                }
+                        /*Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));*/
+                            }
+                        }
+
+
+                    if (avoiracrteguide = false)
+                        parameters.getMyself().afficherfalse();
+                }  }
             }
         },image);
     }
@@ -1104,27 +1129,27 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
 
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
-                    int nbr = 0;
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
+                    boolean avoircrtguide = false;
+                    while (avoircrtguide = false) {
+                        int nbr = 0;
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
 
-                        obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
-                    }
-                    String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
-
-                    for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
-                        if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
-                            joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
-                            break;
+                            obj[nbr] = parameters.getListotherjoueur().get(nbr + 1).getNom();
                         }
-                    }
+                        String nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
+
+                        for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
+                            if (nomJoueur == parameters.getListotherjoueur().get(nbr + 1).getNom()) {
+                                joueurtemp = parameters.getListotherjoueur().get(nbr + 1);
+                                break;
+                            }
+                        }
                 /*Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
 
-                    while (joueurtemp.getCarteGuide() == null) {
-                        joueurtemp.afficherfalse();
-
+                 /*   if(joueurtemp.getCarteGuide() != null) {
 
                         nomJoueur = (String) JOptionPane.showInputDialog(null, "quel Joueur voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, obj[0]);
 
@@ -1134,29 +1159,39 @@ public class Factory {
                                 break;
                             }
                         }
+                        if(joueurtemp.getCarteGuide() == null)
+                            parameters.getMyself().afficherfalse();
                 /*    joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
-                    }
-                    List<Guide> listguidetemp = new ArrayList<Guide>();
-                    listguidetemp = joueurtemp.getCarteGuide();
-                    Object[] obj1 = new Object[]{};
-                    int nombre = 0;
-                    for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
 
-                        Carte cartetemp = (Carte) i.next();
-                        obj[nombre] = cartetemp.getCapacite();
-                        nombre++;
-                    }
-                    String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
-                    for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
-                        Guide cartetemp = (Guide) i.next();
-                        if (nomcarte == cartetemp.getCapacite()) {
+                        if (joueurtemp.getCarteGuide() != null) {
+                            avoircrtguide = true;
+                            List<Guide> listguidetemp = new ArrayList<Guide>();
+                            listguidetemp = joueurtemp.getCarteGuide();
+                            Object[] obj1 = new Object[listguidetemp.size()];
+                            int nombre = 0;
+                            for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
+
+                                Carte cartetemp = (Carte) i.next();
+                                obj[nombre] = cartetemp.getCapacite();
+                                nombre++;
+                            }
+                            String nomcarte = (String) JOptionPane.showInputDialog(null, "quel Carte voulez-vous choisir?\n", "nom", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj1, obj[0]);
+                            for (Iterator i = listguidetemp.iterator(); i.hasNext(); ) {
+                                Guide cartetemp = (Guide) i.next();
+                                if (nomcarte == cartetemp.getCapacite()) {
 
                /* Guide cartetemp = (Guide) listguidetemp.get(parameters.getMyself().jouer(listguidetemp));*/
-                            parameters.getMyself().getCarteGuide().add(cartetemp);
+                                    parameters.getMyself().getCarteGuide().add(cartetemp);
               /* MaVueTotale.getmaVueTotale().*/  //把卡加到guide图层里
-                            joueurtemp.getCarteGuide().remove(cartetemp);
+                                    joueurtemp.getCarteGuide().remove(cartetemp);
+                                }
+
+                            }
                         }
-                    }
+                        if(avoircrtguide = false)
+                            parameters.getMyself().afficherfalse();
+                }
+
                 }
             }
         },image);
@@ -1170,7 +1205,7 @@ public class Factory {
             public void sacrifier(Parameters parameters) {
                 boolean avoirdeuxcroyant = false;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
-                    Object[] obj = new Object[]{};
+                    Object[] obj = new Object[parameters.getListotherjoueur().size()];
 
 
                     List<Carte> listcroyanttemp = new ArrayList<Carte>();
@@ -1198,26 +1233,30 @@ public class Factory {
                                 listcroyanttemp.add(cartetemp);
                             }
                         }
-                        if (listcroyanttemp.size() < 2) {
-                            parameters.getMyself().afficherfalse();
-                        } else {
+                        if (listcroyanttemp.size() >= 2) {
+
                             avoirdeuxcroyant = true;
+                            int num = (int) listcroyanttemp.size();
+                            Carte a = listcroyanttemp.get(num);
+                            VueCarte vueCarte = new VueCarte(a);
+                            parameters.getPart().getCarteDeffause().add(a);
+                            joueurtemp.getCarteMain().remove(a);
+                            MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
+                            listcroyanttemp.remove(a);
+                            int num2 = (int) listcroyanttemp.size();
+                            Carte b = joueurtemp.getCarteMain().get(num2);
+                            parameters.getPart().getCarteDeffause().add(b);
+                            vueCarte = new VueCarte(b);
+                            joueurtemp.getCarteMain().remove(b);
+                            MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
+                            listcroyanttemp.remove(b);
                         }
+                      /*  if(avoirdeuxcroyant == false)
+                        parameters.getMyself().afficherfalse();*/
+                      if(avoirdeuxcroyant = false)
+                          parameters.getMyself().afficherfalse();
                     }
-                    int num = (int) listcroyanttemp.size();
-                    Carte a = listcroyanttemp.get(num);
-                    VueCarte vueCarte = new VueCarte(a);
-                    parameters.getPart().getCarteDeffause().add(a);
-                    joueurtemp.getCarteMain().remove(a);
-                    MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
-                    listcroyanttemp.remove(a);
-                    int num2 = (int) listcroyanttemp.size();
-                    Carte b = joueurtemp.getCarteMain().get(num2);
-                    parameters.getPart().getCarteDeffause().add(b);
-                    vueCarte = new VueCarte(b);
-                    joueurtemp.getCarteMain().remove(b);
-                    MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
-                    listcroyanttemp.remove(b);
+
                 }
             }
         },image);
@@ -1228,7 +1267,7 @@ public class Factory {
         return new DeusEx(nom, capacite, origine, new Sacrifier() {
             @Override
             public void sacrifier(Parameters parameters) {
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
                     int nbr = 0;
@@ -1246,7 +1285,7 @@ public class Factory {
                     }
               /*  Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
 
-                    while (joueurtemp.getCarteMain() == null) {
+              /*      while(joueurtemp.getCarteMain() == null) {
                         joueurtemp.afficherfalse();
 
                         nbr = 0;
@@ -1262,8 +1301,8 @@ public class Factory {
                                 break;
                             }
                         }
-                 /*   joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
-                    }
+                 /*   joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));
+                    }*/
                     int num = joueurtemp.getCarteMain().size();
 
                     Carte cartetemp = joueurtemp.getCarteMain().get(parameters.getMyself().jouer(num));
@@ -1304,7 +1343,7 @@ public class Factory {
                         }
                     }
                     if (listcartetemp != null) {
-                        Object[] obj = new Object[]{};
+                        Object[] obj = new Object[listcartetemp.size()];
                         int nombre = 0;
                         for (Iterator i = listcartetemp.iterator(); i.hasNext(); ) {
 
@@ -1323,6 +1362,8 @@ public class Factory {
                     /*Carte cartetemp = listcartetemp.get(parameters.getMyself().jouer(listcartetemp));*/
                     /*cartetemp.sacrifier(parameters);*/
                     }
+                    else
+                        JOptionPane.showMessageDialog(null, "Vous n'avez pas carte croyant! Appuyez 'finir' pour finir.");
                     ///这张卡cartetemp， sacrifier之后还应该保留着，怎么处理？？
                 }
             }
@@ -1369,8 +1410,8 @@ public class Factory {
             public void sacrifier(Parameters parameters) {
                 //boolean avoirapocalypse = false;
                 //  while(avoirapocalypse = false) {
-                Object[] obj = new Object[]{};
-                Joueur joueurtemp = null;
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
+                Joueur joueurtemp = null; boolean avoirApocalypse = false;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
                     int nbr = 0;
                     for (nbr = 0; nbr < parameters.getListotherjoueur().size() - 1; nbr++) {
@@ -1385,7 +1426,7 @@ public class Factory {
                             break;
                         }
                /*     Joueur joueurtemp = parameters.getListotherjoueur().get(parameters.getMyself().jouer(parameters));*/
-                        boolean avoirApocalypse = false;
+
                         for (Iterator it = joueurtemp.getCarteMain().iterator(); it.hasNext(); ) {
                             Carte cartetemp = (Carte) it.next();
                             if (cartetemp instanceof Apocalypse) {
@@ -1394,9 +1435,10 @@ public class Factory {
                                 break;
                             }
                         }
-                        if (avoirApocalypse = false)
-                            JOptionPane.showMessageDialog(null, "il n'a pas la Carte Apocalypse !");
+
                     }
+                    if (avoirApocalypse = false)
+                        JOptionPane.showMessageDialog(null, "il n'a pas la Carte Apocalypse ! appuyez 'finir' pour finir");
                 }
             }
         },image);
@@ -1476,7 +1518,7 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
 
-                Object[] obj = new Object[]{};
+                Object[] obj = new Object[parameters.getListotherjoueur().size()];
                 Joueur joueurtemp = null;
                 if (parameters.getMyself() instanceof JoueurPhysique) {
                     int nbr = 0;
@@ -1517,7 +1559,7 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                    Object[] obj = new Object[]{};
+                    Object[] obj = new Object[parameters.getListotherjoueur().size()];
                     int nombre = 0;
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
 
@@ -1539,7 +1581,7 @@ public class Factory {
             @Override
             public void sacrifier(Parameters parameters) {
                 if(parameters.getMyself() instanceof JoueurPhysique){
-                   Object[] obj = new Object[]{};
+                   Object[] obj = new Object[parameters.getListotherjoueur().size()];
                     int nombre = 0;
                     for(Iterator i = parameters.getListotherjoueur().iterator();i.hasNext();){
 

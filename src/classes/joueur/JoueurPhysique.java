@@ -568,7 +568,7 @@ public void utiliser(int answer, VueCarte vueCarte){
                 poseBy3Point(jour, nuit, neant, carte);
                 break;
         }
-        MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
+       MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
         MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
 
 
@@ -697,7 +697,7 @@ public void utiliser(int answer, VueCarte vueCarte){
         for(int i=1;i<=size;i++){
             System.out.println(i +" ");
         }
-        Object[] obj = new Object[]{};
+        Object[] obj = new Object[size];
 
             int nbr = 1;
             for (nbr = 1; nbr <=size; nbr++) {
@@ -717,7 +717,7 @@ public void utiliser(int answer, VueCarte vueCarte){
         List<Joueur> listjoueurtemp = new ArrayList<Joueur>();
         List<Joueur>listjoueursortie = new ArrayList<Joueur>();
         listjoueurtemp = listjoueur;
-        Object[] obj = new Object[]{};
+        Object[] obj = new Object[listjoueurtemp.size()];
        for(int j = 0;j<size;j++) {
            /*for (Iterator i = listjoueurtemp.iterator(); i.hasNext(); ) {
                Joueur joueurtemp = (Joueur) i.next();
@@ -753,7 +753,7 @@ public void utiliser(int answer, VueCarte vueCarte){
 
 
     public void afficherfalse() {
-        JOptionPane.showMessageDialog(null, "choisissez une autre joueur!");
+        JOptionPane.showMessageDialog(null, "choisissez une autre !");
 
     }
 
