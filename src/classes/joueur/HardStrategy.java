@@ -1,6 +1,7 @@
 package classes.joueur;
 
 import classes.Constants;
+import classes.De;
 import classes.Part;
 import classes.carte.Carte;
 import classes.carte.Croyant;
@@ -16,6 +17,7 @@ import java.util.List;
 public class HardStrategy implements Strategie {
     @Override
     public void jouer(Parameters parameters) {
+        Part.getPart().JoueurAjouterPoint(De.getDe().lancer());
         List<Carte> mesGuide;
         mesGuide = getCarteValid(parameters.getMyself().getCarteMain(),Guide.class,parameters);
         List<Guide> mesGuideValid = new ArrayList<>();

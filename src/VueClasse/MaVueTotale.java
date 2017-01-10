@@ -266,9 +266,9 @@ public class MaVueTotale extends JFrame{
                 Object[] obj = {"facile","dur"};
                 String mode = (String) JOptionPane.showInputDialog(null,"Choisir le mode\n", "mode", JOptionPane.PLAIN_MESSAGE, new ImageIcon("icon.png"), obj, "facile");
                 if(mode == "facile")
-                    part.dur(nbrJoueur - 1,part);
+                    part.facile(nbrJoueur - 1,part);
                     else
-                        part.facile(nbrJoueur - 1,part);
+                        part.dur(nbrJoueur - 1,part);
                 try {
 
                     setGamePanel();
@@ -293,7 +293,7 @@ public class MaVueTotale extends JFrame{
         part.shuffleDivi();
         part.piocherDivi();
         part.piocher(part.getListeJouCourant());
-        //part.start();
+       // System.out.println(part.getListeJouCourant().get(1).getCarteMain().get(3).toString());
         setCarteAMainPanel();
         setCroyantCommunPanel();
         setCroyantRecuPanel();
