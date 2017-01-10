@@ -186,6 +186,7 @@ public void utiliser(int answer, VueCarte vueCarte){
             poser = false;
             scanner.close();
         }*/
+    measurementsChanged();
     }
 
    /* public void deffausser (Scanner scanner)  {
@@ -279,6 +280,7 @@ public void utiliser(int answer, VueCarte vueCarte){
 
             this.getCarteMain().remove(card);
         }
+        measurementsChanged();
     }
     public void utiliserCA(Parameters parameters,VueCarte vueCarte) {
         List<Carte> cardCA = new ArrayList<>();
@@ -570,20 +572,29 @@ public void utiliser(int answer, VueCarte vueCarte){
         }
      //  MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(vueCarte);
      //   MaVueTotale.getmaVueTotale().getCarteAMainPanel().remove(vueCarte);
-
+        measurementsChanged();
 
     }
 
     private void poseByPointJour(int jour, Carte carte) {
+        if(this.getPointActTot().getJour() < 1)
+            JOptionPane.showMessageDialog(null, "Vous n'avez pas des points suffisants !");
+        else {
             this.getPointActTot().setJour(jour - 1);
             Part.getPart().getCroyantCommun().add((Croyant) carte);
             this.getCarteMain().remove(carte);
+        }
     }
 
     private void poseByPointNuit(int nuit, Carte carte) {
+        if (this.getPointActTot().getNeant() < 1)
+            JOptionPane.showMessageDialog(null, "Vous n'avez pas des points suffisants !");
+        else {
             this.getPointActTot().setNuit(nuit - 1);
             Part.getPart().getCroyantCommun().add((Croyant) carte);
             this.getCarteMain().remove(carte);
+
+        }
     }
 
     private void poseBy3Point(int jour, int nuit, int neant, Carte crPoser) {
@@ -609,19 +620,31 @@ public void utiliser(int answer, VueCarte vueCarte){
         }
             switch (or) {
                 case 0:
-                    this.getPointActTot().setNeant(neant - 1);
-                    Part.getPart().getCroyantCommun().add((Croyant) crPoser);
-                    this.getCarteMain().remove(crPoser);
+                    if(this.getPointActTot().getNeant() < 1)
+                        JOptionPane.showMessageDialog(null, "Vous n'avez pas des points suffisants !");
+                    else {
+                        this.getPointActTot().setNeant(neant - 1);
+                        Part.getPart().getCroyantCommun().add((Croyant) crPoser);
+                        this.getCarteMain().remove(crPoser);
+                    }
                     break;
                 case 1:
-                    this.getPointActTot().setJour(jour - 2);
-                    Part.getPart().getCroyantCommun().add((Croyant) crPoser);
-                    this.getCarteMain().remove(crPoser);
+                    if(this.getPointActTot().getJour() < 2)
+                        JOptionPane.showMessageDialog(null, "Vous n'avez pas des points suffisants !");
+                    else {
+                        this.getPointActTot().setJour(jour - 2);
+                        Part.getPart().getCroyantCommun().add((Croyant) crPoser);
+                        this.getCarteMain().remove(crPoser);
+                    }
                     break;
                 case 2:
-                    this.getPointActTot().setNuit(nuit - 2);
-                    Part.getPart().getCroyantCommun().add((Croyant) crPoser);
-                    this.getCarteMain().remove(crPoser);
+                    if(this.getPointActTot().getNuit() < 2)
+                        JOptionPane.showMessageDialog(null, "Vous n'avez pas des points suffisants !");
+                    else {
+                        this.getPointActTot().setNuit(nuit - 2);
+                        Part.getPart().getCroyantCommun().add((Croyant) crPoser);
+                        this.getCarteMain().remove(crPoser);
+                    }
                     break;
             }
 
@@ -757,7 +780,11 @@ public void utiliser(int answer, VueCarte vueCarte){
 
     }
 
-    }
 
+    public void measurementsChanged() {
+        setChanged();
+        notifyObservers();
+    }
+}
 
 

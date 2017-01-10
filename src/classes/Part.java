@@ -936,6 +936,7 @@ public class Part extends Observable{
                 JOptionPane.showMessageDialog(null, "Dé de Cosmogonie : NEANT.", "Dé de Cosmogonie",JOptionPane.PLAIN_MESSAGE);
                 break;
         }
+        measurementsChanged1();
     }
 
     private void faceJour() {
@@ -943,11 +944,13 @@ public class Part extends Observable{
             if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_JOUR) {
                 int point = joueur.getPointActTot().getJour();
                 joueur.getPointActTot().setJour(point + 2);
+                joueur.notifyChanges();
             }
 
             if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_AUBE) {
                 int point = joueur.getPointActTot().getJour();
                 joueur.getPointActTot().setJour(point + 1);
+                joueur.notifyChanges();
             }
         }
     }
@@ -957,11 +960,13 @@ public class Part extends Observable{
             if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_NUIT) {
                 int point = joueur.getPointActTot().getNuit();
                 joueur.getPointActTot().setNuit(point + 2);
+                joueur.notifyChanges();
             }
 
             if (joueur.getDivinite().getOrigine() == Constants.ORIGINE_CREPUSCULE) {
                 int point = joueur.getPointActTot().getNuit();
                 joueur.getPointActTot().setNuit(point + 1);
+                joueur.notifyChanges();
             }
         }
     }
@@ -972,6 +977,7 @@ public class Part extends Observable{
                     joueur.getDivinite().getOrigine() == Constants.ORIGINE_CREPUSCULE) {
                 int point = joueur.getPointActTot().getNeant();
                 joueur.getPointActTot().setNeant(point + 1);
+                joueur.notifyChanges();
             }
         }
     }
@@ -979,6 +985,15 @@ public class Part extends Observable{
         this.myObserver.update(this,null);
     }
 
+
+    public void measurementsChanged() {
+        setChanged();
+        notifyObservers();
+    }
+    public void measurementsChanged1() {
+        setChanged();
+        notifyObservers();
+    }
     public void whowin(){
         isEnd = true;
     }
