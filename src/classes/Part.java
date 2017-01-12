@@ -921,7 +921,6 @@ public class Part extends Observable{
             case 1:
             case 2:
                 faceJour();
-                JOptionPane.showMessageDialog(null, "Dé de Cosmogonie : JOUR.", "Dé de Cosmogonie",JOptionPane.PLAIN_MESSAGE);
                 break;
             case 3:
             case 4:
