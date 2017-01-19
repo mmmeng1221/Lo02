@@ -593,7 +593,8 @@ public void utiliser(int answer, VueCarte vueCarte){
         else {
             this.getPointActTot().setNuit(nuit - 1);
             Part.getPart().getCroyantCommun().add((Croyant) carte);
-
+            VueCarte card = new VueCarte(carte);
+            MaVueTotale.getmaVueTotale().getCroyantCommunPanel().add(card);
             this.getCarteMain().remove(carte);
 
 
