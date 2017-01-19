@@ -67,6 +67,8 @@ public class MaVueTotale extends JFrame{
 
     private JPanel centerpanel = new JPanel();
 
+    private JPanel dePanel = new JPanel();
+
 
 
     /*    private JPanel gamePanel = new JPanel();
@@ -296,8 +298,8 @@ public class MaVueTotale extends JFrame{
         part.shuffleDivi();
         part.piocherDivi();
         part.piocher(part.getListeJouCourant());
-       // System.out.println(part.getListeJouCourant().get(1).getCarteMain().get(3).toString());
         setCarteAMainPanel();
+        setDePanel();
         setCroyantCommunPanel();
         setCroyantRecuPanel();
         setComptagePanel();
@@ -312,9 +314,9 @@ public class MaVueTotale extends JFrame{
        this.setLayout(new BorderLayout());
         centerpanel.setLayout(new BorderLayout());
         centerpanel.setPreferredSize(new Dimension(525,400));
+        centerpanel.add(dePanel,BorderLayout.NORTH);
         centerpanel.add(croyantCommunPanel,BorderLayout.CENTER);
         centerpanel.add(panelBouton, BorderLayout.SOUTH);
-
         titleLabel.setPreferredSize(new Dimension(1250,30));
         comptagePanel.setPreferredSize(new Dimension(175,470));
         croyantRecuPanel.setPreferredSize(new Dimension(525,470));
@@ -575,19 +577,14 @@ public class MaVueTotale extends JFrame{
            /* carteAMainPanel.add(panelBouton);*/
     }
 
-    public void setCroyantCommunPanel(){
-        croyantCommunPanel.setLayout(new GridLayout());
+    public void setDePanel(){
         boutonDe.addActionListener(rollDice);
         boutonDe.setPreferredSize(new Dimension(100,50));
-        /*croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());*/
-        croyantCommunPanel.add(boutonDe);
-        /*croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());
-        croyantCommunPanel.add(new JLabel());*/
+        dePanel.add(boutonDe);
+    }
+
+    public void setCroyantCommunPanel(){
+        croyantCommunPanel.setLayout(new GridLayout());
         for(Carte c : part.getCroyantCommun()){
             VueCarte vueCroyant = new VueCarte(c);
             croyantCommunPanel.add(vueCroyant);
